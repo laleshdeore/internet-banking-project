@@ -1,0 +1,1402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
+  dslVersion="1.0.0.0"
+  Id="4c06afb7-1af8-4ff3-a4dd-11a6993a1e9d"
+  name="Modeling" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <actor
+        Id="e7c7177a-d92c-4812-b664-155dffd645c8"
+        name="Client"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="1bde8a98-ae3f-412c-9288-b19f2d8bfaf0"
+            isSubstitutable="false">
+            <actorMoniker
+              Id="5d2c9b96-2d0b-4f01-bd3f-1ab5cca8c7c4"
+              LastKnownName="User"
+              LastKnownLocation="Modeling.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="04830225-9c7e-4fc2-9580-a4ff4a1eab28"
+            isDerived="false"
+            sourceEndRoleName="Client"
+            targetEndRoleName="Get balance information"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a4d8797d-bb59-4b04-af2f-55e68e1db1a0"
+              LastKnownName="Get balance information"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="89f8d9c0-f0ab-4159-9e30-8ee4cec0835b"
+                  name="Client"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c70ee0de-00af-46bb-b90e-493182fa1dca"
+                  name="Get balance information"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="0135fff5-c383-48f2-b393-1a4544a5ab46"
+            isDerived="false"
+            sourceEndRoleName="Client"
+            targetEndRoleName="Get common information"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="289a922a-3b84-4ea4-8999-1057ab969494"
+              LastKnownName="Get common information"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6d23a376-c0c4-47ad-a3b3-d68fd5b8fc56"
+                  name="Client"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="20e44c83-22ca-414c-b30b-79125801a166"
+                  name="Get common information"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="83eb20f7-50e8-4b12-a6e9-b90b05416eab"
+            isDerived="false"
+            sourceEndRoleName="Client"
+            targetEndRoleName="Send request to block account"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="8d33fa56-d965-4bad-87b2-d1d34716079c"
+              LastKnownName="Send request to block account"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3473a2ea-b64d-4462-ae38-a6379597b098"
+                  name="Client"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2db4a777-729c-4131-a1e3-89ee70fdb1e5"
+                  name="Send request to block account"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="c0b6f0cf-53cf-4d0d-bc55-8f6e2207196d"
+            isDerived="false"
+            sourceEndRoleName="Client"
+            targetEndRoleName="Save pay history"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="1ef5d2d0-39a4-46d9-8397-ec67b75d6542"
+              LastKnownName="Save pay history"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e7f94ea3-57ac-4394-a3e5-98aee9e4edf6"
+                  name="Client"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2fd07bed-0c7a-40d8-8181-00ae1104350b"
+                  name="Save pay history"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="64b004bb-2328-42b4-9140-706901d09c37"
+            isDerived="false"
+            sourceEndRoleName="Client"
+            targetEndRoleName="Change region"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5fd0fde8-083f-4f85-ae45-525066719536"
+              LastKnownName="Change region"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3a65bcdd-075b-404c-b2a9-bfca1d5064df"
+                  name="Client"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="60a3e6a9-bed8-47b9-835f-76991a961084"
+                  name="Change region"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="a6ae0dcf-306c-4b47-b3ba-056a2e06d428"
+            isDerived="false"
+            sourceEndRoleName="Client"
+            targetEndRoleName="Create personal code"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="d63d16d3-c9a5-448a-9d30-68a26ea33aa6"
+              LastKnownName="Create personal code"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c7a63689-d5e0-4d7e-96cf-ccaa9a62ec4d"
+                  name="Client"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="fb82df09-24e9-40bf-9cda-798bc0fdd435"
+                  name="Create personal code"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="2b372259-7d02-4a6f-8881-4f651a37e189"
+            isDerived="false"
+            sourceEndRoleName="Client"
+            targetEndRoleName="Edit personal code"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="2433b463-4099-4a27-a60b-802817de1de8"
+              LastKnownName="Edit personal code"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="670e1716-1105-4689-b1c2-9867cfc15cfd"
+                  name="Client"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="10ff98d5-cb73-4cbb-b8c1-7fec0acbd093"
+                  name="Edit personal code"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="c068e2e2-186a-435a-9354-d2cf7fb72d24"
+            isDerived="false"
+            sourceEndRoleName="Client"
+            targetEndRoleName="Set automatic pays"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="2f6f3595-4a62-462e-a2c2-53a668326290"
+              LastKnownName="Set automatic pays"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="26ab956a-7682-46ef-bfb6-8085ca4f0dc9"
+                  name="Client"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2e1be1ae-b449-4dc0-a45e-c1e4c85aee53"
+                  name="Set automatic pays"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="fca25450-2558-4072-9cdd-5530fb2a19c3"
+            isDerived="false"
+            sourceEndRoleName="Client"
+            targetEndRoleName="Pay"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="596d5309-9ee1-4a65-a231-192f089fbde8"
+              LastKnownName="Pay"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="46cabc4a-cf77-4118-9897-d3973816f8e0"
+                  name="Client"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2e44ca4c-8978-4ae0-84ed-d71589087893"
+                  name="Pay"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="93d92356-741e-43b1-bc1c-44c498005deb"
+        name="Authorize"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a4d8797d-bb59-4b04-af2f-55e68e1db1a0"
+        name="Get balance information"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="1a5fa6fb-1f2f-4040-86dc-f29469f85165">
+            <useCaseMoniker
+              Id="f4367e19-bff6-4cde-ae78-bbe3aa148a64"
+              LastKnownName="Choose account"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="425dd6a1-0d7d-4136-84d9-dfaa205117de"
+        name="Choose account"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="b233ff99-7604-405b-b5fc-46f110c56337">
+            <useCaseMoniker
+              Id="a4d8797d-bb59-4b04-af2f-55e68e1db1a0"
+              LastKnownName="Get balance information"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f4367e19-bff6-4cde-ae78-bbe3aa148a64"
+        name="Choose account"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="289a922a-3b84-4ea4-8999-1057ab969494"
+        name="Get common information"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="40756d10-12a6-4671-a9e2-600b4ba2b0a4"
+        name="Get tariff information"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="bada5cad-aa2b-4d30-9ecc-00b288c713c9">
+            <useCaseMoniker
+              Id="289a922a-3b84-4ea4-8999-1057ab969494"
+              LastKnownName="Get common information"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="7ead0c1b-bfde-4307-a906-1543a63c3b1d"
+        name="Get ATM information"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="3b2b254f-80e8-4589-8cd2-301a79916110">
+            <useCaseMoniker
+              Id="289a922a-3b84-4ea4-8999-1057ab969494"
+              LastKnownName="Get common information"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="b413c7b6-f341-402c-a3a0-9c2a2e635376"
+        name="Get functionality information"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="f7c36f19-13dc-421a-8e86-c1a9015e1e67">
+            <useCaseMoniker
+              Id="289a922a-3b84-4ea4-8999-1057ab969494"
+              LastKnownName="Get common information"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d63d16d3-c9a5-448a-9d30-68a26ea33aa6"
+        name="Create personal code"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="5139f6c6-5f16-40cc-a612-d9cd62e9b6bd">
+            <useCaseMoniker
+              Id="0053590b-e3b1-491a-8974-44359ee78d88"
+              LastKnownName="Enter personal code"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="596d5309-9ee1-4a65-a231-192f089fbde8"
+        name="Pay"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="b3262569-e988-4a10-be21-fcc41fd7edad">
+            <useCaseMoniker
+              Id="d843babc-eb9d-4d1b-a6ee-708b36fbee97"
+              LastKnownName="Enter account expiration date"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+          <include
+            Id="4b1684bd-908a-4e9d-9e21-411a89fcb6b5">
+            <useCaseMoniker
+              Id="0053590b-e3b1-491a-8974-44359ee78d88"
+              LastKnownName="Enter personal code"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+          <include
+            Id="3f1da485-9762-49e7-bc0d-ef26c256f9ce">
+            <useCaseMoniker
+              Id="1de5bf53-37f0-4d07-abd6-7ed32f9d78ce"
+              LastKnownName="Enter pay identifier"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="1de5bf53-37f0-4d07-abd6-7ed32f9d78ce"
+        name="Enter pay identifier"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2433b463-4099-4a27-a60b-802817de1de8"
+        name="Edit personal code"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="f57f4597-4561-4cfa-aaf0-52f2d144a0a6">
+            <useCaseMoniker
+              Id="0053590b-e3b1-491a-8974-44359ee78d88"
+              LastKnownName="Enter personal code"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d843babc-eb9d-4d1b-a6ee-708b36fbee97"
+        name="Enter account expiration date"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="cee9c2bc-1424-46bc-b07d-8f5876d4523b"
+        name="Employee"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="44eda5f0-67b3-4db9-b640-32e1a82cfa9a"
+            isSubstitutable="false">
+            <actorMoniker
+              Id="5d2c9b96-2d0b-4f01-bd3f-1ab5cca8c7c4"
+              LastKnownName="User"
+              LastKnownLocation="Modeling.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="82feabe8-af04-492b-b09e-6997ca51236f"
+            isDerived="false"
+            sourceEndRoleName="Employee"
+            targetEndRoleName="Edit client"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="916ef25a-8b41-40b3-94a2-7a9c71dd665d"
+              LastKnownName="Edit client"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f50bf2b5-8e15-40f3-a326-ed16dda5313d"
+                  name="Employee"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0cd10acd-9178-40ee-b076-849023e040f2"
+                  name="Edit client"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="1b877b5a-eca8-4273-a1ee-ad6b9c76870e"
+            isDerived="false"
+            sourceEndRoleName="Employee"
+            targetEndRoleName="Edit account"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="ae905136-742f-4fda-9b4a-3d92370c3eed"
+              LastKnownName="Edit account"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f68c0829-3b35-4255-a847-c01664c8c757"
+                  name="Employee"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="fe28eecc-9c03-4158-86ce-4699e2f8fcbe"
+                  name="Edit account"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="48eb1300-b585-4815-96a1-ddcd42a1724a"
+            isDerived="false"
+            sourceEndRoleName="Employee"
+            targetEndRoleName="Create system message"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="3e71c946-793a-4d79-bc90-9e06e1a66915"
+              LastKnownName="Create system message"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3372ca27-6d80-4fe2-a4d3-a195e7e77d30"
+                  name="Employee"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ee7c778d-f6b2-4cbe-8b78-cc1564fdbe3c"
+                  name="Create system message"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="966fa5d2-3cbc-4911-89df-1be0ecfaa343"
+            isDerived="false"
+            sourceEndRoleName="Employee"
+            targetEndRoleName="Get user list"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="2a7a5db3-1e84-4af0-89f8-b70b72dd66cb"
+              LastKnownName="Get user list"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e0b3f7b3-5083-4396-b6d5-a877c9ac1b0f"
+                  name="Employee"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="afde5f64-07ba-44cc-b96d-98629b7af42e"
+                  name="Get user list"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0053590b-e3b1-491a-8974-44359ee78d88"
+        name="Enter personal code"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="1ef5d2d0-39a4-46d9-8397-ec67b75d6542"
+        name="Save pay history"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2f6f3595-4a62-462e-a2c2-53a668326290"
+        name="Set automatic pays"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c50263b9-40fd-4923-8a63-5eed7668e7f6"
+        name="Make transaction"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="95176900-9765-4f56-8c89-e71015e17a47">
+            <useCaseMoniker
+              Id="0053590b-e3b1-491a-8974-44359ee78d88"
+              LastKnownName="Enter personal code"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5fd0fde8-083f-4f85-ae45-525066719536"
+        name="Change region"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8d33fa56-d965-4bad-87b2-d1d34716079c"
+        name="Send request to block account"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+        name="Client module"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="a9886998-f0fb-4e9f-9816-837dd3ecf106"
+        name="Administrator"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="0d86bbc0-3c90-4922-9611-bc5965244b38"
+            isSubstitutable="false">
+            <actorMoniker
+              Id="cee9c2bc-1424-46bc-b07d-8f5876d4523b"
+              LastKnownName="Employee"
+              LastKnownLocation="Modeling.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="153f02d3-4e19-48dc-8824-d24ba7ecbf38"
+            isDerived="false"
+            sourceEndRoleName="Administrator"
+            targetEndRoleName="Edit employee"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a2915b50-82ab-416d-86fd-86f273fc08f6"
+              LastKnownName="Edit employee"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e2c7726c-3a92-42c4-ad4d-7d2c1d729a01"
+                  name="Administrator"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b76f70ed-269f-4596-a84d-7ebb05ac3749"
+                  name="Edit employee"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="e3165c08-5e14-4197-a8a5-a01652b750e5"
+            isDerived="false"
+            sourceEndRoleName="Administrator"
+            targetEndRoleName="Change currency rate"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5a31ad24-54ac-466a-b8ed-29768cb4fa7b"
+              LastKnownName="Change currency rate"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7ef72089-3b77-4655-9011-6419c250c73c"
+                  name="Administrator"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c7dcd9f6-2a46-4714-9896-c097fd75aa57"
+                  name="Change currency rate"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+        name="Bank module"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="1dbefbd7-4156-4407-ae19-4a2f01445407"
+        name="Create personal code"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="bc661171-abc0-421b-b66c-989409441238">
+            <useCaseMoniker
+              Id="2433b463-4099-4a27-a60b-802817de1de8"
+              LastKnownName="Edit personal code"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="08a8138c-3447-48ac-8b32-ceb9006039ee"
+            LastKnownName="Client module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="916ef25a-8b41-40b3-94a2-7a9c71dd665d"
+        name="Edit client"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="66d95c42-2d50-4b2b-8095-73bdd121cc5d">
+            <useCaseMoniker
+              Id="1f95a21e-62f6-424f-b756-2b21d518ce49"
+              LastKnownName="Enter client data"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8b5cf8f2-b39f-4e4a-bb33-f27f517a4a15"
+        name="Create client"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="258f1346-104b-48c0-8c05-7f9c09d55e14">
+            <useCaseMoniker
+              Id="916ef25a-8b41-40b3-94a2-7a9c71dd665d"
+              LastKnownName="Edit client"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+        <additions>
+          <include
+            Id="a85b556d-931b-44a2-b5b4-79c8ded1704e">
+            <useCaseMoniker
+              Id="d12238e0-29b4-47d7-aa79-abf227e646af"
+              LastKnownName="Enter client data"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+          <include
+            Id="757ef12e-04ca-4144-bcbd-34ac3731e2ee">
+            <useCaseMoniker
+              Id="88ad9971-9935-4794-994b-2834b2ba21f7"
+              LastKnownName="Create account"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2bc51888-9937-4f8e-a006-6b3a4e5363c2"
+        name="Delete client"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="0eab9649-d8d0-40b7-94cc-8a684781d56d">
+            <useCaseMoniker
+              Id="916ef25a-8b41-40b3-94a2-7a9c71dd665d"
+              LastKnownName="Edit client"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d12238e0-29b4-47d7-aa79-abf227e646af"
+        name="Enter client data"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="1f95a21e-62f6-424f-b756-2b21d518ce49"
+        name="Enter client data"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2a7a5db3-1e84-4af0-89f8-b70b72dd66cb"
+        name="Get user list"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="5d2c9b96-2d0b-4f01-bd3f-1ab5cca8c7c4"
+        name="User"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="79188bec-f146-46a4-b0f7-52fe39fdc76e"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Authorize"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="93d92356-741e-43b1-bc1c-44c498005deb"
+              LastKnownName="Authorize"
+              LastKnownLocation="Modeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f7a8f1bf-fc06-48d9-97e1-368a65630dfe"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d50399e7-1df8-4c49-8659-f5d524e9d7ba"
+                  name="Authorize"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ae905136-742f-4fda-9b4a-3d92370c3eed"
+        name="Edit account"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="88ad9971-9935-4794-994b-2834b2ba21f7"
+        name="Create account"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="bf16bd99-ba34-49bb-911a-ff59588da3e8">
+            <useCaseMoniker
+              Id="ae905136-742f-4fda-9b4a-3d92370c3eed"
+              LastKnownName="Edit account"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+        <additions>
+          <include
+            Id="4506b901-8583-405c-a688-0aba840c26f7">
+            <useCaseMoniker
+              Id="471bb5ab-1d08-4461-a090-72facd16b595"
+              LastKnownName="Choose currency"
+              LastKnownLocation="Modeling.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c8c12a81-07ac-4074-8f60-d7c71ea8b469"
+        name="Delete account"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="afec2b0d-ba04-42d8-aa02-bdfc1615da9c">
+            <useCaseMoniker
+              Id="ae905136-742f-4fda-9b4a-3d92370c3eed"
+              LastKnownName="Edit account"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="3e71c946-793a-4d79-bc90-9e06e1a66915"
+        name="Create system message"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="471bb5ab-1d08-4461-a090-72facd16b595"
+        name="Choose currency"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a2915b50-82ab-416d-86fd-86f273fc08f6"
+        name="Edit employee"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="3011098a-fcd6-4f2b-9a93-70c466f243bd"
+        name="Create employee"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="576548ad-042a-415d-9ff8-8535139e18c2">
+            <useCaseMoniker
+              Id="a2915b50-82ab-416d-86fd-86f273fc08f6"
+              LastKnownName="Edit employee"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="1b8c319f-92dc-492c-b025-f3f2e5ea01e0"
+        name="Delete employee"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="460807db-f692-4e7c-a572-aa1a27abba13">
+            <useCaseMoniker
+              Id="a2915b50-82ab-416d-86fd-86f273fc08f6"
+              LastKnownName="Edit employee"
+              LastKnownLocation="Modeling.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5a31ad24-54ac-466a-b8ed-29768cb4fa7b"
+        name="Change currency rate"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="d921db48-46ce-46bd-8476-f1aa1c89f1fe"
+            LastKnownName="Bank module"
+            LastKnownLocation="Modeling.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>
