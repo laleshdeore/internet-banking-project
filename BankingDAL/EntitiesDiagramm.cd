@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="BankingDAL.Entities.Account">
+    <Position X="15.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEEgAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Account.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Balance" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="BankingDAL.Entities.Bank">
+    <Position X="20.25" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAgAAAAAAAAAAQAAAAAAACAAAACAAAAAAA=</HashCode>
+      <FileName>Entities\Bank.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Accounts" />
+      <Property Name="Machinges" />
+      <Property Name="Users" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="BankingDAL.Entities.BlockRequest">
+    <Position X="12.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAgAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Entities\BlockRequest.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Account" />
+      <Property Name="Author" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BankingDAL.Entities.Currency">
+    <Position X="3.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAIAAAAAAAAAACAA=</HashCode>
+      <FileName>Entities\Currency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankingDAL.Entities.CurrencyRate">
+    <Position X="0.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAIAAAAAAAAAAQIAAAAAAAA=</HashCode>
+      <FileName>Entities\CurrencyRate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Second" />
+      <Property Name="First" />
+      <Property Name="Type" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BankingDAL.Entities.Machine">
+    <Position X="28.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Machine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankingDAL.Entities.Message">
+    <Position X="26" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAoAAAgAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Message.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Author" />
+      <Property Name="Recipient" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BankingDAL.Entities.Money">
+    <Position X="8" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Entities\Money.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Currency" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BankingDAL.Entities.Pay">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAAAgAAIAAAA=</HashCode>
+      <FileName>Entities\Pay.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="From" />
+      <Property Name="To" />
+      <Property Name="Value" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BankingDAL.Entities.Region">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Region.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankingDAL.Entities.Role">
+    <Position X="18" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankingDAL.Entities.User">
+    <Position X="23.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAIgCAAAAAAEQAAAAAAAAAIAACCAAAAIAAAAAg=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Region" />
+      <Property Name="Role" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BankingDAL.Entities.Entity">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="BankingDAL.Entities.CurrencyRateType">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\CurrencyRateType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -29,4 +29,10 @@
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BankingDAL\BankingDAL.csproj">
+      <Name>BankingDAL</Name>
+      <Project>{04ecce8b-f31d-415c-a775-da330ae758db}</Project>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
