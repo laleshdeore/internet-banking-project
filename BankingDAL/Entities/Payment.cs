@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BankingDAL.Entities
 {
-    public class Pay : Entity
+    public class Payment : Entity
     {
         public virtual Account From { get; set; }
 
@@ -17,5 +17,13 @@ namespace BankingDAL.Entities
         public DateTime Date { get; set; }
 
         public TimeSpan Span { get; set; }
+
+        public PaymentState State
+        {
+            get { return (PaymentState)StateInt; }
+            set { StateInt = (int)value; }
+        }
+
+        public int StateInt { get; set; }
     }
 }

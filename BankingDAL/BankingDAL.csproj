@@ -56,7 +56,8 @@
     <Compile Include="Entities\Machine.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Money.cs" />
-    <Compile Include="Entities\Pay.cs" />
+    <Compile Include="Entities\Payment.cs" />
+    <Compile Include="Entities\PaymentState.cs" />
     <Compile Include="Entities\Region.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
