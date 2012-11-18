@@ -1,0 +1,72 @@
+﻿@functions
+{
+    string GetClass(string action, string controller)
+    {
+        if (Url.Action(action, controller) == Url.Action(ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString(), ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString()))
+        {
+            return "active";
+        }
+        return "";
+    }
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" media="screen">
+    <link href="@Url.Content("~/Content/datepicker.css")" rel="stylesheet" media="screen">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Bank</li>
+                        <li class="@GetClass("Index", "Home")"><a href="@Url.Action("Index", "Home")"><i class="icon-home icon-white">
+                        </i>Home</a></li>
+                        <li class="@GetClass("About", "Home")"><a href="@Url.Action("About", "Home")">About</a></li>
+                        <li><a href="#">Currency rate</a></li>
+                        <li class="nav-header">Accounts</li>
+                        <li class="@GetClass("Balance", "Account")"><a href="@Url.Action("Balance", "Account")">Balance</a></li>
+                        <li class="@GetClass("History", "Account")"><a href="@Url.Action("History", "Account")">History</a></li>
+                        <li><a href="#">Block</a></li>
+                        <li class="nav-header">Payments</li>
+                        <li class="@GetClass("Pay", "Payment")"><a href="@Url.Action("Pay", "Payment")">Pay</a></li>
+                        <li><a href="#">Automatic pay</a></li>
+                        @if (User.IsInRole("Employee") || User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-header">Employee</li>
+                            <li><a href="#">Manage clients</a></li>
+                            <li><a href="#">Message</a></li>
+                                                        
+                        }
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-header">Administrator</li>
+                            <li><a href="#">Manage employees</a></li>
+                            <li><a href="#">Manage currency rate</a></li>
+                        }
+                        <li class="nav-header">Profile</li>
+                        <li><a href="#">Region</a></li>
+                        <li><a href="#">Personal code</a></li>
+                    </ul>
+                }
+            </div>
+            <div class="span10">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#account-expiration").datepicker({ viewMode: 1, minViewMode: 1 });
+        });
+    </script>
+</body>
+</html>

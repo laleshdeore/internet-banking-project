@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banking", "Banking\Banking.csproj", "{B97A3E70-4699-4002-970E-623067EA5795}"
-EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Modeling", "Modeling\Modeling.modelproj", "{A42FEE4C-BCF2-4B34-924F-17C7B43C8E74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingDAL", "BankingDAL\BankingDAL.csproj", "{04ECCE8B-F31D-415C-A775-DA330AE758DB}"
@@ -16,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingWeb", "BankingWeb\BankingWeb.csproj", "{B8B44F23-371C-40C3-9392-2893C6BC0C45}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Banking.vsmdi
@@ -25,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B97A3E70-4699-4002-970E-623067EA5795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B97A3E70-4699-4002-970E-623067EA5795}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B97A3E70-4699-4002-970E-623067EA5795}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B97A3E70-4699-4002-970E-623067EA5795}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A42FEE4C-BCF2-4B34-924F-17C7B43C8E74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A42FEE4C-BCF2-4B34-924F-17C7B43C8E74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A42FEE4C-BCF2-4B34-924F-17C7B43C8E74}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,6 +37,10 @@ Global
 		{21D616D0-31D0-44E2-B397-A47E87EB0CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21D616D0-31D0-44E2-B397-A47E87EB0CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21D616D0-31D0-44E2-B397-A47E87EB0CB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8B44F23-371C-40C3-9392-2893C6BC0C45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8B44F23-371C-40C3-9392-2893C6BC0C45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8B44F23-371C-40C3-9392-2893C6BC0C45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8B44F23-371C-40C3-9392-2893C6BC0C45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
