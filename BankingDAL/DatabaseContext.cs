@@ -15,7 +15,8 @@ namespace BankingDAL
         public DbSet<Region> Regions { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Money> Moneys { get; set; }
-        public DbSet<Bank> Banks { get; set; }
+        public Bank Bank { get { return Banks.First(); } }
+        private DbSet<Bank> Banks { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Payment> Payments { get; set; }
 

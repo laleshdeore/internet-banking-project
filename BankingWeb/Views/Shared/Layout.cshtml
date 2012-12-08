@@ -25,7 +25,7 @@
                 {
                     <ul class="nav nav-list">
                         <li class="nav-header">Bank</li>
-                        <li class="@GetClass("Index", "Home")"><a href="@Url.Action("Index", "Home")"><i class="icon-home icon-white">
+                        <li class="@GetClass("Index", "Home")"><a href="@Url.Action("Index", "Home")"><i class="icon-home">
                         </i>Home</a></li>
                         <li class="@GetClass("About", "Home")"><a href="@Url.Action("About", "Home")">About</a></li>
                         <li><a href="#">Currency rate</a></li>
@@ -39,7 +39,7 @@
                         @if (User.IsInRole("Employee") || User.IsInRole("Administrator"))
                         {
                             <li class="nav-header">Employee</li>
-                            <li><a href="#">Manage clients</a></li>
+                            <li><a href="@Url.Action("Clients", "User")">Manage clients</a></li>
                             <li><a href="#">Message</a></li>
                                                         
                         }

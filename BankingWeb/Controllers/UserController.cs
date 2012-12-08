@@ -8,7 +8,7 @@ using BankingWeb.Providers;
 
 namespace BankingWeb.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly BankMemberProvider _provider = (BankMemberProvider) Membership.Provider;
 
@@ -33,6 +33,11 @@ namespace BankingWeb.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Clients()
+        {
+            throw new NotImplementedException();
         }
     }
 }
