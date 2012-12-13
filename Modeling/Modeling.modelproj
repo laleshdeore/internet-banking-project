@@ -17,6 +17,20 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" />
   <ItemGroup>
+    <Content Include="Authorize.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Authorize.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Authorize.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Payment.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Payment.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Payment.sequencediagram</DependentUpon>
+    </Content>
     <Content Include="UseCase.usecasediagram">
       <SubType>Content</SubType>
     </Content>

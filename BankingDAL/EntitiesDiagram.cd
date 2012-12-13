@@ -13,13 +13,12 @@
   <Class Name="BankingDAL.Entities.Bank">
     <Position X="7.25" Y="3.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAgAAAAAAgAAAQAAAAAAACAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAACAAAAAgAAAAAAgAAAQAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Bank.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
-      <Property Name="Accounts" />
-      <Property Name="Machinges" />
       <Property Name="Users" />
+      <Property Name="Accounts" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="BankingDAL.Entities.BlockRequest">
@@ -47,17 +46,10 @@
       <FileName>Entities\CurrencyRate.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Second" />
       <Property Name="First" />
+      <Property Name="Second" />
       <Property Name="Type" />
     </ShowAsAssociation>
-  </Class>
-  <Class Name="BankingDAL.Entities.Machine">
-    <Position X="7" Y="0.75" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\Machine.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="BankingDAL.Entities.Message">
     <Position X="11.5" Y="6.75" Width="1.5" />
@@ -80,11 +72,11 @@
       <Property Name="Currency" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="BankingDAL.Entities.Pay">
+  <Class Name="BankingDAL.Entities.Payment">
     <Position X="1.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAAAgAAIAAAA=</HashCode>
-      <FileName>Entities\Pay.cs</FileName>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIABABAAAgBAIAAAA=</HashCode>
+      <FileName>Entities\Payment.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="From" />

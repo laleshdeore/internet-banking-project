@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using BankingDAL.Entities;
+using BankingDAL.Repository;
 using BankingWeb.Providers;
 
 namespace BankingWeb.Controllers
@@ -11,6 +10,14 @@ namespace BankingWeb.Controllers
     public class UserController : BaseController
     {
         private readonly BankMemberProvider _provider = (BankMemberProvider) Membership.Provider;
+        private IUserRepository _userRepository;
+        private IRoleRepository _roleRepository;
+
+        public UserController()
+        {
+            _userRepository = new UserRepository(Context);
+            _roleRepository = new RoleRepository(Context);
+        }
 
         public ActionResult Login()
         {
@@ -37,7 +44,13 @@ namespace BankingWeb.Controllers
 
         public ActionResult Clients()
         {
-            throw new NotImplementedException();
+            return View(model: _userRepository.GetUsersByRole(_roleRepository.GetRoleByName(Client)));
+        }
+
+        [HttpPost]
+        public void Add()
+        {
+            _userRepository.Add(new User { FirstName = "qwe", LastName = "rty", Role = _roleRepository.GetRoleByName(Client), Birthday = new DateTime()});
         }
     }
 }

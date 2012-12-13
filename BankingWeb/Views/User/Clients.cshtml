@@ -1,0 +1,52 @@
+﻿@model IList<BankingDAL.Entities.User>
+@{
+    ViewBag.Title = "Clients";
+}
+<h1>
+    Clients</h1>
+<div class="row">
+    <button class="btn" id="add-client">
+        Add</button>
+    <button class="btn" id="edit-client">
+        Edit</button>
+    <button class="btn" id="delete-client">
+        Delete</button>
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Username
+        </th>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+    </tr>
+    @for (var i = 0; i < Model.Count; ++i)
+    {
+        <tr class="success">
+            <td>
+                @i
+            </td>
+            <td>
+                @Model[i].Username
+            </td>
+            <td>
+                @Model[i].FirstName
+            </td>
+            <td>
+                @Model[i].LastName
+            </td>
+        </tr>
+    }
+</table>
+<script type="text/javascript">
+    $("#add-client").click(function () {
+        $.post("@Url.Action("Add", "User")");
+    });
+</script>

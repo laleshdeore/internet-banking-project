@@ -10,6 +10,10 @@ namespace BankingWeb.Controllers
 {
     public class BaseController: Controller
     {
+        public const string Administrator = "Administrator";
+        public const string Employee = "Employee";
+        public const string Client = "Client";
+
         protected readonly DatabaseContext Context = new DatabaseContext();
 
         public User CurrentUser

@@ -16,6 +16,9 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" media="screen">
     <link href="@Url.Content("~/Content/datepicker.css")" rel="stylesheet" media="screen">
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -60,9 +63,6 @@
             </div>
         </div>
     </div>
-    <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#account-expiration").datepicker({ viewMode: 1, minViewMode: 1 });

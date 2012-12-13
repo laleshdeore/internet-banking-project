@@ -6,9 +6,8 @@ using BankingDAL.Entities;
 
 namespace BankingDAL.Repository
 {
-    public interface IUserRepository
+    public interface IRoleRepository
     {
-        IList<User> GetUsersByRole(Role role);
-        void Add(User user);
+        Role GetRoleByName(String name);
     }
 }
