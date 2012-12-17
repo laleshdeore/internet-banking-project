@@ -1,16 +1,16 @@
-﻿@model IList<BankingDAL.Entities.User>
+﻿@using BankingWeb.Controllers
+@model IList<BankingDAL.Entities.User>
 @{
     ViewBag.Title = "Clients";
 }
 <h1>
     Clients</h1>
-<div class="row">
-    <button class="btn" id="add-client">
-        Add</button>
-    <button class="btn" id="edit-client">
-        Edit</button>
-    <button class="btn" id="delete-client">
-        Delete</button>
+<div class="control-group">
+    <a href="@Url.Action("Add", "User", new { role = BaseController.Client })">
+        <button class="btn" id="add-client">
+            Add
+        </button>
+    </a>
 </div>
 <table class="table table-striped">
     <tr>
@@ -26,12 +26,15 @@
         <th>
             Last Name
         </th>
+        <th>
+            Actions
+        </th>
     </tr>
     @for (var i = 0; i < Model.Count; ++i)
     {
-        <tr class="success">
+        <tr>
             <td>
-                @i
+                @(i + 1)
             </td>
             <td>
                 @Model[i].Username
@@ -42,11 +45,16 @@
             <td>
                 @Model[i].LastName
             </td>
+            <td>
+                <a href="@Url.Action("Index", "User", new {id = Model[i].Id})">
+                    Information
+                </a>
+                <a href="@Url.Action("Delete", "User", new {id = Model[i].Id})">
+                    Delete
+                </a>
+            </td>
         </tr>
     }
 </table>
 <script type="text/javascript">
-    $("#add-client").click(function () {
-        $.post("@Url.Action("Add", "User")");
-    });
 </script>

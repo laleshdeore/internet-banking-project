@@ -20,9 +20,20 @@ namespace BankingDAL.Repository
             return new List<User>(_db.Users.Where(user => user.Role.Id == role.Id));
         }
 
+        public User GetUserById(long id)
+        {
+            return _db.Users.SingleOrDefault(user => user.Id == id);
+        }
+
         public void Add(User user)
         {
             _db.Users.Add(user);
+            _db.SaveChanges();
+        }
+
+        public void Delete(User user)
+        {
+            _db.Users.Remove(user);
             _db.SaveChanges();
         }
     }

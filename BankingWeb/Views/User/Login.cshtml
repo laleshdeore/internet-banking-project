@@ -1,6 +1,6 @@
 ﻿@model dynamic
 
-<form class="form-signin" action="/User/Login" method="POST">
+<form class="form-signin" action="@Url.Action("Login", "User")" method="POST">
 <h2 class="form-signin-heading">
     Please sign in</h2>
 <input type="text" class="input-block-level" placeholder="Email address" name="username">

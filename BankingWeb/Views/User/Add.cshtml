@@ -1,0 +1,49 @@
+﻿@using BankingWeb.Controllers
+@model BankingWeb.Models.User.UserModel
+@{
+    ViewBag.Title = "New user";
+}
+<form action="@Url.Action("Add", "User")" method="POST">
+<fieldset>
+    <legend>New user </legend>
+    <label for="username">
+        Username
+    </label>
+    <input type="text" id="username" name="username" placeholder="Username">
+    <label for="password">
+        Password
+    </label>
+    <input type="password" id="password" name="password">
+    <label for="first-name">
+        First Name
+    </label>
+    <input type="text" id="first-name" name="firstName" placeholder="First Name">
+    <label for="first-name">
+        Last Name
+    </label>
+    <input type="text" id="last-name" name="lastName" placeholder="Last Name">
+    <label for="email">
+        Email
+    </label>
+    <input type="text" id="email" name="email" placeholder="Email">
+    <label for="phone">
+        Phone
+    </label>
+    <input type="text" id="phone" name="phone" placeholder="Phone">
+    <label for="birthday">
+        Birthday
+    </label>
+    <input type="text" placeholder="Birthday" id="birthday" name="birthday" data-date-format="@BaseController.DateFormat.ToLower()">
+    <input type="hidden" name="role" value="@Model.Role"/>
+    <div>
+        <button type="submit" class="btn">
+            Create
+        </button>
+    </div>
+</fieldset>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#birthday").datepicker();
+    });
+</script>

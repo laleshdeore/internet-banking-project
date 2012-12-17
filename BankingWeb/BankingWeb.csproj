@@ -112,6 +112,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Models\User\LoginModel.cs" />
+    <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Providers\BankMemberProvider.cs" />
     <Compile Include="Providers\BankRoleProvider.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -181,6 +182,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Clients.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

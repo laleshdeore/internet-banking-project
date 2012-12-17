@@ -15,7 +15,7 @@
     </div>
     <label>
         Account expiration date</label>
-    <input type="text" placeholder="Date" id="account-expiration" data-date-format="mm/yyyy">
+    <input type="text" placeholder="Date" id="account-expiration" data-date-format="MM/YYYY">
     <label>
         Account</label>
     <select>
@@ -37,3 +37,8 @@
         Pay</button>
 </fieldset>
 </form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#account-expiration").datepicker({ viewMode: 1, minViewMode: 1 });
+    });
+</script>

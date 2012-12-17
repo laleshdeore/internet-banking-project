@@ -9,6 +9,8 @@ namespace BankingDAL.Repository
     public interface IUserRepository
     {
         IList<User> GetUsersByRole(Role role);
+        User GetUserById(long id);
         void Add(User user);
+        void Delete(User user);
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI.WebControls;
 using BankingDAL.Entities;
 using BankingDAL.Repository;
+using BankingWeb.Models.User;
 using BankingWeb.Providers;
 
 namespace BankingWeb.Controllers
@@ -10,8 +12,8 @@ namespace BankingWeb.Controllers
     public class UserController : BaseController
     {
         private readonly BankMemberProvider _provider = (BankMemberProvider) Membership.Provider;
-        private IUserRepository _userRepository;
-        private IRoleRepository _roleRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
 
         public UserController()
         {
@@ -36,21 +38,44 @@ namespace BankingWeb.Controllers
 
             return RedirectToAction("Login", "User");
         }
+
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
+
         public ActionResult Clients()
         {
-            return View(model: _userRepository.GetUsersByRole(_roleRepository.GetRoleByName(Client)));
+            return View(_userRepository.GetUsersByRole(_roleRepository.GetRoleByName(Client)));
+        }
+
+        [HttpGet]
+        public ActionResult Add(string role)
+        {
+            return View(new UserModel {Role = role});
         }
 
         [HttpPost]
-        public void Add()
+        public ActionResult Add(UserModel userModel)
         {
-            _userRepository.Add(new User { FirstName = "qwe", LastName = "rty", Role = _roleRepository.GetRoleByName(Client), Birthday = new DateTime()});
+            var user = userModel.GetUserEntity(_roleRepository);
+
+            _userRepository.Add(user);
+            return RedirectToAction("Clients", "User");
+        }
+
+        public ActionResult Delete(long id)
+        {
+            _userRepository.Delete(_userRepository.GetUserById(id));
+            if (Request.UrlReferrer != null) return Redirect(Request.UrlReferrer.ToString());
+            return RedirectToAction("Clients", "User");
+        }
+
+        public ActionResult Index(long id)
+        {
+            return View(new UserModel(_userRepository.GetUserById(id)));
         }
     }
 }

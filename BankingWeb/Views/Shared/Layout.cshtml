@@ -1,4 +1,5 @@
-﻿@functions
+﻿@using BankingWeb.Controllers
+@functions
 {
     string GetClass(string action, string controller)
     {
@@ -29,7 +30,7 @@
                     <ul class="nav nav-list">
                         <li class="nav-header">Bank</li>
                         <li class="@GetClass("Index", "Home")"><a href="@Url.Action("Index", "Home")"><i class="icon-home">
-                        </i>Home</a></li>
+                                                                                                      </i>Home</a></li>
                         <li class="@GetClass("About", "Home")"><a href="@Url.Action("About", "Home")">About</a></li>
                         <li><a href="#">Currency rate</a></li>
                         <li class="nav-header">Accounts</li>
@@ -39,14 +40,14 @@
                         <li class="nav-header">Payments</li>
                         <li class="@GetClass("Pay", "Payment")"><a href="@Url.Action("Pay", "Payment")">Pay</a></li>
                         <li><a href="#">Automatic pay</a></li>
-                        @if (User.IsInRole("Employee") || User.IsInRole("Administrator"))
+                        @if (User.IsInRole(BaseController.Employee) || User.IsInRole(BaseController.Administrator))
                         {
                             <li class="nav-header">Employee</li>
                             <li><a href="@Url.Action("Clients", "User")">Manage clients</a></li>
                             <li><a href="#">Message</a></li>
                                                         
                         }
-                        @if (User.IsInRole("Administrator"))
+                        @if (User.IsInRole(BaseController.Administrator))
                         {
                             <li class="nav-header">Administrator</li>
                             <li><a href="#">Manage employees</a></li>
@@ -63,10 +64,5 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#account-expiration").datepicker({ viewMode: 1, minViewMode: 1 });
-        });
-    </script>
 </body>
 </html>
