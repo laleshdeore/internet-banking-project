@@ -2,16 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BankingDAL.Entities;
 
 namespace BankingDAL.Repository
 {
-    public class AccountRepository: IAccountRepository
+    public class AccountRepository : DatabaseRepository, IAccountRepository
     {
-        private readonly DatabaseContext _db;
+        private readonly Random _random;
 
-        public AccountRepository(DatabaseContext db)
+        public AccountRepository(DatabaseContext database) : base(database)
         {
-            _db = db;
+            _random = new Random();
+        }
+
+        public string GenerateNumber()
+        {
+            var number = "";
+
+            do
+            {
+                number = String.Format("{0:0000}-{1:0000}-{2:0000}-{3:0000}", _random.Next(9999), _random.Next(9999), _random.Next(9999), _random.Next(9999));
+            } while (GetAccountByNumber(number) != null);
+
+            return number;
+        }
+
+        public Account GetAccountByNumber(string number)
+        {
+            return Database.Accounts.SingleOrDefault(account => account.Number == number);
         }
     }
 }

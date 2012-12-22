@@ -6,9 +6,10 @@ using BankingDAL.Entities;
 
 namespace BankingDAL.Repository
 {
-    public interface IAccountRepository
+    public interface ICurrencyRepository
     {
-        string GenerateNumber();
-        Account GetAccountByNumber(string number);
+        IList<Currency> GetCurrencies();
+
+        IList<CurrencyRate> GetCurrencyRates();
     }
 }

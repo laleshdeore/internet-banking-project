@@ -1,0 +1,47 @@
+﻿@using BankingDAL.Entities
+@model IList<BankingDAL.Entities.CurrencyRate>
+@{
+    ViewBag.Title = "Curenncies";
+
+    var currencies = new List<String>();
+
+    foreach (var rate in Model)
+    {
+        currencies.Add(rate.First.Currency.ShortName);
+        currencies.Add(rate.Second.Currency.ShortName);
+    }
+    currencies = currencies.Distinct().ToList();
+}
+<h1>
+    Currency rates</h1>
+<table class="table table-striped">
+    <tr>
+        <td>
+                Curenncy
+            </td>
+        @foreach (var currency in currencies)
+        {
+            <td>
+                @currency
+            </td>
+        }
+    </tr>
+    @foreach (var firstCurrency in currencies)
+    {
+        <tr>
+            <td>
+                @firstCurrency
+            </td>
+            @foreach (var secondCurrency in currencies)
+            {
+                <td>
+                    @if (firstCurrency != secondCurrency)
+                    {
+                        var searchCurrencies = new[] {firstCurrency, secondCurrency};
+                        var currencyRate = Model.SingleOrDefault(rate => searchCurrencies.Contains(rate.First.Currency.ShortName) && searchCurrencies.Contains(rate.Second.Currency.ShortName));
+                    }
+                </td>
+            }
+        </tr>
+    }
+</table>

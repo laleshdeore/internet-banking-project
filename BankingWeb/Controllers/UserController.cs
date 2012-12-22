@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Security;
 using System.Web.UI.WebControls;
 using BankingDAL.Entities;
@@ -11,7 +12,7 @@ namespace BankingWeb.Controllers
 {
     public class UserController : BaseController
     {
-        private readonly BankMemberProvider _provider = (BankMemberProvider) Membership.Provider;
+        private readonly BankMemberProvider _provider = (BankMemberProvider)Membership.Provider;
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
 
@@ -54,7 +55,7 @@ namespace BankingWeb.Controllers
         [HttpGet]
         public ActionResult Add(string role)
         {
-            return View(new UserModel {Role = role});
+            return View(new UserModel { Role = role });
         }
 
         [HttpPost]
@@ -63,13 +64,15 @@ namespace BankingWeb.Controllers
             var user = userModel.GetUserEntity(_roleRepository);
 
             _userRepository.Add(user);
-            return RedirectToAction("Clients", "User");
+            return RedirectToAction("Add", "Account", new { username = user.Username });
         }
 
         public ActionResult Delete(long id)
         {
             _userRepository.Delete(_userRepository.GetUserById(id));
+
             if (Request.UrlReferrer != null) return Redirect(Request.UrlReferrer.ToString());
+
             return RedirectToAction("Clients", "User");
         }
 

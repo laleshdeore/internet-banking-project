@@ -6,35 +6,32 @@ using BankingDAL.Entities;
 
 namespace BankingDAL.Repository
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : DatabaseRepository, IUserRepository
     {
-        private readonly DatabaseContext _db;
-
-        public UserRepository(DatabaseContext db)
+        public UserRepository(DatabaseContext database) : base(database)
         {
-            _db = db;
         }
 
         public IList<User> GetUsersByRole(Role role)
         {
-            return new List<User>(_db.Users.Where(user => user.Role.Id == role.Id));
+            return new List<User>(Database.Users.Where(user => user.Role.Id == role.Id));
         }
 
         public User GetUserById(long id)
         {
-            return _db.Users.SingleOrDefault(user => user.Id == id);
+            return Database.Users.SingleOrDefault(user => user.Id == id);
         }
 
         public void Add(User user)
         {
-            _db.Users.Add(user);
-            _db.SaveChanges();
+            Database.Users.Add(user);
+            Database.SaveChanges();
         }
 
         public void Delete(User user)
         {
-            _db.Users.Remove(user);
-            _db.SaveChanges();
+            Database.Users.Remove(user);
+            Database.SaveChanges();
         }
     }
 }

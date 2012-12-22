@@ -6,18 +6,15 @@ using BankingDAL.Entities;
 
 namespace BankingDAL.Repository
 {
-    public class RoleRepository : IRoleRepository
+    public class RoleRepository : DatabaseRepository, IRoleRepository
     {
-        private readonly DatabaseContext _db;
-
-        public RoleRepository(DatabaseContext db)
+        public RoleRepository(DatabaseContext database) : base(database)
         {
-            _db = db;
         }
 
         public Role GetRoleByName(string name)
         {
-            return _db.Roles.FirstOrDefault(role => role.Name == name);
+            return Database.Roles.FirstOrDefault(role => role.Name == name);
         }
     }
 }
