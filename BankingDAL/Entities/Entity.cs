@@ -10,5 +10,20 @@ namespace BankingDAL.Entities
     {
         [Key]
         public long Id { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Entity && Equals((Entity) obj);
+        }
+
+        protected bool Equals(Entity other)
+        {
+            return Id == other.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
     }
 }

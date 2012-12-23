@@ -8,7 +8,7 @@ using BankingDAL.Entities;
 
 namespace BankingWeb.Controllers
 {
-    public class BaseController: Controller
+    public class BaseController : Controller
     {
         public const string Administrator = "Administrator";
         public const string Employee = "Employee";
@@ -16,7 +16,10 @@ namespace BankingWeb.Controllers
         public const string DateFormat = "dd.MM.yyyy";
         public const string ShortDateFormat = "MM.yyyy";
 
-        protected readonly DatabaseContext Context = new DatabaseContext();
+        protected DatabaseContext Context
+        {
+            get { return new DatabaseContext(); }
+        }
 
         public User CurrentUser
         {

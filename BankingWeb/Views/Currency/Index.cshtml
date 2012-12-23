@@ -14,11 +14,18 @@
 }
 <h1>
     Currency rates</h1>
+<div class="control-group">
+    <a href="@Url.Action("Add", "Currency")">
+        <button class="btn" id="add-client">
+            Add currency
+        </button>
+    </a>
+</div>
 <table class="table table-striped">
     <tr>
         <td>
-                Curenncy
-            </td>
+            Curenncy
+        </td>
         @foreach (var currency in currencies)
         {
             <td>
@@ -37,8 +44,15 @@
                 <td>
                     @if (firstCurrency != secondCurrency)
                     {
-                        var searchCurrencies = new[] {firstCurrency, secondCurrency};
-                        var currencyRate = Model.SingleOrDefault(rate => searchCurrencies.Contains(rate.First.Currency.ShortName) && searchCurrencies.Contains(rate.Second.Currency.ShortName));
+                        var searchCurrencies = new[] { firstCurrency, secondCurrency };
+                        var rates = Model.Where(rate => searchCurrencies.Contains(rate.First.Currency.ShortName) && searchCurrencies.Contains(rate.Second.Currency.ShortName));
+                        var buy = rates.SingleOrDefault(rate => rate.Type == CurrencyRateType.Buy);
+                        var sell = rates.SingleOrDefault(rate => rate.Type == CurrencyRateType.Sell);
+
+                        if (buy != null && sell != null)
+                        {
+                            @String.Format("{0} / {1}", buy.First.Value / buy.Second.Value, sell.First.Value / sell.Second.Value)
+                        }
                     }
                 </td>
             }

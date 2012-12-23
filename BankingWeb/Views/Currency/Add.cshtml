@@ -1,0 +1,28 @@
+﻿@model BankingWeb.Models.Currency.CurrencyModel
+
+@{
+    ViewBag.Title = "Currency";
+}
+
+<form action="@Url.Action("Add", "Currency")" method="POST">
+<fieldset>
+    <legend>New Currency</legend>
+    <label for="name">
+        Name
+    </label>
+    <input type="text" id="name" name="name" placeholder="Name">
+    <label for="short-name">
+        Short Name
+    </label>
+    <input type="text" id="short-name" name="shortName" placeholder="Short Name">
+    <label for="symbol">
+        Symbol
+    </label>
+    <input type="text" id="symbol" name="symbol" placeholder="Symbol">
+    <div>
+        <button type="submit" class="btn">
+            Create
+        </button>
+    </div>
+</fieldset>
+</form>

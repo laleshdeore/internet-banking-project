@@ -1,5 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using System.Web.Routing;
+using BankingDAL.Entities;
 using BankingDAL.Repository;
+using BankingWeb.Models.Currency;
 
 namespace BankingWeb.Controllers
 {
@@ -15,6 +19,36 @@ namespace BankingWeb.Controllers
         public ActionResult Index()
         {
             return View(_currencyRepository.GetCurrencyRates());
+        }
+
+        public ActionResult Add()
+        {
+            return View(new CurrencyModel());
+        }
+
+        [HttpPost]
+        public ActionResult Add(CurrencyModel currencyModel)
+        {
+            return RedirectToAction("Edit", "Currency", new { id = _currencyRepository.Add(currencyModel.GetEntity()) });
+        }
+
+        public ActionResult Edit(long id)
+        {
+            return View(_currencyRepository.GetCurrencyRates(_currencyRepository.GetCurrencyById(id)));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(IList<CurrencyRate> rates)
+        {
+            if (rates != null)
+            {
+                foreach (var rate in rates)
+                {
+                    _currencyRepository.AddOrUpdate(rate);
+                }
+            }
+
+            return RedirectToAction("Index", "Currency");
         }
     }
 }

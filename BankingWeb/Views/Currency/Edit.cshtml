@@ -1,0 +1,28 @@
+﻿@model IList<BankingDAL.Entities.CurrencyRate>
+@{
+    ViewBag.Title = "Edit rates";
+}
+<form action="@Url.Action("Edit", "Currency")" method="POST">
+<fieldset>
+    <legend>Currency rates</legend>
+    @for (var i = 0; i < Model.Count; ++i)
+    {
+        <h3>
+            @Model[i].Type
+        </h3>
+        <label for="first-value-@i">
+            @Model[i].First.Currency.Name
+        </label>
+        <input type="text" id="first-value-@i" name="[@i].First.Value" placeholder="Amount" value="@Model[i].First.Value">
+        <label for="second-value-@i">
+            @Model[i].Second.Currency.Name
+        </label>
+        <input type="text" id="second-value-@i" name="[@i].Second.Value" placeholder="Amount" value="@Model[i].Second.Value">
+    }
+    <div>
+        <button type="submit" class="btn">
+            Save
+        </button>
+    </div>
+</fieldset>
+</form>
