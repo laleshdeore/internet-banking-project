@@ -13,5 +13,10 @@ namespace BankingDAL.Entities
         public string ShortName { get; set; }
 
         public string Symbol { get; set; }
+
+        public override string ToString()
+        {
+            return Symbol;
+        }
     }
 }

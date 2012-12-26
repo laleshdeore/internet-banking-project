@@ -28,6 +28,11 @@ namespace BankingDAL.Repository
             return Database.Currencies.SingleOrDefault(currency => currency.Id == id);
         }
 
+        public CurrencyRate GetCurrencyRateById(long id)
+        {
+            return Database.Rates.SingleOrDefault(rate => rate.Id == id);
+        }
+
         public IList<CurrencyRate> GetCurrencyRates(Currency currency)
         {
             return Database.Rates.Where(rate => rate.First.Currency.Id == currency.Id || rate.Second.Currency.Id == currency.Id).ToList();
@@ -37,7 +42,7 @@ namespace BankingDAL.Repository
         {
             currency = Database.Currencies.Add(currency);
 
-            //Database.SaveChanges();
+            Database.SaveChanges();
 
             foreach (var otherCurrency in Database.Currencies.Where(otherCurrency => currency.Id != otherCurrency.Id).ToList())
             {
@@ -60,8 +65,21 @@ namespace BankingDAL.Repository
 
         public void AddOrUpdate(CurrencyRate rate)
         {
-            Database.Rates.Add(rate);
-            Database.SaveChanges();
+            if (rate.Id == 0)
+            {
+                Database.Rates.Add(rate);
+            }
+            else
+            {
+                var updateRate = GetCurrencyRateById(rate.Id);
+
+                if (updateRate != null)
+                {
+                    Database.Entry(updateRate).CurrentValues.SetValues(rate);
+                }
+            }
+
+            while (Database.SaveChanges() != 0) { }
         }
     }
 }

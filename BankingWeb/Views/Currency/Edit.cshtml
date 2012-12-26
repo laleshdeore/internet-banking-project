@@ -18,6 +18,7 @@
             @Model[i].Second.Currency.Name
         </label>
         <input type="text" id="second-value-@i" name="[@i].Second.Value" placeholder="Amount" value="@Model[i].Second.Value">
+        <input type="hidden" name="[@i].Id" value="@Model[i].Id"/>
     }
     <div>
         <button type="submit" class="btn">

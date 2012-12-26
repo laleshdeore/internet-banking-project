@@ -19,5 +19,10 @@ namespace BankingDAL.Entities
         }
 
         public int TypeInt { get; set; }
+
+        public override string ToString()
+        {
+            return String.Format("{0} / {1} ({2})", First, Second, Type);
+        }
     }
 }

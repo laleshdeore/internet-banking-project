@@ -42,8 +42,12 @@ namespace BankingWeb.Controllers
         {
             if (rates != null)
             {
-                foreach (var rate in rates)
+                foreach (var model in rates)
                 {
+                    var rate = _currencyRepository.GetCurrencyRateById(model.Id);
+
+                    rate.First.Value = model.First.Value;
+                    rate.Second.Value = model.Second.Value;
                     _currencyRepository.AddOrUpdate(rate);
                 }
             }

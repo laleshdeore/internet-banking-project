@@ -14,6 +14,8 @@ namespace BankingDAL.Repository
 
         Currency GetCurrencyById(long id);
 
+        CurrencyRate GetCurrencyRateById(long id);
+
         IList<CurrencyRate> GetCurrencyRates(Currency currency);
 
         long Add(Currency currency);
