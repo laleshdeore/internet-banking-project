@@ -21,5 +21,10 @@ namespace BankingDAL.Repository
                 Database.Dispose();
             }
         }
+
+        protected void SaveAllChanges()
+        {
+            while (Database.SaveChanges() != 0) {}
+        }
     }
 }

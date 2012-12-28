@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using BankingDAL.Entities;
@@ -14,7 +15,7 @@ namespace BankingDAL.Repository
 
         public IList<User> GetUsersByRole(Role role)
         {
-            return new List<User>(Database.Users.Where(user => user.Role.Id == role.Id));
+            return Database.Users.Where(user => user.Role.Id == role.Id).ToList();
         }
 
         public User GetUserById(long id)

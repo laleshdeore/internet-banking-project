@@ -16,9 +16,11 @@ namespace BankingWeb.Controllers
         public const string DateFormat = "dd.MM.yyyy";
         public const string ShortDateFormat = "MM.yyyy";
 
-        protected DatabaseContext Context
+        protected DatabaseContext Context;
+
+        public BaseController()
         {
-            get { return new DatabaseContext(); }
+            Context = new DatabaseContext();
         }
 
         public User CurrentUser

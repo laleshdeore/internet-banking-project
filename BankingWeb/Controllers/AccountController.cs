@@ -36,14 +36,10 @@ namespace BankingWeb.Controllers
         [HttpGet]
         public ActionResult Add(string username)
         {
-            var balance = new List<MoneyModel>();
             var currencies = _currencyRepository.GetCurrencies();
+            var balance = currencies.Select(currency => new MoneyModel {Symbol = currency.Symbol}).ToList();
 
-            foreach (var currency in currencies)
-            {
-                balance.Add(new MoneyModel());
-            }
-            return View(new AccountModel { Owner = username });
+            return View(new AccountModel { Owner = username, Number = _accountRepository.GenerateNumber(), Balance = balance});
         }
 
         [HttpPost]
