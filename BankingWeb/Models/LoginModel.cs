@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
-namespace BankingWeb.Models.User
+namespace BankingWeb.Models
 {
     public class LoginModel
     {

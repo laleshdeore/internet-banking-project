@@ -31,5 +31,11 @@ namespace BankingDAL.Repository
         {
             return Database.Accounts.SingleOrDefault(account => account.Number == number);
         }
+
+        public void Add(Account account)
+        {
+            Database.Accounts.Add(account);
+            SaveAllChanges();
+        }
     }
 }

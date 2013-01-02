@@ -1,17 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Web;
 using BankingDAL.Entities;
 using BankingDAL.Repository;
 using BankingWeb.Controllers;
 
-namespace BankingWeb.Models.User
+namespace BankingWeb.Models
 {
     public class UserModel
     {
-        public UserModel(BankingDAL.Entities.User user)
+        public UserModel(User user)
         {
             SetUserEntity(user);
         }
@@ -40,9 +38,11 @@ namespace BankingWeb.Models.User
 
         public string Role { get; set; }
 
-        public BankingDAL.Entities.User GetUserEntity(IRoleRepository roleRepository)
+        public IList<AccountModel> Accounts { get; set; }
+
+        public User GetUserEntity(IRoleRepository roleRepository)
         {
-            return new BankingDAL.Entities.User
+            return new User
             {
                 Username = Username,
                 Password = Password,
@@ -56,7 +56,7 @@ namespace BankingWeb.Models.User
             };
         }
 
-        public void SetUserEntity(BankingDAL.Entities.User user)
+        public void SetUserEntity(User user)
         {
             Username = user.Username;
             Password = user.Password;
@@ -67,6 +67,12 @@ namespace BankingWeb.Models.User
             LastName = user.LastName;
             Phone = user.Phone;
             Role = user.Role.Name;
+            Accounts = new List<AccountModel>();
+
+            foreach (var account in user.Accounts)
+            {
+                Accounts.Add(new AccountModel { Number = account.Number });
+            }
         }
     }
 }

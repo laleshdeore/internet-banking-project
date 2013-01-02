@@ -23,6 +23,11 @@ namespace BankingDAL.Repository
             return Database.Users.SingleOrDefault(user => user.Id == id);
         }
 
+        public User GetUserByUsername(string username)
+        {
+            return Database.Users.SingleOrDefault(user => user.Username == username);
+        }
+
         public void Add(User user)
         {
             Database.Users.Add(user);

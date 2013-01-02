@@ -16,7 +16,7 @@ namespace BankingDAL
         public DbSet<Role> Roles { get; set; }
         public DbSet<Money> Moneys { get; set; }
         public Bank Bank { get { return Banks.First(); } }
-        private DbSet<Bank> Banks { get; set; }
+        public DbSet<Bank> Banks { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<CurrencyRate> Rates { get; set; }
@@ -24,11 +24,46 @@ namespace BankingDAL
         public static void Seed(DatabaseContext context)
         {
             var adminRole = context.Roles.Add(new Role { Name = "Administrator" });
-            
-            context.Roles.Add(new Role { Name = "Client" });
+            var clientRole = context.Roles.Add(new Role { Name = "Client" });
+            var dollarCurrency = context.Currencies.Add(new Currency { Name = "USA Dollar", ShortName = "USD", Symbol = "$" });
+            var bank = context.Banks.Add(new Bank());
+
+            context.SaveChanges();
+            var firstAccount = context.Accounts.Add(new Account
+            {
+                Balance = new List<Money>(),
+                ExpirationDate = DateTime.Today,
+                IsActive = true,
+                Number = "1"
+            });
+            var secondAccount = context.Accounts.Add(new Account
+            {
+                Balance = new List<Money>(),
+                ExpirationDate = DateTime.Today,
+                IsActive = true,
+                Number = "2"
+            });
+            bank.Balance.Add(new Money { Currency = dollarCurrency });
+            context.SaveChanges();
+            firstAccount.Balance.Add(new Money
+            {
+                Currency = dollarCurrency,
+                Value = 1000
+            });
+            context.SaveChanges();
+            secondAccount.Balance.Add(new Money
+            {
+                Currency = dollarCurrency,
+                Value = 2000
+            });
+            context.SaveChanges();
             context.Roles.Add(new Role { Name = "Employee" });
-            context.Currencies.Add(new Currency { Name = "USA Dollar", ShortName = "USD", Symbol = "$" });
-            context.Users.Add(new User { Username = "admin", Password = "admin", Role = adminRole, Region = context.Regions.Add(new Region { Name = "All" }), Birthday = DateTime.Now});
+            var admin = context.Users.Add(new User { Username = "admin", Password = "admin", Role = adminRole, Region = context.Regions.Add(new Region { Name = "All" }), Birthday = DateTime.Now });
+            var firstUser = context.Users.Add(new User { Username = "user1", Password = "user1", Role = clientRole, Region = context.Regions.Add(new Region { Name = "All" }), Birthday = DateTime.Now, Accounts = new List<Account>() });
+            //var secondUser = context.Users.Add(new User { Username = "user2", Password = "user2", Role = clientRole, Region = context.Regions.Add(new Region { Name = "All" }), Birthday = DateTime.Now, Accounts = new List<Account>() });
+
+            firstUser.Accounts.Add(firstAccount);
+            admin.Accounts.Add(secondAccount);
 
             context.SaveChanges();
         }

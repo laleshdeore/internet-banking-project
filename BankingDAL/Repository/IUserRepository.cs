@@ -10,6 +10,7 @@ namespace BankingDAL.Repository
     {
         IList<User> GetUsersByRole(Role role);
         User GetUserById(long id);
+        User GetUserByUsername(string username);
         void Add(User user);
         void Delete(User user);
     }

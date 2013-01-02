@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.Routing;
 using BankingDAL.Entities;
 using BankingDAL.Repository;
-using BankingWeb.Models.Currency;
+using BankingWeb.Models;
 
 namespace BankingWeb.Controllers
 {

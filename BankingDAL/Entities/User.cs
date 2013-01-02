@@ -29,5 +29,10 @@ namespace BankingDAL.Entities
         public virtual Role Role { get; set; }
 
         public virtual List<Account> Accounts { get; set; } 
+
+        public User()
+        {
+            Accounts = new List<Account>();
+        }
     }
 }

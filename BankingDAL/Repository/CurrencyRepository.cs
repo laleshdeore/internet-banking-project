@@ -28,6 +28,11 @@ namespace BankingDAL.Repository
             return Database.Currencies.SingleOrDefault(currency => currency.Id == id);
         }
 
+        public Currency GetCurrencyByName(string name)
+        {
+            return Database.Currencies.SingleOrDefault(currency => currency.Name == name);
+        }
+
         public CurrencyRate GetCurrencyRateById(long id)
         {
             return Database.Rates.SingleOrDefault(rate => rate.Id == id);
@@ -38,10 +43,36 @@ namespace BankingDAL.Repository
             return Database.Rates.Where(rate => rate.First.Currency.Id == currency.Id || rate.Second.Currency.Id == currency.Id).ToList();
         }
 
+        public IList<CurrencyRate> GetCurrencyRates(Currency first, Currency second)
+        {
+            return Database.Rates.Where(rate => rate.Currencies.Contains(first) && rate.Currencies.Contains(second)).ToList();
+        }
+
+        public IList<Money> GetPossibleMoneys()
+        {
+            var moneys = new List<Money>();
+
+            foreach (var currency in Database.Currencies)
+            {
+                moneys.Add(new Money {Currency = currency});
+            }
+            return moneys;
+        }
+
+        public Money Convert(Money money, Currency currency)
+        {
+            var rates = GetCurrencyRates(money.Currency, currency);
+            var buyRate = rates.SingleOrDefault(rate => rate.Type == CurrencyRateType.Buy);
+            var sellRate = rates.SingleOrDefault(rate => rate.Type == CurrencyRateType.Sell);
+
+            return money;
+        }
+
         public long Add(Currency currency)
         {
             currency = Database.Currencies.Add(currency);
 
+            Database.Bank.Balance.Add(new Money { Currency = currency });
             Database.SaveChanges();
 
             foreach (var otherCurrency in Database.Currencies.Where(otherCurrency => currency.Id != otherCurrency.Id).ToList())

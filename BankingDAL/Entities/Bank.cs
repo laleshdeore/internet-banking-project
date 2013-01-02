@@ -19,5 +19,12 @@ namespace BankingDAL.Entities
         public virtual List<Machine> Machines { get; set; }
 
         public virtual List<Money> Balance { get; set; } 
+
+        public Bank()
+        {
+            Users = new List<User>();
+            Accounts = new List<Account>();
+            Balance = new List<Money>();
+        }
     }
 }

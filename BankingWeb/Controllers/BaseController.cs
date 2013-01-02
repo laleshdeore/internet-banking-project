@@ -15,6 +15,7 @@ namespace BankingWeb.Controllers
         public const string Client = "Client";
         public const string DateFormat = "dd.MM.yyyy";
         public const string ShortDateFormat = "MM.yyyy";
+        public const int MoneyBarrier = 100;
 
         protected DatabaseContext Context;
 

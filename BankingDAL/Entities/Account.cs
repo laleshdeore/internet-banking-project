@@ -10,10 +10,12 @@ namespace BankingDAL.Entities
     {
         public string Number { get; set; }
 
-        public virtual List<Money> Balance { get; set; }
-
         public DateTime ExpirationDate { get; set; }
 
         public bool IsActive { get; set; }
+
+        public virtual List<Money> Balance { get; set; }
+
+        public virtual User Owner { get; set; }
     }
 }

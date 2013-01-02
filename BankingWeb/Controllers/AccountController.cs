@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using BankingDAL.Repository;
-using BankingWeb.Models.Account;
-using BankingWeb.Models.User;
+using BankingWeb.Models;
 
 namespace BankingWeb.Controllers
 {
@@ -13,11 +9,13 @@ namespace BankingWeb.Controllers
     {
         private readonly IAccountRepository _accountRepository;
         private readonly ICurrencyRepository _currencyRepository;
+        private readonly IUserRepository _userRepository;
 
         public AccountController()
         {
             _accountRepository = new AccountRepository(Context);
             _currencyRepository = new CurrencyRepository(Context);
+            _userRepository = new UserRepository(Context);
         }
 
         //
@@ -25,7 +23,7 @@ namespace BankingWeb.Controllers
 
         public ActionResult Balance()
         {
-            return View();
+            return View(CurrentUser.Accounts.Select(account => new AccountModel(account)).ToList());
         }
 
         public ActionResult History()
@@ -45,6 +43,7 @@ namespace BankingWeb.Controllers
         [HttpPost]
         public ActionResult Add(AccountModel accountModel)
         {
+            _accountRepository.Add(accountModel.GetEntity(_userRepository, _currencyRepository));
             return RedirectToAction("Clients", "User");
         }
     }

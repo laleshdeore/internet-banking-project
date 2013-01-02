@@ -1,11 +1,7 @@
-﻿using System;
-using System.Web.Mvc;
-using System.Web.Routing;
+﻿using System.Web.Mvc;
 using System.Web.Security;
-using System.Web.UI.WebControls;
-using BankingDAL.Entities;
 using BankingDAL.Repository;
-using BankingWeb.Models.User;
+using BankingWeb.Models;
 using BankingWeb.Providers;
 
 namespace BankingWeb.Controllers

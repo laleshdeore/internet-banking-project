@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 
 namespace BankingDAL.Entities
 {
@@ -12,10 +9,29 @@ namespace BankingDAL.Entities
 
         public virtual Money Second { get; set; }
 
+        public IList<Currency> Currencies
+        {
+            get
+            {
+                var currencies = new List<Currency>();
+
+                if (First != null)
+                {
+                    currencies.Add(First.Currency);
+                }
+                if (Second != null)
+                {
+                    currencies.Add(Second.Currency);
+                }
+
+                return currencies;
+            }
+        }
+
         public CurrencyRateType Type
         {
-            get { return (CurrencyRateType) TypeInt; }
-            set { TypeInt = (int) value; }
+            get { return (CurrencyRateType)TypeInt; }
+            set { TypeInt = (int)value; }
         }
 
         public int TypeInt { get; set; }

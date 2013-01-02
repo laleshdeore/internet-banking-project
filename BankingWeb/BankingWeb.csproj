@@ -112,10 +112,12 @@
     <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
-    <Compile Include="Models\Account\AccountModel.cs" />
-    <Compile Include="Models\Currency\CurrencyModel.cs" />
-    <Compile Include="Models\User\LoginModel.cs" />
-    <Compile Include="Models\User\UserModel.cs" />
+    <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\CurrencyModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MoneyModel.cs" />
+    <Compile Include="Models\PaymentModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Providers\BankMemberProvider.cs" />
     <Compile Include="Providers\BankRoleProvider.cs" />
     <Compile Include="Controllers\UserController.cs" />

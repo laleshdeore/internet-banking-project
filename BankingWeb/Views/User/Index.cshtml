@@ -1,8 +1,13 @@
-﻿@model BankingWeb.Models.User.UserModel
+﻿@model BankingWeb.Models.UserModel
 
 @{
     ViewBag.Title = Model.FirstName;
 }
 
 <h2>User info</h2>
+
+@foreach (var account in Model.Accounts)
+{
+    @account.Number
+}
 

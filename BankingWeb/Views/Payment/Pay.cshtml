@@ -1,4 +1,5 @@
-﻿@model dynamic
+﻿@using BankingWeb.Controllers
+@model BankingWeb.Models.PaymentModel
 @{
     ViewBag.Title = "Pay";
 }
@@ -15,13 +16,14 @@
     </div>
     <label>
         Account expiration date</label>
-    <input type="text" placeholder="Date" id="account-expiration" data-date-format="MM/YYYY">
+    <input type="text" placeholder="Date" id="account-expiration" name="from.ExpirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()">
     <label>
         Account</label>
-    <select>
-        <option>0000-0000-0000-0001</option>
-        <option>0000-0000-0000-0002</option>
-        <option>0000-0000-0000-0003</option>
+    <select name="from.Number">
+        @foreach (var account in Model.Accounts)
+        {
+            <option value="@account.Number">@account.Number</option>
+        }
     </select>
     <label>
         Recipient's account</label>
