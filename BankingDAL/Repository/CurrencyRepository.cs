@@ -99,18 +99,12 @@ namespace BankingDAL.Repository
             if (rate.Id == 0)
             {
                 Database.Rates.Add(rate);
+                SaveAllChanges();
             }
             else
             {
-                var updateRate = GetCurrencyRateById(rate.Id);
-
-                if (updateRate != null)
-                {
-                    Database.Entry(updateRate).CurrentValues.SetValues(rate);
-                }
+                Update(GetCurrencyRateById(rate.Id), rate);
             }
-
-            while (Database.SaveChanges() != 0) { }
         }
     }
 }

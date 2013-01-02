@@ -9,13 +9,18 @@ namespace BankingDAL.Repository
 {
     public class UserRepository : DatabaseRepository, IUserRepository
     {
-        public UserRepository(DatabaseContext database) : base(database)
+        public UserRepository(DatabaseContext database)
+            : base(database)
         {
         }
 
-        public IList<User> GetUsersByRole(Role role)
+        public IList<User> GetUsersByRoles(List<Role> roles, Page page)
         {
-            return Database.Users.Where(user => user.Role.Id == role.Id).ToList();
+            var ids = roles.Select(role => role.Id);
+            var users = Database.Users.Where(user => ids.Contains(user.Role.Id)).OrderBy(user => user.Id);
+
+            page.Count = users.Count() / page.Capacity + (users.Count() % page.Capacity != 0 ? 1 : 0);
+            return users.Skip(page.Capacity * (page.Number - 1)).Take(page.Capacity).ToList();
         }
 
         public User GetUserById(long id)
@@ -28,10 +33,17 @@ namespace BankingDAL.Repository
             return Database.Users.SingleOrDefault(user => user.Username == username);
         }
 
-        public void Add(User user)
+        public void AddOrUpdate(User user)
         {
-            Database.Users.Add(user);
-            Database.SaveChanges();
+            if (user.Id == 0)
+            {
+                Database.Users.Add(user);
+                Database.SaveChanges();
+            }
+            else
+            {
+                Update(GetUserById(user.Id), user);
+            }
         }
 
         public void Delete(User user)

@@ -21,6 +21,7 @@ namespace BankingWeb.Controllers
         //
         // GET: /Account/Balance
 
+        [Authorize]
         public ActionResult Balance()
         {
             return View(CurrentUser.Accounts.Select(account => new AccountModel(account)).ToList());
@@ -44,7 +45,7 @@ namespace BankingWeb.Controllers
         public ActionResult Add(AccountModel accountModel)
         {
             _accountRepository.Add(accountModel.GetEntity(_userRepository, _currencyRepository));
-            return RedirectToAction("Clients", "User");
+            return RedirectToAction("All", "User");
         }
     }
 }

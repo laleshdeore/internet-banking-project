@@ -1,0 +1,109 @@
+﻿@using BankingWeb.Controllers
+@model BankingWeb.Models.UsersModel
+@{
+    ViewBag.Title = "Users";
+    var isFirstPage = Model.Page.Number == 1;
+}
+<h1>
+    Users
+</h1>
+<div class="control-group">
+    @if (User.IsInRole(BaseController.Administrator) || User.IsInRole(BaseController.Employee))
+    {
+        <a href="@Url.Action("Add", "User", new {role = BaseController.Client})">
+            <button class="btn" id="add-client">
+                Add client
+            </button>
+        </a>
+    }
+    @if (User.IsInRole(BaseController.Administrator))
+    {
+        <a href="@Url.Action("Add", "User", new { role = BaseController.Employee })">
+            <button class="btn" id="add-employee">
+                Add employee
+            </button>
+        </a>
+        <a href="@Url.Action("Add", "User", new { role = BaseController.Administrator })">
+            <button class="btn" id="add-administrator">
+                Add administrator
+            </button>
+        </a>
+    }
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Username
+        </th>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Role
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+    @for (var i = 0; i < Model.Users.Count; ++i)
+    {
+        <tr>
+            <td>
+                @(i + Model.Page.Capacity * Model.Page.Number)
+            </td>
+            <td>
+                @Model.Users[i].Username
+            </td>
+            <td>
+                @Model.Users[i].FirstName
+            </td>
+            <td>
+                @Model.Users[i].LastName
+            </td>
+            <td>
+                @Model.Users[i].Role.Name
+            </td>
+            <td>
+                <a href="@Url.Action("Index", "User", new { id = Model.Users[i].Id })">Details </a>
+                <a href="@Url.Action("Index", "User", new { id = Model.Users[i].Id })">Edit </a>
+                <a href="@Url.Action("Delete", "User", new { id = Model.Users[i].Id })">Delete </a>
+            </td>
+        </tr>
+    }
+</table>
+<div class="pagination pagination-centered">
+    <ul>
+        @if (!Model.Page.IsFirst)
+        {
+            <li>
+                <a href="@Url.Action("All", "User", new {page = Model.Page.Number - 1})">
+                    Prev 
+                </a>
+            </li>
+        }
+        @for (var i = 1; i <= Model.Page.Count; ++i)
+        {
+            <li class="@(Model.Page.Number == i ? "active" : "")">
+                <a href="@Url.Action("All", "User", new { page = i })">
+                    @i
+                </a>
+            </li>
+        }
+        @if (!Model.Page.IsLast)
+        {
+            <li>
+                <a href="@Url.Action("All", "User", new {page = Model.Page.Number + 1})">
+                    Next
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+<script type="text/javascript">
+</script>

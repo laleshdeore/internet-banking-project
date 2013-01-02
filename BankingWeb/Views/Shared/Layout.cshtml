@@ -32,7 +32,7 @@
                         <li class="@GetClass("Index", "Home")"><a href="@Url.Action("Index", "Home")"><i class="icon-home">
                                                                                                       </i>Home</a></li>
                         <li class="@GetClass("About", "Home")"><a href="@Url.Action("About", "Home")">About</a></li>
-                        <li><a href="#">Currency rate</a></li>
+                        <li class="@GetClass("Index", "Currency")"><a href="@Url.Action("Index", "Currency")">Currencies</a></li>
                         <li class="nav-header">Accounts</li>
                         <li class="@GetClass("Balance", "Account")"><a href="@Url.Action("Balance", "Account")">Balance</a></li>
                         <li class="@GetClass("History", "Account")"><a href="@Url.Action("History", "Account")">History</a></li>
@@ -42,20 +42,15 @@
                         <li><a href="#">Automatic pay</a></li>
                         @if (User.IsInRole(BaseController.Employee) || User.IsInRole(BaseController.Administrator))
                         {
-                            <li class="nav-header">Employee</li>
-                            <li class="@GetClass("Clients", "User")"><a href="@Url.Action("Clients", "User")">Manage clients</a></li>
+                            <li class="nav-header">Administration</li>
+                            <li class="@GetClass("All", "User")"><a href="@Url.Action("All", "User")">Users</a></li>
+                            <li><a href="#">Block requests</a></li>
                             <li><a href="#">Message</a></li>
                                                         
                         }
-                        @if (User.IsInRole(BaseController.Administrator))
-                        {
-                            <li class="nav-header">Administrator</li>
-                            <li><a href="#">Manage employees</a></li>
-                            <li><a href="@Url.Action("Index", "Currency")">Manage currencies</a></li>
-                        }
                         <li class="nav-header">Profile [@User.Identity.Name]</li>
                         <li><a href="#">Region</a></li>
-                        <li><a href="#">Personal code</a></li>
+                        <li class="@GetClass("PersonalCode", "User")"><a href="@Url.Action("PersonalCode", "User")">Personal code</a></li>
                         <li><a href="@Url.Action("LogOff", "User")">Logout</a></li>
                     </ul>
                 }

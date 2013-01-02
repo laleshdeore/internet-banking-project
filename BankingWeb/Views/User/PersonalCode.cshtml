@@ -1,0 +1,24 @@
+﻿@model BankingWeb.Models.PersonalCodeModel
+@{
+    ViewBag.Title = "PK";
+}
+<h1>
+    Personal code</h1>
+<form action="@Url.Action("PersonalCode", "User")" method="POST">
+<fieldset>
+    <label for="old-personal-code">
+        Old personal code</label>
+    <input type="password" id="old-personal-code" name="old">
+    <label for="new-personal-code">
+        New personal code</label>
+    <input type="password" id="new-personal-code" name="new">
+    <label for="confirm-personal-code">
+        Confirm</label>
+    <input type="password" id="new-personal-code" name="confirm">
+    <div>
+        <button type="submit" class="btn">
+            Save
+        </button>
+    </div>
+</fieldset>
+</form>

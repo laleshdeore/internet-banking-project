@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using System.Web.Security;
+using BankingDAL.Entities;
 using BankingDAL.Repository;
 using BankingWeb.Models;
 using BankingWeb.Providers;
@@ -42,10 +44,43 @@ namespace BankingWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-        public ActionResult Clients()
+        [HttpPost]
+        public ActionResult PersonalCode(PersonalCodeModel personalCodeModel)
         {
-            return View(_userRepository.GetUsersByRole(_roleRepository.GetRoleByName(Client)));
+            if (personalCodeModel.Confirm == personalCodeModel.New && personalCodeModel.Old == CurrentUser.PersonalCode)
+            {
+                CurrentUser.PersonalCode = personalCodeModel.New;
+                _userRepository.AddOrUpdate(CurrentUser);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult PersonalCode()
+        {
+            return View(new PersonalCodeModel());
+        }
+
+
+        public ActionResult All(int page = 1)
+        {
+            var roles = new List<Role>();
+            var currentPage = new Page { Capacity = PageCapacity, Number = page };
+
+            if (User.IsInRole(Administrator))
+            {
+                roles.Add(_roleRepository.GetRoleByName(Administrator));
+            }
+            if (User.IsInRole(Employee) || User.IsInRole(Administrator))
+            {
+                roles.Add(_roleRepository.GetRoleByName(Employee));
+                roles.Add(_roleRepository.GetRoleByName(Client));
+            }
+
+            return View(new UsersModel
+            {
+                Users = _userRepository.GetUsersByRoles(roles, currentPage),
+                Page = currentPage
+            });
         }
 
         [HttpGet]
@@ -59,7 +94,7 @@ namespace BankingWeb.Controllers
         {
             var user = userModel.GetUserEntity(_roleRepository);
 
-            _userRepository.Add(user);
+            _userRepository.AddOrUpdate(user);
             return RedirectToAction("Add", "Account", new { username = user.Username });
         }
 
@@ -69,7 +104,7 @@ namespace BankingWeb.Controllers
 
             if (Request.UrlReferrer != null) return Redirect(Request.UrlReferrer.ToString());
 
-            return RedirectToAction("Clients", "User");
+            return RedirectToAction("All", "User");
         }
 
         public ActionResult Index(long id)

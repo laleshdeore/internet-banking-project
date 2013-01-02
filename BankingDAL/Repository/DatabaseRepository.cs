@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BankingDAL.Entities;
 
 namespace BankingDAL.Repository
 {
@@ -20,6 +21,12 @@ namespace BankingDAL.Repository
             {
                 Database.Dispose();
             }
+        }
+
+        protected void Update(Entity entity, Entity newEntity)
+        {
+            Database.Entry(entity).CurrentValues.SetValues(newEntity);
+            SaveAllChanges();
         }
 
         protected void SaveAllChanges()

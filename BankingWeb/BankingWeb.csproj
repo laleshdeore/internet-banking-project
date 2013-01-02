@@ -117,7 +117,9 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MoneyModel.cs" />
     <Compile Include="Models\PaymentModel.cs" />
+    <Compile Include="Models\PersonalCodeModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Providers\BankMemberProvider.cs" />
     <Compile Include="Providers\BankRoleProvider.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -186,7 +188,7 @@
     <Content Include="Views\Payment\Pay.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\User\Clients.cshtml" />
+    <Content Include="Views\User\All.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Add.cshtml" />
@@ -205,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Currency\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\PersonalCode.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
