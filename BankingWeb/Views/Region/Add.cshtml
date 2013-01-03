@@ -1,0 +1,19 @@
+﻿@using BankingWeb.Controllers
+@model BankingWeb.Models.RegionModel
+
+@{
+    ViewBag.Title = "New region";
+}
+
+<form action="@Url.Action("Add", "Region")" method="POST">
+<fieldset>
+    <legend>New region</legend>
+    <label for="name">Region name</label>
+    <input type="text" placeholder="Name" id="name" name="name" />
+    <div>
+        <button type="submit" class="btn">
+            Create
+        </button>
+    </div>
+</fieldset>
+</form>

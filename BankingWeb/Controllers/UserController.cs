@@ -13,11 +13,13 @@ namespace BankingWeb.Controllers
         private readonly BankMemberProvider _provider = (BankMemberProvider)Membership.Provider;
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly IRegionRepository _regionRepository;
 
         public UserController()
         {
             _userRepository = new UserRepository(Context);
             _roleRepository = new RoleRepository(Context);
+            _regionRepository = new RegionRepository(Context);
         }
 
         public ActionResult Login()
@@ -96,6 +98,23 @@ namespace BankingWeb.Controllers
 
             _userRepository.AddOrUpdate(user);
             return RedirectToAction("Add", "Account", new { username = user.Username });
+        }
+
+        [HttpPost]
+        public ActionResult Region(RegionModel regionModel)
+        {
+            CurrentUser.Region = _regionRepository.GetRegionByName(regionModel.Name);
+            _userRepository.AddOrUpdate(CurrentUser);
+            return RedirectToAction("Region", "User");
+        }
+
+        public ActionResult Region()
+        {
+            return View(new RegionModel
+            {
+                All = _regionRepository.GetRegions(),
+                Name = CurrentUser.Region.Name
+            });
         }
 
         public ActionResult Delete(long id)

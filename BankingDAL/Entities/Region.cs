@@ -9,5 +9,7 @@ namespace BankingDAL.Entities
     public class Region : Entity
     {
         public string Name { get; set; }
+
+        public virtual List<User> Users { get; set; } 
     }
 }

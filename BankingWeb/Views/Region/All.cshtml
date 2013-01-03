@@ -1,0 +1,44 @@
+﻿@using BankingWeb.Controllers
+@model IList<BankingDAL.Entities.Region>
+@{
+    ViewBag.Title = "Regions";
+}
+<h1>
+    Regions</h1>
+<div class="control-group">
+    @if (User.IsInRole(BaseController.Administrator) || User.IsInRole(BaseController.Employee))
+    {
+        <a href="@Url.Action("Add", "Region")">
+            <button class="btn" id="add-region">
+                Add region
+            </button>
+        </a>
+    }
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+    @for (var i = 0; i < Model.Count; ++i)
+    {
+        <tr>
+            <td>
+                @(i + 1)
+            </td>
+            <td>
+                @Model[i].Name
+            </td>
+            <td>
+                <a href="@Url.Action("Delete", "Region", new { id = Model[i].Id })">Delete </a>
+            </td>
+        </tr>
+    }
+</table>

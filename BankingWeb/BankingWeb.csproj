@@ -112,12 +112,14 @@
     <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\CurrencyModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MoneyModel.cs" />
     <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\PersonalCodeModel.cs" />
+    <Compile Include="Models\RegionModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Providers\BankMemberProvider.cs" />
@@ -210,6 +212,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\PersonalCode.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\All.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Region.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

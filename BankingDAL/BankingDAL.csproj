@@ -69,10 +69,12 @@
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\ICurrencyRepository.cs" />
     <Compile Include="Repository\IPaymentRepository.cs" />
+    <Compile Include="Repository\IRegionRepository.cs" />
     <Compile Include="Repository\IRoleRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Repository\Page.cs" />
     <Compile Include="Repository\PaymentRepository.cs" />
+    <Compile Include="Repository\RegionRepository.cs" />
     <Compile Include="Repository\RoleRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>

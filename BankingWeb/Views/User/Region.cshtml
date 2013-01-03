@@ -1,0 +1,23 @@
+﻿@model BankingWeb.Models.RegionModel
+@{
+    ViewBag.Title = "Select region";
+}
+<h1>User regions</h1>
+<form action="@Url.Action("Region", "User")" method="POST">
+<fieldset>
+    <label for="name">
+        Select region
+    </label>
+    <select name="name">
+        @foreach (var region in Model.All)
+        {
+            <option value="@region.Name" @(region.Name == Model.Name ? "selected" : "")>@region.Name</option>
+        }
+    </select>
+    <div>
+        <button type="submit" class="btn">
+            Save
+        </button>
+    </div>
+</fieldset>
+</form>

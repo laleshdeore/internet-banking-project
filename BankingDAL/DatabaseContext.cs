@@ -58,11 +58,11 @@ namespace BankingDAL
             });
             context.SaveChanges();
             context.Roles.Add(new Role { Name = "Employee" });
-            var admin = context.Users.Add(new User { Username = "admin", Password = "admin", Role = adminRole, Region = context.Regions.Add(new Region { Name = "All" }), Birthday = DateTime.Now });
-            var firstUser = context.Users.Add(new User { Username = "user1", Password = "user1", Role = clientRole, Region = context.Regions.Add(new Region { Name = "All" }), Birthday = DateTime.Now, Accounts = new List<Account>() });
-            //var secondUser = context.Users.Add(new User { Username = "user2", Password = "user2", Role = clientRole, Region = context.Regions.Add(new Region { Name = "All" }), Birthday = DateTime.Now, Accounts = new List<Account>() });
+            var region = new Region {Name = "All"};
+            var admin = context.Users.Add(new User { Username = "admin", Password = "admin", Role = adminRole, Region = context.Regions.Add(region), Birthday = DateTime.Now });
+            var user = context.Users.Add(new User { Username = "user1", Password = "user1", Role = clientRole, Region = context.Regions.Add(region), Birthday = DateTime.Now, Accounts = new List<Account>() });
 
-            firstUser.Accounts.Add(firstAccount);
+            user.Accounts.Add(firstAccount);
             admin.Accounts.Add(secondAccount);
 
             context.SaveChanges();
