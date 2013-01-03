@@ -3,40 +3,47 @@
 @{
     ViewBag.Title = "Pay";
 }
-<h1>
-    Pay header</h1>
-<form>
+<form action="@Url.Action("Pay", "Payment")" method="POST">
 <fieldset>
     <legend>Payment</legend>
-    <label>
-        Amount</label>
-    <div class="input-prepend input-append">
-        <span class="add-on">$</span>
-        <input type="text" placeholder="Amount">
+    <label for="amount">
+        Amount
+    </label>
+    <div class="input-append">
+        <input type="text" placeholder="Amount" name="value.Value" id="amount">
+        <select name="value.Name">
+            @foreach (var currency in Model.Currencies)
+            {
+                <option value="@currency.Name">@currency.Symbol</option>
+            }
+        </select>
     </div>
-    <label>
-        Account expiration date</label>
+    <label for="account-expiration">
+        Account expiration date
+    </label>
     <input type="text" placeholder="Date" id="account-expiration" name="from.ExpirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()">
-    <label>
-        Account</label>
-    <select name="from.Number">
+    <label for="account-number">
+        Account
+    </label>
+    <select name="from.Number" id="account-number">
         @foreach (var account in Model.Accounts)
         {
             <option value="@account.Number">@account.Number</option>
         }
     </select>
-    <label>
-        Recipient's account</label>
-    <input type="text" placeholder="Recipient">
-    <label>
-        Personal code</label>
-    <input type="text" placeholder="Code">
-    <label class="checkbox">
-        <input type="checkbox">
-        Mail me state
+    <label for="recipient-account-number">
+        Recipient's account
     </label>
-    <button type="submit" class="btn">
-        Pay</button>
+    <input type="text" placeholder="Recipient" name="to.Number" id="recipient-account-number">
+    <label for="personal-code">
+        Personal code
+    </label>
+    <input type="password" name="personalCode" id="personal-code">
+    <div>
+        <button type="submit" class="btn">
+            Pay
+        </button>
+    </div>
 </fieldset>
 </form>
 <script type="text/javascript">

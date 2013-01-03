@@ -38,10 +38,14 @@ namespace BankingWeb.Models
             }
         }
 
-        public AccountModel() {}
+        public AccountModel():this(null)
+        {
+        }
 
         public AccountModel(Account entity)
         {
+            Balance = new List<MoneyModel>();
+            IsActive = true;
             SetEntity(entity);
         }
 
@@ -59,6 +63,11 @@ namespace BankingWeb.Models
 
         public void SetEntity(Account account)
         {
+            if (account == null)
+            {
+                return;
+            }
+
             Number = account.Number;
             Owner = account.Owner.Username;
             ExpirationDate = account.ExpirationDate.ToString(BaseController.ShortDateFormat, CultureInfo.InvariantCulture);

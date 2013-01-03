@@ -1,0 +1,72 @@
+﻿@model BankingWeb.Models.PaymentsModel
+@{
+    ViewBag.Title = "History";
+}
+<h1>
+    History
+</h1>
+<table class="table table-striped">
+    <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Amount
+        </th>
+        <th>
+            From
+        </th>
+        <th>
+            To
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            State
+        </th>
+    </tr>
+    @for (var i = 0; i < Model.Payments.Count; ++i)
+    {
+        <tr>
+            <td>
+                @(i + Model.Page.Capacity * (Model.Page.Number - 1) + 1)
+            </td>
+            <td>
+                @Model.Payments[i].Value
+            </td>
+            <td>
+                @Model.Payments[i].From.Number
+            </td>
+            <td>
+                @Model.Payments[i].To.Number
+            </td>
+            <td>
+                @Model.Payments[i].Date
+            </td>
+            <td>
+                @Model.Payments[i].State
+            </td>
+        </tr> 
+    }
+</table>
+<div class="pagination pagination-centered">
+    <ul>
+        @if (!Model.Page.IsFirst)
+        {
+            <li><a href="@Url.Action("All", "User", new { page = Model.Page.Number - 1 })">Prev
+            </a></li>
+        }
+        @for (var i = 1; i <= Model.Page.Count; ++i)
+        {
+            <li class="@(Model.Page.Number == i ? "active" : "")"><a href="@Url.Action("All", "User", new { page = i })">
+                @i
+            </a></li>
+        }
+        @if (!Model.Page.IsLast)
+        {
+            <li><a href="@Url.Action("All", "User", new { page = Model.Page.Number + 1 })">Next
+            </a></li>
+        }
+    </ul>
+</div>

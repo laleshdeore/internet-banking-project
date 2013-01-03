@@ -12,6 +12,13 @@ namespace BankingDAL.Repository
         {
         }
 
+        public IList<Payment> GetPaymentsByUser(User user, Page page)
+        {
+            var accountIds = user.Accounts.Select(account => account.Id).ToList();
+
+            return Database.Payments.Where(p => accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id)).ToList();
+        }
+
         public void Pay(Payment payment, ICurrencyRepository currencyRepository)
         {
             payment.State = PaymentState.Pending;
@@ -40,6 +47,7 @@ namespace BankingDAL.Repository
 
             fromMoney.Value -= payMoney.Value;
             toMoney.Value += payMoney.Value;
+            payment.State = PaymentState.Completed;
             SaveAllChanges();
         }
     }

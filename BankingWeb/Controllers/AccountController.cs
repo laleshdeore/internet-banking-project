@@ -27,11 +27,6 @@ namespace BankingWeb.Controllers
             return View(CurrentUser.Accounts.Select(account => new AccountModel(account)).ToList());
         }
 
-        public ActionResult History()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult Add(string username)
         {

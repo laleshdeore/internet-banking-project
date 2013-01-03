@@ -54,7 +54,7 @@
     {
         <tr>
             <td>
-                @(i + Model.Page.Capacity * Model.Page.Number)
+                @(i + Model.Page.Capacity * (Model.Page.Number - 1) + 1)
             </td>
             <td>
                 @Model.Users[i].Username
@@ -104,5 +104,3 @@
         }
     </ul>
 </div>
-<script type="text/javascript">
-</script>
