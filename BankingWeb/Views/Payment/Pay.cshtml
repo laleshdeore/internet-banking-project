@@ -10,7 +10,7 @@
         Amount
     </label>
     <div class="input-append">
-        <input type="text" placeholder="Amount" name="value.Value" id="amount">
+        <input type="number" placeholder="Amount" name="value.Value" id="amount" min="1" required>
         <select name="value.Name">
             @foreach (var currency in Model.Currencies)
             {

@@ -9,23 +9,27 @@
     <label for="username">
         Username
     </label>
-    <input type="text" id="username" name="username" placeholder="Username">
+    <input type="text" id="username" name="username" placeholder="Username"required maxlength="20" pattern="[A-Za-z0-9]{4,}">
+    <span><font size="1">UserName состоит из 4-20 символов из латинских букв или цифр </font></span>
     <label for="password">
         Password
     </label>
-    <input type="password" id="password" name="password">
+    <input type="password" id="password" name="password"required maxlength="16" pattern="[A-Za-z0-9]{4,}">
+    <span><font size="1">Password состоит из 5-16 символов из латинских букв или цифр </font></span>
     <label for="first-name">
         First Name
     </label>
-    <input type="text" id="first-name" name="firstName" placeholder="First Name">
+    <input type="text" id="first-name" name="firstName" placeholder="First Name"required maxlength="10" pattern="[A-Za-z]{3,}">
+    <span><font size="1">FirstName состоит от 3-10 символов из латинских букв</font></span>
     <label for="first-name">
         Last Name
     </label>
-    <input type="text" id="last-name" name="lastName" placeholder="Last Name">
+    <input type="text" id="last-name" name="lastName" placeholder="Last Name"required maxlength="15" pattern="[A-Za-z]{3,}">
+    <span><font size="1">LastName состоит от 3-15 символов из латинских букв</font></span>
     <label for="email">
         Email
     </label>
-    <input type="text" id="email" name="email" placeholder="Email">
+    <input type="text" id="email" name="email" placeholder="Email"required >
     <label for="phone">
         Phone
     </label>
@@ -33,7 +37,8 @@
     <label for="birthday">
         Birthday
     </label>
-    <input type="text" placeholder="Birthday" id="birthday" name="birthday" data-date-format="@BaseController.DateFormat.ToLower()">
+    <input type="text" placeholder="Birthday" id="birthday" name="birthday" data-date-format="@BaseController.DateFormat.ToLower()" 
+         required >
     <input type="hidden" name="role" value="@Model.Role"/>
     <input type="hidden" name="region" value="@BaseController.All"/>
     <div>
