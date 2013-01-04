@@ -29,13 +29,13 @@ namespace BankingWeb.Controllers
         }
 
         [Authorize]
-        public ActionResult Pay(int serviceId)
+        public ActionResult Pay(int? serviceId)
         {
             var model = new PaymentModel { Currencies = _currencyRepository.GetCurrencies() };
 
-            if (serviceId != 0)
+            if (serviceId != null && serviceId != 0)
             {
-                model.Service = _paymentRepository.GetServiceById(serviceId);
+                model.Service = _paymentRepository.GetServiceById(serviceId.Value);
             }
             foreach (var account in CurrentUser.Accounts)
             {

@@ -8,11 +8,17 @@ namespace BankingDAL.Repository
 {
     public interface IPaymentRepository
     {
-        IList<Payment> GetPaymentsByUser(User user, Page page); 
+        IList<Payment> GetPaymentsByUser(User user, Page page);
+
+        IList<Payment> GetPayments(bool isAutomatic); 
 
         void Pay(Payment payment, ICurrencyRepository currencyRepository);
 
         void AddOrUpdate(Service service);
+
+        void AddOrUpdate(Payment payment);
+
+        Payment GetPaymentById(long id);
 
         Service GetServiceById(long id);
 

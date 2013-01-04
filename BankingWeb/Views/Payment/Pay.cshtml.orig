@@ -1,0 +1,68 @@
+﻿@using BankingWeb.Controllers
+@model BankingWeb.Models.PaymentModel
+@{
+    ViewBag.Title = "Pay";
+}
+<form action="@Url.Action("Pay", "Payment")" method="POST">
+<fieldset>
+    <legend>Payment</legend>
+    <label for="amount">
+        Amount
+    </label>
+    <div class="input-append">
+        <input type="number" placeholder="Amount" name="value.Value" id="amount" min="1" required>
+        <select name="value.Name">
+            @foreach (var currency in Model.Currencies)
+            {
+                <option value="@currency.Name">@currency.Symbol</option>
+            }
+        </select>
+    </div>
+    <label for="account-expiration">
+        Account expiration date
+    </label>
+    <input type="text" placeholder="Date" id="account-expiration" name="from.ExpirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()">
+    <label for="account-number">
+        Account
+    </label>
+    <select name="from.Number" id="account-number">
+        @foreach (var account in Model.Accounts)
+        {
+            <option value="@account.Number">@account.Number</option>
+        }
+    </select>
+    @if (Model.Service == null)
+    {
+        <label for="recipient-account-number">
+            Recipient's account
+        </label>
+        <input type="text" placeholder="Recipient" name="to.Number" id="recipient-account-number">
+    }
+    else
+    {
+        <label for="service-identifier">
+            @Model.Service.IdentifierDescription
+        </label>
+        <input type="text" placeholder="@Model.Service.IdentifierDescription" name="serviceIdentifier" id="service-identifier">
+        <input type="hidden" name="owner" value="@Model.Service.Owner.Username"/>
+    }
+    <label for="personal-code">
+        Personal code
+    </label>
+    <input type="password" name="personalCode" id="personal-code">
+    <label class="checkbox">
+        <input type="checkbox" name="isAutomatic">
+        Pay monthly
+    </label>
+    <div>
+        <button type="submit" class="btn">
+            Pay
+        </button>
+    </div>
+</fieldset>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#account-expiration").datepicker({ viewMode: 1, minViewMode: 1 });
+    });
+</script>
