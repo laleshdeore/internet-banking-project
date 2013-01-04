@@ -1,13 +1,79 @@
 ﻿@model BankingWeb.Models.UserModel
-
 @{
     ViewBag.Title = Model.FirstName;
 }
-
-<h2>User info</h2>
-
+<h2>
+    User info</h2>
 @foreach (var account in Model.Accounts)
 {
     @account.Number
 }
-
+<div class="container-information">
+    <div class="information">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    User Name
+                </th>
+                <th>@Model.Username
+                </th>
+            </tr>
+            <tr>
+                <tr>
+                    <th>
+                        First Name
+                    </th>
+                    <th>@Model.FirstName
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>@Model.LastName
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Email
+                    </th>
+                    <th>@Model.Email
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Phone
+                    </th>
+                    <th>@Model.Phone
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Birthday
+                    </th>
+                    <th>@Model.Birthday
+                    </th>
+                </tr>
+        </table>
+    </div>
+    <div style="top: 150px">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Number
+                </th>
+                <th>
+                    Account Numbers
+                </th>
+            </tr>
+            @foreach (var account in Model.Accounts)
+            {
+                var i = 0;
+                <td>@(i + 1)
+                </td>
+                <td>@account.Number
+                </td>
+            }
+        </table>
+    </div>
+</div>
