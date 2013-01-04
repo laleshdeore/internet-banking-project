@@ -1,0 +1,42 @@
+﻿@using BankingWeb.Controllers
+@model BankingWeb.Models.ServiceModel
+
+@{
+    ViewBag.Title = "New service";
+}
+
+<form action="@Url.Action("Add", "Service")" method="POST">
+<fieldset>
+    <legend>New service </legend>
+    <label for="name">
+        Name
+    </label>
+    <input type="text" id="name" name="name" placeholder="Name">
+    <label for="description">
+        Description
+    </label>
+    <input type="text" id="description" name="description" placeholder="Description">
+    <label for="identifier-description">
+        Identifier description
+    </label>
+    <input type="text" id="identifier-description" name="identifierDescription" placeholder="Identifier description">
+    <label for="owner">
+        Owner username
+    </label>
+    <input type="text" id="owner" name="owner" placeholder="Owner">
+    <label for="region">
+        Regions
+    </label>
+    <select name="region" id="region">
+        @foreach (var region in Model.Regions)
+        {
+            <option value="@region.Name">@region.Name</option>
+        }
+    </select>
+    <div>
+        <button type="submit" class="btn">
+            Create
+        </button>
+    </div>
+</fieldset>
+</form>

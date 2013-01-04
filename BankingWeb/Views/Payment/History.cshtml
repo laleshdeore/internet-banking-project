@@ -20,6 +20,9 @@
             To
         </th>
         <th>
+            Service Identifier
+        </th>
+        <th>
             Date
         </th>
         <th>
@@ -40,6 +43,9 @@
             </td>
             <td>
                 @Model.Payments[i].To.Number
+            </td>
+            <td>
+                @(Model.Payments[i].ServiceIdentifier ?? "-")
             </td>
             <td>
                 @Model.Payments[i].Date

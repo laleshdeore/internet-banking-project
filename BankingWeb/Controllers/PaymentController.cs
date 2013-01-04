@@ -9,27 +9,34 @@ namespace BankingWeb.Controllers
         private readonly ICurrencyRepository _currencyRepository;
         private readonly IPaymentRepository _paymentRepository;
         private readonly IAccountRepository _accountRepository;
+        private readonly IUserRepository _userRepository;
 
         public PaymentController()
         {
             _currencyRepository = new CurrencyRepository(Context);
             _paymentRepository = new PaymentRepository(Context);
             _accountRepository = new AccountRepository(Context);
+            _userRepository = new UserRepository(Context);
         }
 
         [HttpPost]
         [Authorize]
         public ActionResult Pay(PaymentModel paymentModel)
         {
-            _paymentRepository.Pay(paymentModel.GetEntity(_currencyRepository, _accountRepository), _currencyRepository);
+            _paymentRepository.Pay(paymentModel.GetEntity(_currencyRepository, _accountRepository, _userRepository), _currencyRepository);
+
             return RedirectToAction("History", "Payment");
         }
 
         [Authorize]
-        public ActionResult Pay()
+        public ActionResult Pay(int serviceId)
         {
             var model = new PaymentModel { Currencies = _currencyRepository.GetCurrencies() };
 
+            if (serviceId != 0)
+            {
+                model.Service = _paymentRepository.GetServiceById(serviceId);
+            }
             foreach (var account in CurrentUser.Accounts)
             {
                 model.Accounts.Add(new AccountModel(account));

@@ -45,6 +45,11 @@ namespace BankingDAL.Repository
 
             var payMoney = currencyRepository.Convert(payment.Value, toMoney.Currency);
 
+            if (payMoney.Value < fromMoney.Value)
+            {
+                throw new Exception("Not enough money for pay");
+            }
+
             fromMoney.Value -= payMoney.Value;
             toMoney.Value += payMoney.Value;
             payment.State = PaymentState.Completed;
@@ -72,6 +77,12 @@ namespace BankingDAL.Repository
         public IList<Service> GetServices()
         {
             return Database.Services.ToList();
+        }
+
+        public void Delete(Service service)
+        {
+            Database.Services.Remove(service);
+            SaveAllChanges();
         }
     }
 }

@@ -17,5 +17,7 @@ namespace BankingDAL.Repository
         Service GetServiceById(long id);
 
         IList<Service> GetServices();
+
+        void Delete(Service service);
     }
 }

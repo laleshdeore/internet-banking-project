@@ -25,20 +25,29 @@ namespace BankingWeb.Models
 
         public IList<AccountModel> Accounts { get; set; }
 
-        public IList<Currency> Currencies { get; set; } 
+        public IList<Currency> Currencies { get; set; }
+
+        public Service Service { get; set; }
+
+        public string ServiceIdentifier { get; set; }
+
+        public string Owner { get; set; }
 
         public string PersonalCode { get; set; }
 
-        public long? Span { get; set; }
+        public bool IsAutomatic { get; set; }
 
-        public Payment GetEntity(ICurrencyRepository currencyRepository, IAccountRepository accountRepository)
+        public Payment GetEntity(ICurrencyRepository currencyRepository, IAccountRepository accountRepository, IUserRepository userRepository)
         {
+            var toAccount = (To != null && To.Number != null) ? accountRepository.GetAccountByNumber(To.Number) : userRepository.GetUserByUsername(Owner).Accounts.First();
+
             return new Payment
             {
                 Date = DateTime.Now,
                 From = accountRepository.GetAccountByNumber(From.Number),
-                To = accountRepository.GetAccountByNumber(To.Number),
-                Span = Span.GetValueOrDefault(0),
+                To = toAccount,
+                ServiceIdentifier = ServiceIdentifier,
+                IsAutomatic = IsAutomatic,
                 State = PaymentState.Pending,
                 Value = Value.GetEntity(currencyRepository)
             };

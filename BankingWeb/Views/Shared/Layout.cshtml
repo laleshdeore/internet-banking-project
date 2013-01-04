@@ -37,7 +37,6 @@
                         <li class="nav-header">Accounts</li>
                         <li class="@GetClass("Balance", "Account")"><a href="@Url.Action("Balance", "Account")">
                             Balance</a></li>
-                        <li><a href="#">Block</a></li>
                         <li class="nav-header">Payments</li>
                         <li class="@GetClass("Pay", "Payment")"><a href="@Url.Action("Pay", "Payment")">Pay</a></li>
                         <li class="@GetClass("History", "Payment")"><a href="@Url.Action("History", "Payment")">History</a></li>
@@ -48,10 +47,7 @@
                         {
                             <li class="nav-header">Administration</li>
                             <li class="@GetClass("All", "User")"><a href="@Url.Action("All", "User")">Users</a></li>
-                            <li class="@GetClass("All", "Region")"><a href="@Url.Action("All", "Region")">Regions</a></li>
-                            <li><a href="#">Block requests</a></li>
-                            <li><a href="#">Message</a></li>
-                                                        
+                            <li class="@GetClass("All", "Region")"><a href="@Url.Action("All", "Region")">Regions</a></li>                               
                         }
                         <li class="nav-header">Profile [@User.Identity.Name]</li>
                         <li class="@GetClass("Region", "User")"><a href="@Url.Action("Region", "User")">Region</a>

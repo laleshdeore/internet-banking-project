@@ -31,14 +31,29 @@
             <option value="@account.Number">@account.Number</option>
         }
     </select>
-    <label for="recipient-account-number">
-        Recipient's account
-    </label>
-    <input type="text" placeholder="Recipient" name="to.Number" id="recipient-account-number">
+    @if (Model.Service == null)
+    {
+        <label for="recipient-account-number">
+            Recipient's account
+        </label>
+        <input type="text" placeholder="Recipient" name="to.Number" id="recipient-account-number">
+    }
+    else
+    {
+        <label for="service-identifier">
+            @Model.Service.IdentifierDescription
+        </label>
+        <input type="text" placeholder="@Model.Service.IdentifierDescription" name="serviceIdentifier" id="service-identifier">
+        <input type="hidden" name="owner" value="@Model.Service.Owner.Username"/>
+    }
     <label for="personal-code">
         Personal code
     </label>
     <input type="password" name="personalCode" id="personal-code">
+    <label class="checkbox">
+        <input type="checkbox" name="isAutomatic">
+        Pay monthly
+    </label>
     <div>
         <button type="submit" class="btn">
             Pay
