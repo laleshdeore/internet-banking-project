@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using BankingDAL.Repository;
 using BankingWeb.Models;
@@ -30,8 +31,7 @@ namespace BankingWeb.Controllers
         [HttpGet]
         public ActionResult Add(string username)
         {
-            var currencies = _currencyRepository.GetCurrencies();
-            var balance = currencies.Select(currency => new MoneyModel {Symbol = currency.Symbol}).ToList();
+            var balance = _currencyRepository.GetPossibleMoneys().Select(money => new MoneyModel(money)).ToList();
 
             return View(new AccountModel { Owner = username, Number = _accountRepository.GenerateNumber(), Balance = balance});
         }

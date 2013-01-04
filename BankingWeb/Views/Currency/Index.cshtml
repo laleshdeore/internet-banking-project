@@ -1,5 +1,6 @@
 ﻿@using BankingDAL.Entities
-@model IList<BankingDAL.Entities.CurrencyRate>
+@using BankingWeb.Controllers
+@model IList<CurrencyRate>
 @{
     ViewBag.Title = "Curenncies";
 
@@ -15,11 +16,14 @@
 <h1>
     Currency rates</h1>
 <div class="control-group">
-    <a href="@Url.Action("Add", "Currency")">
-        <button class="btn" id="add-client">
-            Add currency
-        </button>
-    </a>
+    @if (User.IsInRole(BaseController.Administrator))
+    {
+        <a href="@Url.Action("Add", "Currency")">
+            <button class="btn" id="add-client">
+                Add currency
+            </button>
+        </a>
+    }
 </div>
 <table class="table table-striped">
     <tr>

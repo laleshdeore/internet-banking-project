@@ -10,6 +10,8 @@ namespace BankingDAL.Entities
     {
         public string Name { get; set; }
 
-        public virtual List<User> Users { get; set; } 
+        public virtual List<User> Users { get; set; }
+
+        public virtual List<Service> Services { get; set; } 
     }
 }

@@ -60,6 +60,7 @@
     <Compile Include="Entities\PaymentState.cs" />
     <Compile Include="Entities\Region.cs" />
     <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Service.cs" />
     <Compile Include="Entities\Tariff.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

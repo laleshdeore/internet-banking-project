@@ -16,6 +16,8 @@ namespace BankingDAL.Entities
 
         public DateTime Date { get; set; }
 
+        public string ServiceIdentifier { get; set; }
+
         public long Span { get; set; }
 
         public PaymentState State

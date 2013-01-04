@@ -50,5 +50,28 @@ namespace BankingDAL.Repository
             payment.State = PaymentState.Completed;
             SaveAllChanges();
         }
+
+        public void AddOrUpdate(Service service)
+        {
+            if (service.Id == 0)
+            {
+                Database.Services.Add(service);
+                Database.SaveChanges();
+            }
+            else
+            {
+                Update(GetServiceById(service.Id), service);
+            }
+        }
+
+        public Service GetServiceById(long id)
+        {
+            return Database.Services.SingleOrDefault(service => service.Id == id);
+        }
+
+        public IList<Service> GetServices()
+        {
+            return Database.Services.ToList();
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace BankingDAL
         public DbSet<Message> Messages { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<CurrencyRate> Rates { get; set; }
+        public DbSet<Service> Services { get; set; }
 
         public static void Seed(DatabaseContext context)
         {

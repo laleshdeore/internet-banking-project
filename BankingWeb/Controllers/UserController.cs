@@ -47,6 +47,7 @@ namespace BankingWeb.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult PersonalCode(PersonalCodeModel personalCodeModel)
         {
             if (personalCodeModel.Confirm == personalCodeModel.New && personalCodeModel.Old == CurrentUser.PersonalCode)
@@ -57,12 +58,13 @@ namespace BankingWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         public ActionResult PersonalCode()
         {
             return View(new PersonalCodeModel());
         }
 
-
+        [Authorize]
         public ActionResult All(int page = 1)
         {
             var roles = new List<Role>();
@@ -86,12 +88,14 @@ namespace BankingWeb.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Add(string role)
         {
             return View(new UserModel { Role = role });
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Add(UserModel userModel)
         {
             var user = userModel.GetUserEntity(_roleRepository);
@@ -101,6 +105,7 @@ namespace BankingWeb.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Region(RegionModel regionModel)
         {
             CurrentUser.Region = _regionRepository.GetRegionByName(regionModel.Name);
@@ -108,6 +113,7 @@ namespace BankingWeb.Controllers
             return RedirectToAction("Region", "User");
         }
 
+        [Authorize]
         public ActionResult Region()
         {
             return View(new RegionModel
@@ -117,6 +123,7 @@ namespace BankingWeb.Controllers
             });
         }
 
+        [Authorize]
         public ActionResult Delete(long id)
         {
             _userRepository.Delete(_userRepository.GetUserById(id));
@@ -126,6 +133,7 @@ namespace BankingWeb.Controllers
             return RedirectToAction("All", "User");
         }
 
+        [Authorize]
         public ActionResult Index(long id)
         {
             return View(new UserModel(_userRepository.GetUserById(id)));

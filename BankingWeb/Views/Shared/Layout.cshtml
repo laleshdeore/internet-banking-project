@@ -40,8 +40,9 @@
                         <li><a href="#">Block</a></li>
                         <li class="nav-header">Payments</li>
                         <li class="@GetClass("Pay", "Payment")"><a href="@Url.Action("Pay", "Payment")">Pay</a></li>
-                        <li class="@GetClass("History", "Payment")"><a href="@Url.Action("History", "Payment")">
-                            History</a></li>
+                        <li class="@GetClass("History", "Payment")"><a href="@Url.Action("History", "Payment")">History</a></li>
+                        <li class="@GetClass("All", "Service")"><a href="@Url.Action("All", "Service")">Services</a></li>
+
                         <li><a href="#">Automatic pay</a></li>
                         @if (User.IsInRole(BaseController.Employee) || User.IsInRole(BaseController.Administrator))
                         {
