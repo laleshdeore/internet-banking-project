@@ -3,8 +3,10 @@
     <form class="form-signin" action="@Url.Action("Login", "User")" method="POST">
     <h2 class="form-signin-heading">
         Please sign in</h2>
-    <input type="text" class="input-block-level" placeholder="Username" name="username">
-    <input type="password" class="input-block-level" placeholder="Password" name="password">
+    <input type="text" class="input-block-level" placeholder="Username" name="username" required maxlength="20" pattern="[A-Za-z0-9]{4,}">
+    <span><font size="1">UserName состоит из 4-20 символов из латинских букв или цифр </font></span>
+    <input type="password" class="input-block-level" placeholder="Password" name="password" maxlength="16" pattern="[A-Za-z0-9]{5,}" required>
+    <span><font size="1">Password состоит из 5-16 символов из латинских букв или цифр </font></span>
     <label class="checkbox">
         <input type="checkbox" value="remember-me">
         Remember me

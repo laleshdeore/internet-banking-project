@@ -10,7 +10,7 @@
         Amount
     </label>
     <div class="input-append">
-        <input type="text" placeholder="Amount" name="value.Value" id="amount">
+        <input type="number" placeholder="Amount" name="value.Value" id="amount" min="1" required>
         <select name="value.Name">
             @foreach (var currency in Model.Currencies)
             {
@@ -21,7 +21,7 @@
     <label for="account-expiration">
         Account expiration date
     </label>
-    <input type="text" placeholder="Date" id="account-expiration" name="from.ExpirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()">
+    <input type="text" placeholder="Date" id="account-expiration" name="from.ExpirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()"required>
     <label for="account-number">
         Account
     </label>
@@ -34,7 +34,7 @@
     <label for="recipient-account-number">
         Recipient's account
     </label>
-    <input type="text" placeholder="Recipient" name="to.Number" id="recipient-account-number">
+    <input type="text" placeholder="Recipient" name="to.Number" id="recipient-account-number" required>
     <label for="personal-code">
         Personal code
     </label>
