@@ -91,6 +91,7 @@ namespace BankingDAL.Repository
                                 });
             }
 
+            SaveAllChanges();
             return currency.Id;
         }
 

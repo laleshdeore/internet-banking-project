@@ -48,13 +48,10 @@
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Bank.cs" />
-    <Compile Include="Entities\BlockRequest.cs" />
     <Compile Include="Entities\Currency.cs" />
     <Compile Include="Entities\CurrencyRate.cs" />
     <Compile Include="Entities\CurrencyRateType.cs" />
     <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\Machine.cs" />
-    <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Money.cs" />
     <Compile Include="Entities\Payment.cs" />
     <Compile Include="Entities\PaymentState.cs" />
