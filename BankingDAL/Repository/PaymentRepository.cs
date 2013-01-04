@@ -49,7 +49,7 @@ namespace BankingDAL.Repository
                 fromMoney = payment.From.Balance.First();
             }
 
-            var payMoney = currencyRepository.Convert(payment.Value, toMoney.Currency);
+            var payMoney = currencyRepository.Convert(payment.Value, fromMoney.Currency);
 
             if (payMoney.Value > fromMoney.Value)
             {
@@ -59,7 +59,7 @@ namespace BankingDAL.Repository
             }
 
             fromMoney.Value -= payMoney.Value;
-            toMoney.Value += payMoney.Value;
+            toMoney.Value += currencyRepository.Convert(payMoney, toMoney.Currency).Value;
             SaveAllChanges();
             payment.State = PaymentState.Completed;
             AddOrUpdate(payment);
