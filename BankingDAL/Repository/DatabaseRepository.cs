@@ -31,7 +31,7 @@ namespace BankingDAL.Repository
 
         protected void SaveAllChanges()
         {
-            while (Database.SaveChanges() != 0) {}
+            Database.SaveChanges();
         }
     }
 }

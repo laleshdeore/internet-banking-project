@@ -29,11 +29,11 @@
     <label for="email">
         Email
     </label>
-    <input type="text" id="email" name="email" placeholder="Email"required >
+    <input id="emailvalid" type="text"  name="email" placeholder="Email"required >
     <label for="phone">
         Phone
     </label>
-    <input type="text" id="phone" name="phone" placeholder="Phone">
+    <input type="text" id="phone" name="phone" placeholder="Phone" maxlength=12 pattern="[0-9]{7,12}">
     <label for="birthday">
         Birthday
     </label>
@@ -42,7 +42,7 @@
     <input type="hidden" name="role" value="@Model.Role"/>
     <input type="hidden" name="region" value="@BaseController.All"/>
     <div>
-        <button type="submit" class="btn">
+        <button  type="submit" class="btn" >
             Create
         </button>
     </div>
@@ -53,3 +53,5 @@
         $("#birthday").datepicker();
     });
 </script>
+
+

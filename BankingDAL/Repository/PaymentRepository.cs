@@ -16,17 +16,23 @@ namespace BankingDAL.Repository
         {
             var accountIds = user.Accounts.Select(account => account.Id).ToList();
 
-            return Database.Payments.Where(p => accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id)).ToList();
+            return Database.Payments.Where(p => accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id) && !p.IsAutomatic).ToList();
+        }
+
+        public IList<Payment> GetPayments(bool isAutomatic)
+        {
+            return Database.Payments.Where(payment => payment.IsAutomatic == isAutomatic).ToList();
         }
 
         public void Pay(Payment payment, ICurrencyRepository currencyRepository)
         {
             payment.State = PaymentState.Pending;
-            Database.Payments.Add(payment);
-            SaveAllChanges();
+            AddOrUpdate(payment);
 
             if (!payment.From.IsActive || !payment.To.IsActive)
             {
+                payment.State = PaymentState.Canceled;
+                AddOrUpdate(payment);
                 throw new Exception("One of accounts is blocked");
             }
 
@@ -45,10 +51,18 @@ namespace BankingDAL.Repository
 
             var payMoney = currencyRepository.Convert(payment.Value, toMoney.Currency);
 
+            if (payMoney.Value > fromMoney.Value)
+            {
+                payment.State = PaymentState.Canceled;
+                AddOrUpdate(payment);
+                throw new Exception("Not enough money for pay");
+            }
+
             fromMoney.Value -= payMoney.Value;
             toMoney.Value += payMoney.Value;
-            payment.State = PaymentState.Completed;
             SaveAllChanges();
+            payment.State = PaymentState.Completed;
+            AddOrUpdate(payment);
         }
 
         public void AddOrUpdate(Service service)
@@ -64,6 +78,24 @@ namespace BankingDAL.Repository
             }
         }
 
+        public void AddOrUpdate(Payment payment)
+        {
+            if (payment.Id == 0)
+            {
+                Database.Payments.Add(payment);
+                Database.SaveChanges();
+            }
+            else
+            {
+                Update(GetPaymentById(payment.Id), payment);
+            }
+        }
+
+        public Payment GetPaymentById(long id)
+        {
+            return Database.Payments.SingleOrDefault(payment => payment.Id == id);
+        }
+
         public Service GetServiceById(long id)
         {
             return Database.Services.SingleOrDefault(service => service.Id == id);
@@ -72,6 +104,12 @@ namespace BankingDAL.Repository
         public IList<Service> GetServices()
         {
             return Database.Services.ToList();
+        }
+
+        public void Delete(Service service)
+        {
+            Database.Services.Remove(service);
+            SaveAllChanges();
         }
     }
 }

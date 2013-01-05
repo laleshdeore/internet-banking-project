@@ -1,8 +1,67 @@
-﻿@model dynamic
+﻿@using BankingWeb.Controllers
+@model dynamic
+
+
 
 @{
     ViewBag.Title = "Home";
 }
 
-<h1>Home header</h1>
-<p>Home text</p>
+<h1>Welcom to Internet Banking System</h1>
+
+<table class="table table-striped">
+<tr>
+<th>In home page a summary information of the topics</th></tr>
+<tr><th>In About page a summary information about this program and developers</th></tr>
+
+        @if ( User.IsInRole(BaseController.Administrator))
+        {
+           <tr>
+              <th> 
+              In Currencies page given the opportunity to changes and additions Currency
+              </th>
+           </tr>
+        }
+         @if (User.IsInRole(BaseController.Employee) || User.IsInRole(BaseController.Client))
+         {
+            <tr>
+                <th>
+                   In Currencies page view list of currency 
+                </th>
+            </tr>
+         }
+         
+         <tr>
+            <th>
+                In Balanse page view list balans
+            </th>
+         </tr>
+         @if (User.IsInRole(BaseController.Client))
+         {
+           <tr>
+           <th>
+            In Infomation Page view User info
+             </th>
+           </tr>  
+         }
+         <tr>
+            <th>
+                Payments block contrains pay,history and services pages<br/>
+                In Pay page contrains pay services<br/>
+                In history contrains list completed money tranzactions<br/>
+                In service page contrain work with the services
+             </th>
+         </tr>
+         @if (User.IsInRole(BaseController.Employee) || User.IsInRole(BaseController.Administrator))
+         {
+           <tr>
+            <th>
+           
+                Administration bloc contrains user and region pages<br />
+                In user Page contrains servises for create client or employee<br />
+               In Region page contrain services for greate new region
+              </th>
+           </tr>
+         }
+</table>
+

@@ -13,7 +13,7 @@ namespace BankingWeb.Controllers
             return View();
         }
 
-
+        [Authorize]
         public ActionResult About()
         {
             return View();

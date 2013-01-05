@@ -10,15 +10,15 @@
     <label for="name">
         Name
     </label>
-    <input type="text" id="name" name="name" placeholder="Name">
+    <input type="text" id="name" name="name" placeholder="Name" required maxlength="10" pattern="[A-Za-z]{3,}">
     <label for="short-name">
         Short Name
     </label>
-    <input type="text" id="short-name" name="shortName" placeholder="Short Name">
+    <input type="text" id="short-name" name="shortName" placeholder="Short Name"required maxlength="6" pattern="[A-Za-z]{3,}">
     <label for="symbol">
         Symbol
     </label>
-    <input type="text" id="symbol" name="symbol" placeholder="Symbol">
+    <input type="text" id="symbol" name="symbol" placeholder="Symbol"required>
     <div>
         <button type="submit" class="btn">
             Create

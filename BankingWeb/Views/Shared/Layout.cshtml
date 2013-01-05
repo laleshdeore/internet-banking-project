@@ -26,9 +26,11 @@
         <div class="row-fluid">
             <div class="span2">
                 @if (User.Identity.IsAuthenticated)
-                {
+                {   
                     <ul class="nav nav-list">
                         <li class="nav-header">Bank</li>
+                        
+                        
                         <li class="@GetClass("Index", "Home")"><a href="@Url.Action("Index", "Home")"><i
                             class="icon-home"></i>Home </a></li>
                         <li class="@GetClass("About", "Home")"><a href="@Url.Action("About", "Home")">About</a></li>
@@ -38,31 +40,25 @@
                         <li class="nav-header">Accounts</li>
                         <li class="@GetClass("Balance", "Account")"><a href="@Url.Action("Balance", "Account")">
                             Balance</a></li>
-                        <li><a href="#">Block</a></li>
                         <li class="nav-header">Payments</li>
                         <li class="@GetClass("Pay", "Payment")"><a href="@Url.Action("Pay", "Payment")">Pay</a></li>
                         <li class="@GetClass("History", "Payment")"><a href="@Url.Action("History", "Payment")">History</a></li>
                         <li class="@GetClass("All", "Service")"><a href="@Url.Action("All", "Service")">Services</a></li>
-
-                        <li><a href="#">Automatic pay</a></li>
                         @if (User.IsInRole(BaseController.Employee) || User.IsInRole(BaseController.Administrator))
                         {
                             <li class="nav-header">Administration</li>
                             <li class="@GetClass("All", "User")"><a href="@Url.Action("All", "User")">Users</a></li>
-                            <li class="@GetClass("All", "Region")"><a href="@Url.Action("All", "Region")">Regions</a></li>
-                            <li><a href="#">Block requests</a></li>
-                            <li><a href="#">Message</a></li>
-                                                        
+                            <li class="@GetClass("All", "Region")"><a href="@Url.Action("All", "Region")">Regions</a></li>                               
                         }
                         <li class="nav-header">Profile [@User.Identity.Name]</li>
                         <li class="@GetClass("Region", "User")"><a href="@Url.Action("Region", "User")">Region</a>
                         </li>
                         <li class="@GetClass("PersonalCode", "User")"><a href="@Url.Action("PersonalCode", "User")">
                             Personal code </a></li>
-                        
                         <li><a href="@Url.Action("LogOff", "User")">Logout</a></li>
                     </ul>
-                }
+                 }
+                
             </div>
             <div class="span10">
                 @RenderBody()

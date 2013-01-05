@@ -15,28 +15,33 @@ namespace BankingWeb.Controllers
             _currencyRepository = new CurrencyRepository(Context);
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             return View(_currencyRepository.GetCurrencyRates());
         }
 
+        [Authorize]
         public ActionResult Add()
         {
             return View(new CurrencyModel());
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Add(CurrencyModel currencyModel)
         {
             return RedirectToAction("Edit", "Currency", new { id = _currencyRepository.Add(currencyModel.GetEntity()) });
         }
 
+        [Authorize]
         public ActionResult Edit(long id)
         {
             return View(_currencyRepository.GetCurrencyRates(_currencyRepository.GetCurrencyById(id)));
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(IList<CurrencyRate> rates)
         {
             if (rates != null)
