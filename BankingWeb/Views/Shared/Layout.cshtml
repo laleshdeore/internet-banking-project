@@ -32,20 +32,18 @@
                 {   
                     <ul class="nav nav-list">
                         <li class="nav-header">Bank</li>
-                        
-                        
                         <li class="@GetClass("Index", "Home")"><a href="@Url.Action("Index", "Home")"><i
-                            class="icon-home"></i>Home </a></li>
+                                                                                                          class="icon-home"></i>Home </a></li>
                         <li class="@GetClass("About", "Home")"><a href="@Url.Action("About", "Home")">About</a></li>
                         <li class="@GetClass("Index", "Currency")"><a href="@Url.Action("Index", "Currency")">
-                            Currencies</a></li>
+                                                                       Currencies</a></li>
                         <li class="nav-header">Accounts</li>
                         <li class="@GetClass("Balance", "Account")"><a href="@Url.Action("Balance", "Account")">
-                            Balance</a></li>
+                                                                        Balance</a></li>
                         <li class="nav-header">Payments</li>
                         <li class="@GetClass("Pay", "Payment")"><a href="@Url.Action("Pay", "Payment")">Pay</a></li>
                         <li class="@GetClass("History", "Payment")"><a href="@Url.Action("History", "Payment")">
-                            History</a></li>
+                                                                        History</a></li>
                         <li class="@GetClass("All", "Service")"><a href="@Url.Action("All", "Service")">Services</a></li>
                         @if (User.IsInRole(BaseController.Employee) || User.IsInRole(BaseController.Administrator))
                         {
@@ -57,11 +55,10 @@
                         <li class="@GetClass("Region", "User")"><a href="@Url.Action("Region", "User")">Region</a>
                         </li>
                         <li class="@GetClass("PersonalCode", "User")"><a href="@Url.Action("PersonalCode", "User")">
-                            Personal code </a></li>
+                                                                          Personal code </a></li>
                         <li><a href="@Url.Action("LogOff", "User")">Logout</a></li>
                     </ul>
-                 }
-                
+                }
             </div>
             <div class="span10">
                 <div class="row">
@@ -82,5 +79,13 @@
                 </div>
             </div>
         </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("form").submit(function () {
+                $("form button[type='submit']").attr("disabled", "disabled").html("Please wait...");
+            });
+        })
+    </script>
 </body>
 </html>
