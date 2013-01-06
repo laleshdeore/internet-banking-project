@@ -29,9 +29,11 @@
         <div class="row-fluid">
             <div class="span2">
                 @if (User.Identity.IsAuthenticated)
-                {
+                {   
                     <ul class="nav nav-list">
                         <li class="nav-header">Bank</li>
+                        
+                        
                         <li class="@GetClass("Index", "Home")"><a href="@Url.Action("Index", "Home")"><i
                             class="icon-home"></i>Home </a></li>
                         <li class="@GetClass("About", "Home")"><a href="@Url.Action("About", "Home")">About</a></li>
@@ -58,7 +60,8 @@
                             Personal code </a></li>
                         <li><a href="@Url.Action("LogOff", "User")">Logout</a></li>
                     </ul>
-                }
+                 }
+                
             </div>
             <div class="span10">
                 <div class="row">

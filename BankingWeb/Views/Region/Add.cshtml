@@ -9,7 +9,7 @@
 <fieldset>
     <legend>New region</legend>
     <label for="name">Region name</label>
-    <input type="text" placeholder="Name" id="name" name="name" />
+    <input type="text" placeholder="Name" id="name" name="name"  maxlength=15 required pattern="[A-Za-z]{2,}"/>
     <div>
         <button type="submit" class="btn">
             Create
