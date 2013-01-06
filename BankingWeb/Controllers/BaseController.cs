@@ -53,5 +53,23 @@ namespace BankingWeb.Controllers
                 return user;
             }
         }
+
+        protected void SaveState()
+        {
+            TempData["ModelState"] = ModelState;
+        }
+
+        protected void LoadState()
+        {
+            var state = TempData["ModelState"] as ModelStateDictionary;
+
+            if (state == null) return;
+
+            foreach (var pair in state)
+            {
+                ModelState.Add(pair);
+            }
+            TempData["ModelState"] = null;
+        }
     }
 }

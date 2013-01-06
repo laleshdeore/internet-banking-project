@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using BankingDAL.Repository;
 using BankingWeb.Models;
 
@@ -23,7 +24,34 @@ namespace BankingWeb.Controllers
         [Authorize]
         public ActionResult Pay(PaymentModel paymentModel)
         {
-            _paymentRepository.Pay(paymentModel.GetEntity(_currencyRepository, _accountRepository, _userRepository), _currencyRepository);
+            var payment = paymentModel.GetEntity(_currencyRepository, _accountRepository, _userRepository);
+
+            if (payment.To == null)
+            {
+                ModelState.AddModelError("recipient", "Can't find recipient account");
+            }
+            if (paymentModel.PersonalCode != CurrentUser.PersonalCode)
+            {
+                ModelState.AddModelError("personalCode", "Personal code is different");
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _paymentRepository.Pay(payment, _currencyRepository);
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("payment", e.Message);
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                SaveState();
+                return RedirectToAction("Pay", "Payment");
+            }
 
             return RedirectToAction("History", "Payment");
         }
@@ -41,6 +69,8 @@ namespace BankingWeb.Controllers
             {
                 model.Accounts.Add(new AccountModel(account));
             }
+
+            LoadState();
             return View(model);
         }
 

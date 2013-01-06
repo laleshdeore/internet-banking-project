@@ -28,21 +28,22 @@ namespace BankingWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string username, string password, string returnUrl)
+        public ActionResult Login(LoginModel loginModel)
         {
-            if (_provider.ValidateUser(username, password))
+            if (_provider.ValidateUser(loginModel.Username, loginModel.Password))
             {
-                FormsAuthentication.SetAuthCookie(username, false);
+                FormsAuthentication.SetAuthCookie(loginModel.Username, loginModel.RememberMe);
                 return RedirectToAction("Index", "Home");
             }
+            ModelState.AddModelError("username", "There is no user with such username / password pair");
 
-
-            return RedirectToAction("Login", "User");
+            return View();
         }
 
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
+
             return RedirectToAction("Index", "Home");
         }
 

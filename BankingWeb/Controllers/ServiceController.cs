@@ -34,7 +34,7 @@ namespace BankingWeb.Controllers
         public ActionResult Add(ServiceModel serviceModel)
         {
             _paymentRepository.AddOrUpdate(serviceModel.GetEntity(_regionRepository, _userRepository));
-
+            
             return RedirectToAction("All", "Service");
         }
 

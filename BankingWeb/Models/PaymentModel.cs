@@ -35,6 +35,8 @@ namespace BankingWeb.Models
 
         public string PersonalCode { get; set; }
 
+        public string ExpirationDate { get; set; }
+
         public bool IsAutomatic { get; set; }
 
         public Payment GetEntity(ICurrencyRepository currencyRepository, IAccountRepository accountRepository, IUserRepository userRepository)
