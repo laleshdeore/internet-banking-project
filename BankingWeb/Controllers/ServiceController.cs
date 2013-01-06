@@ -20,7 +20,7 @@ namespace BankingWeb.Controllers
         [Authorize]
         public ActionResult All()
         {
-            return View(_paymentRepository.GetServices());
+            return View(User.IsInRole(Administrator) || User.IsInRole(Employee) ? _paymentRepository.GetServices() : CurrentUser.Region.Services);
         }
 
         [Authorize]

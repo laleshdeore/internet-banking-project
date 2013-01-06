@@ -54,7 +54,7 @@ namespace BankingDAL.Repository
 
             foreach (var currency in Database.Currencies)
             {
-                moneys.Add(new Money {Currency = currency});
+                moneys.Add(new Money { Currency = currency });
             }
             return moneys;
         }
@@ -62,10 +62,24 @@ namespace BankingDAL.Repository
         public Money Convert(Money money, Currency currency)
         {
             var rates = GetCurrencyRates(money.Currency, currency);
-            var buyRate = rates.SingleOrDefault(rate => rate.Type == CurrencyRateType.Buy);
             var sellRate = rates.SingleOrDefault(rate => rate.Type == CurrencyRateType.Sell);
+            var result = new Money { Currency = currency };
 
-            return money;
+            if (money.Currency.Id == currency.Id)
+            {
+                return money;
+            }
+
+            if (money.Currency.Id == sellRate.First.Currency.Id)
+            {
+                result.Value = money.Value / sellRate.First.Value * sellRate.Second.Value;
+            }
+            else
+            {
+                result.Value = money.Value / sellRate.Second.Value * sellRate.First.Value;
+            }
+
+            return result;
         }
 
         public long Add(Currency currency)
