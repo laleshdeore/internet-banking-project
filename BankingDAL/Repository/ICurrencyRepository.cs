@@ -29,5 +29,9 @@ namespace BankingDAL.Repository
         long Add(Currency currency);
 
         void AddOrUpdate(CurrencyRate rate);
+
+        void Delete(Currency currency);
+
+        void Delete(CurrencyRate rate);
     }
 }

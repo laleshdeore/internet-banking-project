@@ -1,0 +1,71 @@
+﻿@using BankingDAL.Entities
+@using BankingWeb.Controllers
+@model BankingWeb.Models.CurrencyRatesModel
+@{
+    ViewBag.Title = "Curenncies";
+}
+<h1>
+    Currency rates for @Model.Currency.Name
+</h1>
+<div class="control-group">
+    @if (User.IsInRole(BaseController.Administrator))
+    {
+        <a href="@Url.Action("Add", "Currency")">
+            <button class="btn" id="add-client">
+                Add currency
+            </button>
+        </a>
+    }
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>
+            Curenncy
+        </th>
+        <th>
+            Buy
+        </th>
+        <th>
+            Sell
+        </th>
+        @if (User.IsInRole(BaseController.Administrator))
+        {
+            <th>
+                Actions
+            </th>
+        }
+    </tr>
+    @foreach (var currency in Model.Currencies.Where(c => c.Id != Model.Currency.Id))
+    {
+        var rates = Model.Rates.Where(rate => rate.First.Currency.Id == Model.Currency.Id || rate.Second.Currency.Id == Model.Currency.Id).ToList();
+
+        <tr>
+            <td>
+                @currency.Name
+            </td>
+            <td>
+                @String.Format("{0:N2}", rates.Single(rate => rate.Type == CurrencyRateType.Buy).Rate(currency))
+            </td>
+            <td>
+                @String.Format("{0:N2}", rates.Single(rate => rate.Type == CurrencyRateType.Sell).Rate(currency))
+            </td>
+            @if (User.IsInRole(BaseController.Administrator))
+            {
+                <td>
+                    <a href="@Url.Action("Edit", "Currency", new { id = currency.Id })">Edit </a>
+                    <a href="@Url.Action("Delete", "Currency", new { id = currency.Id })">Delete </a>
+                </td>
+            }
+        </tr>
+    }
+</table>
+<div class="pagination pagination-centered">
+    <ul>
+        @foreach (var currency in Model.Currencies)
+        {
+            <li class="@(currency.Id == Model.Currency.Id ? "active" : "")"><a href="@Url.Action("All", "Currency", new { id = currency.Id })">
+                @currency.Name
+            </a></li>
+        }
+    </ul>
+</div>

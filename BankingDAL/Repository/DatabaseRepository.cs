@@ -9,6 +9,7 @@ namespace BankingDAL.Repository
     public class DatabaseRepository: IDisposable
     {
         protected readonly DatabaseContext Database;
+        protected readonly StringComparison StringComparison = StringComparison.InvariantCultureIgnoreCase;
 
         public DatabaseRepository(DatabaseContext database)
         {

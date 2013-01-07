@@ -25,5 +25,15 @@ namespace BankingDAL.Entities
         {
             return Id.GetHashCode();
         }
+
+        public static bool operator ==(Entity first, Entity second)
+        {
+            return Equals(first, second);
+        }
+
+        public static bool operator !=(Entity first, Entity second)
+        {
+            return !(first == second);
+        }
     }
 }

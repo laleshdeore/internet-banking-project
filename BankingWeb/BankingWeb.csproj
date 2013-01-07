@@ -116,6 +116,7 @@
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\CurrencyModel.cs" />
+    <Compile Include="Models\CurrencyRatesModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MoneyModel.cs" />
     <Compile Include="Models\PaymentModel.cs" />
@@ -207,7 +208,7 @@
     <Content Include="Views\Account\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Currency\Index.cshtml" />
+    <Content Include="Views\Currency\All.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Currency\Add.cshtml" />

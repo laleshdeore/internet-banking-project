@@ -84,6 +84,7 @@ namespace BankingDAL.Repository
 
         public long Add(Currency currency)
         {
+            Validate(currency);
             currency = Database.Currencies.Add(currency);
 
             Database.Bank.Balance.Add(new Money { Currency = currency });
@@ -119,6 +120,40 @@ namespace BankingDAL.Repository
             else
             {
                 Update(GetCurrencyRateById(rate.Id), rate);
+            }
+        }
+
+        public void Delete(Currency currency)
+        {
+            foreach (var rate in GetCurrencyRates(currency))
+            {
+                Delete(rate);
+            }
+            Database.Currencies.Remove(currency);
+            SaveAllChanges();
+        }
+
+        public void Delete(CurrencyRate rate)
+        {
+            Database.Moneys.Remove(rate.First);
+            Database.Moneys.Remove(rate.Second);
+            Database.Rates.Remove(rate);
+            SaveAllChanges();
+        }
+
+        protected void Validate(Currency currency)
+        {
+            if (Database.Currencies.Any(c => c.Name.Equals(currency.Name, StringComparison)))
+            {
+                throw new Exception("Currency name must be unique");
+            }
+            if (Database.Currencies.Any(c => c.ShortName.Equals(currency.ShortName, StringComparison)))
+            {
+                throw new Exception("Currency short name must be unique");
+            }
+            if (Database.Currencies.Any(c => c.Symbol.Equals(currency.Symbol, StringComparison)))
+            {
+                throw new Exception("Currency symbol must be unique");
             }
         }
     }

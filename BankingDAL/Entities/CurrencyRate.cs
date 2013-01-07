@@ -36,6 +36,21 @@ namespace BankingDAL.Entities
 
         public int TypeInt { get; set; }
 
+        public double Rate(Currency currency)
+        {
+            var rate = 0.0;
+
+            if (First.Currency == currency)
+            {
+                rate = First.Value / Second.Value;
+            }
+            else if (Second.Currency == currency)
+            {
+                rate = Second.Value / First.Value;
+            }
+            return rate;
+        }
+
         public override string ToString()
         {
             return String.Format("{0} / {1} ({2})", First, Second, Type);

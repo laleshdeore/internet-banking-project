@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using BankingDAL.Entities;
 using BankingDAL.Repository;
@@ -16,9 +17,14 @@ namespace BankingWeb.Controllers
         }
 
         [Authorize]
-        public ActionResult Index()
+        public ActionResult All(long? id)
         {
-            return View(_currencyRepository.GetCurrencyRates());
+            var model = new CurrencyRatesModel { Currencies = _currencyRepository.GetCurrencies() };
+
+            LoadState();
+            model.Currency = id == null ? model.Currencies[0] : _currencyRepository.GetCurrencyById(id.Value);
+            model.Rates = _currencyRepository.GetCurrencyRates(model.Currency);
+            return View(model);
         }
 
         [Authorize]
@@ -31,7 +37,18 @@ namespace BankingWeb.Controllers
         [Authorize]
         public ActionResult Add(CurrencyModel currencyModel)
         {
-            return RedirectToAction("Edit", "Currency", new { id = _currencyRepository.Add(currencyModel.GetEntity()) });
+            try
+            {
+                var id = _currencyRepository.Add(currencyModel.GetEntity());
+
+                return RedirectToAction("Edit", "Currency", new { id });
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("currency", e.Message);
+
+                return View(currencyModel);
+            }
         }
 
         [Authorize]
@@ -56,7 +73,22 @@ namespace BankingWeb.Controllers
                 }
             }
 
-            return RedirectToAction("Index", "Currency");
+            return RedirectToAction("All", "Currency");
+        }
+
+        [Authorize]
+        public ActionResult Delete(long id)
+        {
+            if (User.IsInRole(Administrator))
+            {
+                _currencyRepository.Delete(_currencyRepository.GetCurrencyById(id));
+            }
+            else
+            {
+                ModelState.AddModelError("currency", "Only administrators can delete currencies");
+            }
+            SaveState();
+            return RedirectToAction("All", "Currency");
         }
     }
 }
