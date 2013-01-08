@@ -30,6 +30,11 @@ namespace BankingWeb.Controllers
             {
                 ModelState.AddModelError("recipient", "Can't find recipient account");
             }
+            if (payment.From != null &&
+                !payment.From.ExpirationDate.ToString(ShortDateFormat).Equals(paymentModel.From.ExpirationDate))
+            {
+                ModelState.AddModelError("expirationDate", "Wrong expiration date");
+            }
             if (paymentModel.PersonalCode != CurrentUser.PersonalCode)
             {
                 ModelState.AddModelError("personalCode", "Personal code is different");

@@ -45,7 +45,7 @@ namespace BankingDAL.Repository
 
         public IList<CurrencyRate> GetCurrencyRates(Currency first, Currency second)
         {
-            return Database.Rates.Where(rate => rate.Currencies.Select(c => c.Id).Contains(first.Id) && rate.Currencies.Select(c => c.Id).Contains(second.Id)).ToList();
+            return GetCurrencyRates(first).Where(rate => rate.First.Currency.Id == second.Id || rate.Second.Currency.Id == second.Id).ToList();
         }
 
         public IList<Money> GetPossibleMoneys()
@@ -70,13 +70,9 @@ namespace BankingDAL.Repository
                 return money;
             }
 
-            if (money.Currency.Id == sellRate.First.Currency.Id)
+            if (sellRate != null)
             {
-                result.Value = money.Value / sellRate.First.Value * sellRate.Second.Value;
-            }
-            else
-            {
-                result.Value = money.Value / sellRate.Second.Value * sellRate.First.Value;
+                result.Value = money.Value*sellRate.Rate(currency);
             }
 
             return result;
