@@ -26,6 +26,8 @@ namespace BankingDAL.Repository
 
         Money Convert(Money money, Currency currency);
 
+        IList<Money> GetMoneys(Currency currency); 
+
         long Add(Currency currency);
 
         void AddOrUpdate(CurrencyRate rate);
@@ -33,5 +35,7 @@ namespace BankingDAL.Repository
         void Delete(Currency currency);
 
         void Delete(CurrencyRate rate);
+
+        void Delete(Money money);
     }
 }

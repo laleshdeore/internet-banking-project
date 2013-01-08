@@ -27,14 +27,14 @@ namespace BankingWeb.Controllers
             return View(model);
         }
 
-        [Authorize]
+        [Authorize(Roles = Administrator)]
         public ActionResult Add()
         {
             return View(new CurrencyModel());
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = Administrator)]
         public ActionResult Add(CurrencyModel currencyModel)
         {
             try
@@ -51,14 +51,14 @@ namespace BankingWeb.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = Administrator)]
         public ActionResult Edit(long id)
         {
             return View(_currencyRepository.GetCurrencyRates(_currencyRepository.GetCurrencyById(id)));
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = Administrator)]
         public ActionResult Edit(IList<CurrencyRate> rates)
         {
             if (rates != null)
@@ -76,16 +76,16 @@ namespace BankingWeb.Controllers
             return RedirectToAction("All", "Currency");
         }
 
-        [Authorize]
+        [Authorize(Roles = Administrator)]
         public ActionResult Delete(long id)
         {
-            if (User.IsInRole(Administrator))
+            try
             {
                 _currencyRepository.Delete(_currencyRepository.GetCurrencyById(id));
             }
-            else
+            catch (Exception e)
             {
-                ModelState.AddModelError("currency", "Only administrators can delete currencies");
+                ModelState.AddModelError("currency", e.Message);
             }
             SaveState();
             return RedirectToAction("All", "Currency");

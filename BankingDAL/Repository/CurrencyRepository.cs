@@ -82,6 +82,11 @@ namespace BankingDAL.Repository
             return result;
         }
 
+        public IList<Money> GetMoneys(Currency currency)
+        {
+            return Database.Moneys.Where(money => money.Currency.Id == currency.Id).ToList();
+        }
+
         public long Add(Currency currency)
         {
             Validate(currency);
@@ -125,9 +130,21 @@ namespace BankingDAL.Repository
 
         public void Delete(Currency currency)
         {
+            var rates = GetCurrencyRates(currency);
+            var rateMoneys = rates.Select(r => r.First).Union(rates.Select(r => r.Second));
+            var moneys = GetMoneys(currency);
+
+            if (moneys.Any(money => !rateMoneys.Contains(money) && money.Value != 0))
+            {
+                throw new Exception("Bank has money with this currency");
+            }
             foreach (var rate in GetCurrencyRates(currency))
             {
                 Delete(rate);
+            }
+            foreach (var money in GetMoneys(currency))
+            {
+                Delete(money);
             }
             Database.Currencies.Remove(currency);
             SaveAllChanges();
@@ -135,9 +152,15 @@ namespace BankingDAL.Repository
 
         public void Delete(CurrencyRate rate)
         {
-            Database.Moneys.Remove(rate.First);
-            Database.Moneys.Remove(rate.Second);
+            Delete(rate.First);
+            Delete(rate.Second);
             Database.Rates.Remove(rate);
+            SaveAllChanges();
+        }
+
+        public void Delete(Money money)
+        {
+            Database.Moneys.Remove(money);
             SaveAllChanges();
         }
 
