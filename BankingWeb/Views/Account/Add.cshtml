@@ -6,12 +6,13 @@
 <form action="@Url.Action("Add", "Account")" method="POST">
 <fieldset>
     <legend>@Model.Number</legend>
-    <input type="text" placeholder="Expiration Date" id="expiration-date" name="expirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()">
+    <input type="text" placeholder="Expiration Date" id="expiration-date" name="expirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()" required>
     @for (var i = 0; i < Model.Balance.Count; ++i)
     {
         <div class="input-prepend input-append">
             <span class="add-on">@Model.Balance[i].Symbol</span>
-            <input type="text" id="balance-@i-value" name="balance[@i].Value" placeholder="Amount">
+            <input type="number" id="balance-@i-value" name="balance[@i].Value" placeholder="Amount" required  min="1" maxlength="6" pattern="^[1-9]{1}[0-9]{0,}$">
+            <span><font size="1">amount must be more than 0</font></span>
             <input type="hidden" id="balance-@i-name" name="balance[@i].Name" value="@Model.Balance[i].Name"/>
         </div>
     }
