@@ -10,6 +10,8 @@ namespace BankingDAL.Repository
     {
         string GenerateNumber();
         Account GetAccountByNumber(string number);
-        void Add(Account account);
+        Account GetAccountById(long id);
+        void AddOrUpdate(Account account);
+        void Delete(Account account);
     }
 }

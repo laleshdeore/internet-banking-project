@@ -1,0 +1,47 @@
+﻿@using BankingWeb.Controllers
+@model BankingWeb.Models.UserModel
+
+@{
+    ViewBag.Title = Model.Username;
+}
+
+<form action="@Url.Action("Edit", "User")" method="POST">
+    <fieldset>
+        <legend>@Model.Username</legend>
+        <label for="first-name">
+            First Name
+        </label>
+        <input type="text" id="first-name" name="firstName" value="@Model.FirstName" required maxlength="10" pattern="[A-Za-z]{3,}">
+        <span><font size="1">Field FirstName consist of the 3-10 latters</font></span>
+        <label for="first-name">
+            Last Name
+        </label>
+        <input type="text" id="last-name" name="lastName" value="@Model.LastName"required maxlength="15" pattern="[A-Za-z]{3,}">
+        <span><font size="1">Field LastName consist of the 3-15 latters</font></span>
+        <label for="email">
+            Email
+        </label>
+        <input id="emailvalid" type="text"  name="email" value="@Model.Email"required >
+        <label for="phone">
+            Phone
+        </label>
+        <input type="text" id="phone" name="phone" value="@Model.Phone" maxlength=12 pattern="[0-9]{7,12}">
+        <label for="birthday">
+            Birthday
+        </label>
+        <input type="text" value="@Model.Birthday" id="birthday" name="birthday" data-date-format="@BaseController.DateFormat.ToLower()" 
+               required >
+        <input type="hidden" name="role" value="@Model.Role"/>
+        <input type="hidden" name="region" value="@Model.Region"/>
+        <div>
+            <button  type="submit" class="btn" >
+                Save
+            </button>
+        </div>
+    </fieldset>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#birthday").datepicker();
+    });
+</script>

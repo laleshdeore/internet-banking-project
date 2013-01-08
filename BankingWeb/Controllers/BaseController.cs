@@ -17,10 +17,12 @@ namespace BankingWeb.Controllers
 
         public const string Administrator = "Administrator";
         public const string Employee = "Employee";
+        public const string AdminOrEmployee = Administrator + ", " + Employee;
         public const string Client = "Client";
         public const string DateFormat = "dd.MM.yyyy";
         public const string ShortDateFormat = "MM.yyyy";
         public const int MoneyBarrier = 100;
+        public const int AgeBarrier = 18;
         public const int PageCapacity = 10;
 
         protected DatabaseContext Context;

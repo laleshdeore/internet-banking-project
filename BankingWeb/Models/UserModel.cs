@@ -71,7 +71,7 @@ namespace BankingWeb.Models
 
             foreach (var account in user.Accounts)
             {
-                Accounts.Add(new AccountModel { Number = account.Number });
+                Accounts.Add(new AccountModel(account));
             }
         }
     }

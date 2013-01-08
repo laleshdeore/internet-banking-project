@@ -37,8 +37,9 @@ namespace BankingDAL.Repository
         {
             if (user.Id == 0)
             {
+                Validate(user);
                 Database.Users.Add(user);
-                Database.SaveChanges();
+                SaveAllChanges();
             }
             else
             {
@@ -49,7 +50,15 @@ namespace BankingDAL.Repository
         public void Delete(User user)
         {
             Database.Users.Remove(user);
-            Database.SaveChanges();
+            SaveAllChanges();
+        }
+
+        protected void Validate(User user)
+        {
+            if (Database.Users.Any(u => u.Username.Equals(user.Username, StringComparison)))
+            {
+                throw new Exception("Username must be unique");
+            }
         }
     }
 }

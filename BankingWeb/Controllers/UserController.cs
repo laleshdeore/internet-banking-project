@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Security;
 using BankingDAL.Entities;
@@ -65,7 +66,7 @@ namespace BankingWeb.Controllers
             return View(new PersonalCodeModel());
         }
 
-        [Authorize]
+        [Authorize(Roles = AdminOrEmployee)]
         public ActionResult All(int page = 1)
         {
             var roles = new List<Role>();
@@ -89,7 +90,7 @@ namespace BankingWeb.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = AdminOrEmployee)]
         public ActionResult Add(string role)
         {
             return View(new UserModel { Role = role });
@@ -101,7 +102,25 @@ namespace BankingWeb.Controllers
         {
             var user = userModel.GetUserEntity(_roleRepository);
 
-            _userRepository.AddOrUpdate(user);
+
+            if (DateTime.Now < user.Birthday.AddYears(AgeBarrier))
+            {
+                ModelState.AddModelError("birthday", String.Format("User must be at least {0} years old", AgeBarrier));
+            }
+            try
+            {
+                _userRepository.AddOrUpdate(user);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("user", e.Message);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(userModel);
+            }
+
             return RedirectToAction("Add", "Account", new { username = user.Username });
         }
 
@@ -125,6 +144,7 @@ namespace BankingWeb.Controllers
         }
 
         [Authorize]
+        [Authorize(Roles = AdminOrEmployee)]
         public ActionResult Delete(long id)
         {
             _userRepository.Delete(_userRepository.GetUserById(id));
@@ -135,7 +155,51 @@ namespace BankingWeb.Controllers
         }
 
         [Authorize]
+        [Authorize(Roles = AdminOrEmployee)]
         public ActionResult Index(long id)
+        {
+            return View(_userRepository.GetUserById(id));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = AdminOrEmployee)]
+        public ActionResult Edit(long id, UserModel userModel)
+        {
+            var userFromModel = userModel.GetUserEntity(_roleRepository);
+            var user = _userRepository.GetUserById(id);
+
+
+            if (DateTime.Now < userFromModel.Birthday.AddYears(AgeBarrier))
+            {
+                ModelState.AddModelError("birthday", String.Format("User must be at least {0} years old", AgeBarrier));
+            }
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    user.Birthday = userFromModel.Birthday;
+                    user.Email = userFromModel.Email;
+                    user.FirstName = userFromModel.FirstName;
+                    user.LastName = userFromModel.LastName;
+                    user.Phone = userFromModel.Phone;
+                    _userRepository.AddOrUpdate(user);
+                }
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("user", e.Message);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(userModel);
+            }
+
+            return RedirectToAction("All", "User");
+        }
+
+        [Authorize(Roles = AdminOrEmployee)]
+        public ActionResult Edit(long id)
         {
             return View(new UserModel(_userRepository.GetUserById(id)));
         }

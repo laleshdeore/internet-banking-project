@@ -1,13 +1,11 @@
-﻿@model BankingWeb.Models.UserModel
+﻿@using BankingWeb.Controllers
+@model BankingDAL.Entities.User
 @{
-    ViewBag.Title = Model.FirstName;
+    ViewBag.Title = Model.FirstName + " " + Model.LastName;
 }
 <h2>
-    User info</h2>
-@foreach (var account in Model.Accounts)
-{
-    @account.Number
-}
+    User details
+</h2>
 <div class="container-information">
     <div class="information">
         <table class="table table-striped">
@@ -15,67 +13,103 @@
                 <th>
                     User Name
                 </th>
-                <th>@Model.Username
+                <th>
+                    @Model.Username
                 </th>
             </tr>
             <tr>
-                <tr>
-                    <th>
-                        First Name
-                    </th>
-                    <th>@Model.FirstName
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        Last Name
-                    </th>
-                    <th>@Model.LastName
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        Email
-                    </th>
-                    <th>@Model.Email
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        Phone
-                    </th>
-                    <th>@Model.Phone
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        Birthday
-                    </th>
-                    <th>@Model.Birthday
-                    </th>
-                </tr>
-        </table>
-    </div>
-    <div style="top: 150px">
-        <table class="table table-striped">
-            <tr>
                 <th>
-                    Number
+                    First Name
                 </th>
-                <th>
-                    Account Numbers
+                <th>@Model.FirstName
                 </th>
             </tr>
-            @foreach (var account in Model.Accounts)
-            {
-                var i = 0;
-                <td>@(i + 1)
-                </td>
-                <td>@account.Number
-                </td>
-            }
+            <tr>
+                <th>
+                    Last Name
+                </th>
+                <th>@Model.LastName
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Email
+                </th>
+                <th>@Model.Email
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Phone
+                </th>
+                <th>@Model.Phone
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Birthday
+                </th>
+                <th>@Model.Birthday
+                </th>
+            </tr>
         </table>
     </div>
+    <h2>
+        User accounts
+    </h2>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                №
+            </th>
+            <th>
+                Account number
+            </th>
+            <th>
+                Balance
+            </th>
+            <th>
+                Expiration Date
+            </th>
+            <th>
+                Active
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+        @for (var i = 0; i < Model.Accounts.Count; ++i)
+        {
+            <tr>
+                <td>
+                    @(i + 1)
+                </td>
+                <td>
+                    @Model.Accounts[i].Number
+                </td>
+                <td>
+                    @foreach (var money in Model.Accounts[i].Balance)
+                    {
+                        @(money.Value + " " + money.Currency.Symbol)
+                        if (Model.Accounts[i].Balance.Last() != money)
+                        {
+                            @(" / ")
+                        }
+                    }
+                </td>
+                <td>
+                    @Model.Accounts[i].ExpirationDate.ToString(BaseController.ShortDateFormat)
+                </td>
+                <td>
+                    @Model.Accounts[i].IsActive
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Account", new { id = Model.Accounts[i].Id })">Edit
+                    </a><a href="@Url.Action("Block", "Account", new { id = Model.Accounts[i].Id })">
+                        @(Model.Accounts[i].IsActive ? "Block" : "Unblock")</a> <a href="@Url.Action("Delete", "Account", new { id = Model.Accounts[i].Id })">
+                            Delete </a>
+                </td>
+            </tr>
+        }
+    </table>
 </div>
-
-

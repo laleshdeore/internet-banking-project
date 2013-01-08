@@ -1,8 +1,11 @@
 ﻿@using BankingWeb.Models
-@model List<BankingWeb.Models.AccountModel>
+@model List<AccountModel>
+@{
+    ViewBag.Title = "Balance";
+}
 @functions
 {
-    string GetAccountClass(AccountModel account)
+    static string GetAccountClass(AccountModel account)
     {
         var cssClass = "";
 
@@ -21,13 +24,11 @@
 
         return cssClass;
     }
-}
-@{
-    ViewBag.Title = "Balance";
-}
 
+}
 <h1>
-    Balance header</h1>
+    Balance
+</h1>
 <table class="table table-striped">
     <tr>
         <th>
@@ -38,6 +39,9 @@
         </th>
         <th>
             Balance
+        </th>
+        <th>
+            Expiration date
         </th>
         <th>
             State
@@ -58,12 +62,15 @@
                     @(money.Value.GetValueOrDefault() + " " + money.Symbol)
                     if (Model[i].Balance.Last() != money)
                     {
-                    @(" / ")
+                        @(" / ")
                     }
                 }
             </td>
             <td>
-                Ok
+                @Model[i].ExpirationDate
+            </td>
+            <td>
+                @Model[i].State
             </td>
         </tr>
     }

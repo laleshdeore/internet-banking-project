@@ -1,13 +1,10 @@
 ﻿@using BankingWeb.Controllers
+@using BankingWeb.Models
 @functions
 {
     string GetClass(string action, string controller)
     {
-        if (Url.Action(action, controller) == Url.Action(ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString(), ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString()))
-        {
-            return "active";
-        }
-        return "";
+        return Url.Action(action, controller) == Url.Action(ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString(), ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString()) ? "active" : "";
     }
 }
 @{

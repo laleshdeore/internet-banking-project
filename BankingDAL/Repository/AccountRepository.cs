@@ -10,7 +10,8 @@ namespace BankingDAL.Repository
     {
         private readonly Random _random;
 
-        public AccountRepository(DatabaseContext database) : base(database)
+        public AccountRepository(DatabaseContext database)
+            : base(database)
         {
             _random = new Random();
         }
@@ -32,9 +33,27 @@ namespace BankingDAL.Repository
             return Database.Accounts.SingleOrDefault(account => account.Number == number);
         }
 
-        public void Add(Account account)
+        public Account GetAccountById(long id)
         {
-            Database.Accounts.Add(account);
+            return Database.Accounts.SingleOrDefault(account => account.Id == id);
+        }
+
+        public void AddOrUpdate(Account account)
+        {
+            if (account.Id == 0)
+            {
+                Database.Accounts.Add(account);
+                SaveAllChanges();
+            }
+            else
+            {
+                Update(GetAccountById(account.Id), account);
+            }
+        }
+
+        public void Delete(Account account)
+        {
+            Database.Accounts.Remove(account);
             SaveAllChanges();
         }
     }

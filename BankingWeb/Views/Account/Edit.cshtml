@@ -1,0 +1,33 @@
+﻿@using BankingWeb.Controllers
+@model BankingWeb.Models.AccountModel
+
+@{
+    ViewBag.Title = Model.Number;
+}
+
+<form action="@Url.Action("Edit", "Account")" method="POST">
+<fieldset>
+    <legend>@Model.Number</legend>
+    <input type="text" value="@Model.ExpirationDate" id="expiration-date" name="expirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()">
+    @for (var i = 0; i < Model.Balance.Count; ++i)
+    {
+        <div class="input-prepend input-append">
+            <span class="add-on">@Model.Balance[i].Symbol</span>
+            <input type="text" id="balance-@i-value" name="balance[@i].Value" placeholder="Amount" value="@Model.Balance[i].Value">
+            <input type="hidden" id="balance-@i-name" name="balance[@i].Name" value="@Model.Balance[i].Name"/>
+        </div>
+    }
+    <input type="hidden" name="owner" value="@Model.Owner"/>
+    <input type="hidden" name="number" value="@Model.Number"/>
+    <div>
+        <button type="submit" class="btn">
+            Save
+        </button>
+    </div>
+</fieldset>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#expiration-date").datepicker({ viewMode: 1, minViewMode: 1 });
+    });
+</script>
