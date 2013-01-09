@@ -7,7 +7,7 @@
     Users
 </h1>
 <div class="control-group">
-    @if (User.IsInRole(BaseController.Administrator) || User.IsInRole(BaseController.Employee))
+    @if (User.IsInRole(BaseController.Employee))
     {
         <a href="@Url.Action("Add", "User", new {role = BaseController.Client})">
             <button class="btn" id="add-client">
@@ -72,6 +72,10 @@
                 <a href="@Url.Action("Index", "User", new { id = Model.Users[i].Id })">Details </a>
                 <a href="@Url.Action("Edit", "User", new { id = Model.Users[i].Id })">Edit </a>
                 <a href="@Url.Action("Delete", "User", new { id = Model.Users[i].Id })">Delete </a>
+                @if (Model.Users[i].Role.Name.Equals(BaseController.Client) && User.IsInRole(BaseController.Employee))
+                {
+                    <a href="@Url.Action("History", "Payment", new { id = Model.Users[i].Id })">Payments </a>
+                }
             </td>
         </tr>
     }
@@ -81,7 +85,7 @@
         @if (!Model.Page.IsFirst)
         {
             <li>
-                <a href="@Url.Action("All", "User", new {page = Model.Page.Number - 1})">
+                <a href="@Url.Action("All", "User", new { page = Model.Page.Number - 1 })">
                     Prev 
                 </a>
             </li>
@@ -97,7 +101,7 @@
         @if (!Model.Page.IsLast)
         {
             <li>
-                <a href="@Url.Action("All", "User", new {page = Model.Page.Number + 1})">
+                <a href="@Url.Action("All", "User", new { page = Model.Page.Number + 1 })">
                     Next
                 </a>
             </li>

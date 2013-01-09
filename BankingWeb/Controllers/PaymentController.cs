@@ -81,11 +81,19 @@ namespace BankingWeb.Controllers
         }
 
         [Authorize]
-        public ActionResult History(string from, string to, int page = 1)
+        public ActionResult History(string from, string to, long? id, int page = 1)
         {
             var currentPage = new Page { Capacity = PageCapacity, Number = page };
             var fromDate = DateTime.Now;
             var toDate = DateTime.Now.AddMonths(-1);
+            var user = CurrentUser;
+            var all = User.IsInRole(Administrator) || User.IsInRole(Employee);
+
+            if (all && id != null)
+            {
+                all = false;
+                user = _userRepository.GetUserById(id.Value);
+            }
 
             if (from != null)
             {
@@ -98,7 +106,7 @@ namespace BankingWeb.Controllers
 
             return View(new PaymentsModel
             {
-                Payments = User.IsInRole(Administrator) ? _paymentRepository.GetPayments(fromDate, toDate, currentPage) : _paymentRepository.GetPaymentsByUser(CurrentUser, fromDate, toDate, currentPage),
+                Payments = all ? _paymentRepository.GetPayments(fromDate, toDate, currentPage) : _paymentRepository.GetPaymentsByUser(user, fromDate, toDate, currentPage),
                 From = fromDate.ToString(DateFormat),
                 To = toDate.ToString(DateFormat),
                 Page = currentPage
