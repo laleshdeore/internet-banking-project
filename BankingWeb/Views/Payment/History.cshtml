@@ -1,10 +1,24 @@
-﻿@model BankingWeb.Models.PaymentsModel
+﻿@using BankingWeb.Controllers
+@model BankingWeb.Models.PaymentsModel
 @{
     ViewBag.Title = "History";
 }
 <h1>
     History
 </h1>
+<form action="@Url.Action("History", "Payment")" method="GET" class="form-inline">
+<label for="from">
+    From
+</label>
+<input type="text" value="@Model.From" id="from" name="from" data-date-format="@BaseController.DateFormat.ToLower()"/>
+<label for="to">
+    To
+</label>
+<input type="text" value="@Model.To" id="to" name="to" data-date-format="@BaseController.DateFormat.ToLower()"/>
+<button type="submit" class="btn">
+    Show
+</button>
+</form>
 <table class="table table-striped">
     <tr>
         <th>
@@ -76,3 +90,8 @@
         }
     </ul>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#from").add("#to").datepicker({ viewMode: 1 });
+    });
+</script>

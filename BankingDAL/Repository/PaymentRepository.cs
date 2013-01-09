@@ -12,11 +12,11 @@ namespace BankingDAL.Repository
         {
         }
 
-        public IList<Payment> GetPaymentsByUser(User user, Page page)
+        public IList<Payment> GetPaymentsByUser(User user, DateTime from, DateTime to, Page page)
         {
             var accountIds = user.Accounts.Select(account => account.Id).ToList();
 
-            return Database.Payments.Where(p => accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id) && !p.IsAutomatic).ToList();
+            return Database.Payments.Where(p => accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id) && !p.IsAutomatic).Where(p => (p.Date <= from) && (to <= p.Date)).OrderByDescending(p => p.Date).ToList();
         }
 
         public IList<Payment> GetPayments(bool isAutomatic)

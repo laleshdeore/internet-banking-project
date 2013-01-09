@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -72,6 +73,16 @@ namespace BankingWeb.Controllers
                 ModelState.Add(pair);
             }
             TempData["ModelState"] = null;
+        }
+
+        protected DateTime ParseDate(string date)
+        {
+            return DateTime.ParseExact(date, DateFormat, CultureInfo.InvariantCulture);
+        }
+
+        protected DateTime ParseShortDate(string date)
+        {
+            return DateTime.ParseExact(date, ShortDateFormat, CultureInfo.InvariantCulture);
         }
     }
 }

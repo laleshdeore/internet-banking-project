@@ -182,6 +182,7 @@ namespace BankingWeb.Controllers
                     user.FirstName = userFromModel.FirstName;
                     user.LastName = userFromModel.LastName;
                     user.Phone = userFromModel.Phone;
+                    user.Password = userFromModel.Password;
                     _userRepository.AddOrUpdate(user);
                 }
             }

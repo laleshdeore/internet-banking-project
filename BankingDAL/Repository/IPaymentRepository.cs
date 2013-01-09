@@ -8,7 +8,7 @@ namespace BankingDAL.Repository
 {
     public interface IPaymentRepository
     {
-        IList<Payment> GetPaymentsByUser(User user, Page page);
+        IList<Payment> GetPaymentsByUser(User user, DateTime from, DateTime to, Page page);
 
         IList<Payment> GetPayments(bool isAutomatic); 
 

@@ -8,6 +8,11 @@
 <form action="@Url.Action("Edit", "User")" method="POST">
     <fieldset>
         <legend>@Model.Username</legend>
+        <label for="password">
+            Password
+        </label>
+        <input type="password" id="password" name="password" value="@Model.Password" required maxlength="16" pattern="[A-Za-z0-9]{4,}">
+        <span><font size="1">Field Password consist of the 4-16 latterr or numbers </font></span>
         <label for="first-name">
             First Name
         </label>
@@ -16,12 +21,12 @@
         <label for="first-name">
             Last Name
         </label>
-        <input type="text" id="last-name" name="lastName" value="@Model.LastName"required maxlength="15" pattern="[A-Za-z]{3,}">
+        <input type="text" id="last-name" name="lastName" value="@Model.LastName" required maxlength="15" pattern="[A-Za-z]{3,}">
         <span><font size="1">Field LastName consist of the 3-15 latters</font></span>
         <label for="email">
             Email
         </label>
-        <input id="emailvalid" type="text"  name="email" value="@Model.Email"required pattern="[A-Za-z0-9]{2,10}@('@')[a-z]{2,6}.[a-z]{2,4}">
+        <input id="emailvalid" type="text"  name="email" value="@Model.Email" required pattern="[A-Za-z0-9]{2,10}@('@')[a-z]{2,6}.[a-z]{2,4}">
         <label for="phone">
             Phone
         </label>
@@ -42,6 +47,6 @@
 </form>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#birthday").datepicker();
+        $("#birthday").datepicker({ viewMode: 2 });
     });
 </script>

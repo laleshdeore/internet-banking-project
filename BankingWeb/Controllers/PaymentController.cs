@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web.Mvc;
 using BankingDAL.Repository;
 using BankingWeb.Models;
@@ -80,13 +81,26 @@ namespace BankingWeb.Controllers
         }
 
         [Authorize]
-        public ActionResult History(int page = 1)
+        public ActionResult History(string from, string to, int page = 1)
         {
             var currentPage = new Page { Capacity = PageCapacity, Number = page };
+            var fromDate = DateTime.Now;
+            var toDate = DateTime.Now.AddMonths(-1);
+
+            if (from != null)
+            {
+                fromDate = ParseDate(from);
+            }
+            if (to != null)
+            {
+                toDate = ParseDate(to);
+            }
 
             return View(new PaymentsModel
             {
-                Payments = _paymentRepository.GetPaymentsByUser(CurrentUser, currentPage),
+                Payments = _paymentRepository.GetPaymentsByUser(CurrentUser, fromDate, toDate, currentPage),
+                From = fromDate.ToString(DateFormat),
+                To = toDate.ToString(DateFormat),
                 Page = currentPage
             });
         }

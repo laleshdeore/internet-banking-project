@@ -11,6 +11,8 @@ namespace BankingWeb.Models
     {
         public IList<Payment> Payments { get; set; }
         public Page Page { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
 
         public PaymentsModel()
         {
