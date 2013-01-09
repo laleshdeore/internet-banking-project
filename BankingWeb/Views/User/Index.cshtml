@@ -57,6 +57,13 @@
     <h2>
         User accounts
     </h2>
+    <div class="control-group">
+        <a href="@Url.Action("Add", "Account", new { username = Model.Username })">
+            <button class="btn" id="add-account">
+                Add account
+            </button>
+        </a>
+    </div>
     <table class="table table-striped">
         <tr>
             <th>
@@ -93,7 +100,7 @@
                         @(money.Value + " " + money.Currency.Symbol)
                         if (Model.Accounts[i].Balance.Last() != money)
                         {
-                            @(" / ")
+                        @(" / ")
                         }
                     }
                 </td>
