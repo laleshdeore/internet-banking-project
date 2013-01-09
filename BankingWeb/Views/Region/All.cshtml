@@ -7,7 +7,7 @@
     Regions
 </h1>
 <div class="control-group">
-    @if (User.IsInRole(BaseController.Administrator) || User.IsInRole(BaseController.Employee))
+    @if (User.IsInRole(BaseController.Administrator) )
     {
         <a href="@Url.Action("Add", "Region")">
             <button class="btn" id="add-region">

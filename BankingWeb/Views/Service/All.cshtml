@@ -9,7 +9,7 @@
     Services
 </h1>
 <div class="control-group">
-    @if (User.IsInRole(BaseController.Administrator) || User.IsInRole(BaseController.Employee))
+    @if (User.IsInRole(BaseController.Administrator))
     {
         <a href="@Url.Action("Add", "Service")">
             <button class="btn" id="add-service">
