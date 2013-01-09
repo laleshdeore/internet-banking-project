@@ -8,7 +8,7 @@
 <form action="@Url.Action("Edit", "Account")" method="POST">
 <fieldset>
     <legend>@Model.Number</legend>
-    <input type="text" value="@Model.ExpirationDate" id="expiration-date" name="expirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()">
+    <input type="text" value="@Model.ExpirationDate" id="expiration-date" name="expirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()" required>
     @for (var i = 0; i < Model.Balance.Count; ++i)
     {
         <div class="input-prepend input-append">
