@@ -40,7 +40,9 @@ namespace BankingWeb.Models
 
         public IList<AccountModel> Accounts { get; set; }
 
-        public User GetUserEntity(IRoleRepository roleRepository)
+        public IList<Region> Regions { get; set; } 
+
+        public User GetUserEntity(IRoleRepository roleRepository, IRegionRepository regionRepository)
         {
             return new User
             {
@@ -52,7 +54,8 @@ namespace BankingWeb.Models
                 FirstName = FirstName,
                 LastName = LastName,
                 Phone = Phone,
-                Role = roleRepository.GetRoleByName(Role)
+                Role = roleRepository.GetRoleByName(Role),
+                Region = regionRepository.GetRegionByName(Region)
             };
         }
 

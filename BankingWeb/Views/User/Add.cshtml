@@ -40,7 +40,13 @@
     <input type="text" placeholder="Birthday" id="birthday" name="birthday" data-date-format="@BaseController.DateFormat.ToLower()" 
          required >
     <input type="hidden" name="role" value="@Model.Role"/>
-    <input type="hidden" name="region" value="All"/>
+    <label for="region">Region</label>
+    <select name="region" id="region">
+        @foreach (var region in Model.Regions)
+        {
+            <option value="@region.Name">@region.Name</option>
+        }
+    </select>
     <div>
         <button  type="submit" class="btn" >
             Create

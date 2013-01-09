@@ -1,49 +1,56 @@
 ﻿@using BankingWeb.Controllers
 @model BankingWeb.Models.UserModel
-
 @{
     ViewBag.Title = Model.Username;
 }
-
 <form action="@Url.Action("Edit", "User")" method="POST">
-    <fieldset>
-        <legend>@Model.Username</legend>
-        <label for="password">
-            Password
-        </label>
-        <input type="password" id="password" name="password" value="@Model.Password" required maxlength="16" pattern="[A-Za-z0-9]{4,}">
-        <span><font size="1">Field Password consist of the 4-16 latterr or numbers </font></span>
-        <label for="first-name">
-            First Name
-        </label>
-        <input type="text" id="first-name" name="firstName" value="@Model.FirstName" required maxlength="10" pattern="[A-Za-z]{3,}">
-        <span><font size="1">Field FirstName consist of the 3-10 latters</font></span>
-        <label for="first-name">
-            Last Name
-        </label>
-        <input type="text" id="last-name" name="lastName" value="@Model.LastName" required maxlength="15" pattern="[A-Za-z]{3,}">
-        <span><font size="1">Field LastName consist of the 3-15 latters</font></span>
-        <label for="email">
-            Email
-        </label>
-        <input id="emailvalid" type="text"  name="email" value="@Model.Email" required pattern="[A-Za-z0-9]{2,10}@('@')[a-z]{2,6}.[a-z]{2,4}">
-        <label for="phone">
-            Phone
-        </label>
-        <input type="text" id="phone" name="phone" value="@Model.Phone" maxlength=12 pattern="^[1-9]{1}[0-9]{6}$">
-        <label for="birthday">
-            Birthday
-        </label>
-        <input type="text" value="@Model.Birthday" id="birthday" name="birthday" data-date-format="@BaseController.DateFormat.ToLower()" 
+<fieldset>
+    <legend>@Model.Username</legend>
+    <label for="password">
+        Password
+    </label>
+    <input type="password" id="password" name="password" value="@Model.Password" required maxlength="16" pattern="[A-Za-z0-9]{4,}">
+    <span><font size="1">Field Password consist of the 4-16 latterr or numbers </font>
+    </span>
+    <label for="first-name">
+        First Name
+    </label>
+    <input type="text" id="first-name" name="firstName" value="@Model.FirstName" required maxlength="10" pattern="[A-Za-z]{3,}">
+    <span><font size="1">Field FirstName consist of the 3-10 latters</font></span>
+    <label for="first-name">
+        Last Name
+    </label>
+    <input type="text" id="last-name" name="lastName" value="@Model.LastName" required maxlength="15" pattern="[A-Za-z]{3,}">
+    <span><font size="1">Field LastName consist of the 3-15 latters</font></span>
+    <label for="email">
+        Email
+    </label>
+    <input id="emailvalid" type="text"  name="email" value="@Model.Email" required pattern="[A-Za-z0-9]{2,10}@('@')[a-z]{2,6}.[a-z]{2,4}">
+    <label for="phone">
+        Phone
+    </label>
+    <input type="text" id="phone" name="phone" value="@Model.Phone" maxlength=12 pattern="^[1-9]{1}[0-9]{6}$">
+    <label for="birthday">
+        Birthday
+    </label>
+    <input type="text" value="@Model.Birthday" id="birthday" name="birthday" data-date-format="@BaseController.DateFormat.ToLower()" 
                required >
-        <input type="hidden" name="role" value="@Model.Role"/>
-        <input type="hidden" name="region" value="@Model.Region"/>
-        <div>
-            <button  type="submit" class="btn" >
-                Save
-            </button>
-        </div>
-    </fieldset>
+    <input type="hidden" name="role" value="@Model.Role"/>
+    <label for="region">
+        Region
+    </label>
+    <select name="region" id="region">
+        @foreach (var region in Model.Regions)
+        {
+            <option value="@region.Name" @(region.Name.Equals(Model.Region) ? "selected" : "")>@region.Name</option>
+        }
+    </select>
+    <div>
+        <button type="submit" class="btn">
+            Save
+        </button>
+    </div>
+</fieldset>
 </form>
 <script type="text/javascript">
     $(document).ready(function () {

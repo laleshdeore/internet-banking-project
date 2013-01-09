@@ -23,13 +23,13 @@ namespace BankingWeb.Controllers
             return View(User.IsInRole(Administrator) || User.IsInRole(Employee) ? _paymentRepository.GetServices() : CurrentUser.Region.Services);
         }
 
-        [Authorize]
+        [Authorize(Roles = AdminOrEmployee)]
         public ActionResult Add()
         {
             return View(new ServiceModel { Regions = _regionRepository.GetRegions() });
         }
 
-        [Authorize]
+        [Authorize(Roles = AdminOrEmployee)]
         [HttpPost]
         public ActionResult Add(ServiceModel serviceModel)
         {
@@ -38,10 +38,10 @@ namespace BankingWeb.Controllers
             return RedirectToAction("All", "Service");
         }
 
-        [Authorize]
+        [Authorize(Roles = AdminOrEmployee)]
         public ActionResult Delete(long id)
         {
-            _paymentRepository.GetServiceById(id);
+            _paymentRepository.Delete(_paymentRepository.GetServiceById(id));
 
             return RedirectToAction("All", "Service");
         }

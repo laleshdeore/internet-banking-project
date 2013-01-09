@@ -93,14 +93,14 @@ namespace BankingWeb.Controllers
         [Authorize(Roles = AdminOrEmployee)]
         public ActionResult Add(string role)
         {
-            return View(new UserModel { Role = role });
+            return View(new UserModel { Role = role, Regions = _regionRepository.GetRegions() });
         }
 
         [HttpPost]
         [Authorize]
         public ActionResult Add(UserModel userModel)
         {
-            var user = userModel.GetUserEntity(_roleRepository);
+            var user = userModel.GetUserEntity(_roleRepository, _regionRepository);
 
 
             if (DateTime.Now < user.Birthday.AddYears(AgeBarrier))
@@ -118,6 +118,7 @@ namespace BankingWeb.Controllers
 
             if (!ModelState.IsValid)
             {
+                userModel.Regions = _regionRepository.GetRegions();
                 return View(userModel);
             }
 
@@ -165,7 +166,7 @@ namespace BankingWeb.Controllers
         [Authorize(Roles = AdminOrEmployee)]
         public ActionResult Edit(long id, UserModel userModel)
         {
-            var userFromModel = userModel.GetUserEntity(_roleRepository);
+            var userFromModel = userModel.GetUserEntity(_roleRepository, _regionRepository);
             var user = _userRepository.GetUserById(id);
 
 
