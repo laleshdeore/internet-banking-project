@@ -30,19 +30,22 @@
                     <ul class="nav nav-list">
                         <li class="nav-header">Bank</li>
                         <li class="@GetClass("Index", "Home")"><a href="@Url.Action("Index", "Home")"><i
-                                                                                                          class="icon-home"></i>Home </a></li>
+                            class="icon-home"></i>Home </a></li>
                         <li class="@GetClass("About", "Home")"><a href="@Url.Action("About", "Home")">About</a></li>
-                        <li class="@GetClass("All", "Currency")"><a href="@Url.Action("All", "Currency")">
-                                                                       Currencies</a></li>
-                        <li class="nav-header">Accounts</li>
-                        <li class="@GetClass("Balance", "Account")"><a href="@Url.Action("Balance", "Account")">
-                                                                        Balance</a></li>
+                        <li class="@GetClass("All", "Currency")"><a href="@Url.Action("All", "Currency")">Currencies</a></li>
+                        @if (User.IsInRole(BaseController.Client))
+                        {
+                            <li class="nav-header">Accounts</li>
+                            <li class="@GetClass("Balance", "Account")"><a href="@Url.Action("Balance", "Account")">
+                                Balance</a></li>
+                        }
                         <li class="nav-header">Payments</li>
-                        @if (User.IsInRole(BaseController.Client)){
-                        <li class="@GetClass("Pay", "Payment")"><a href="@Url.Action("Pay", "Payment")">Pay</a></li>
+                        @if (User.IsInRole(BaseController.Client))
+                        {
+                            <li class="@GetClass("Pay", "Payment")"><a href="@Url.Action("Pay", "Payment")">Pay</a></li>
                         }
                         <li class="@GetClass("History", "Payment")"><a href="@Url.Action("History", "Payment")">
-                                                                        History</a></li>
+                            History</a></li>
                         <li class="@GetClass("All", "Service")"><a href="@Url.Action("All", "Service")">Services</a></li>
                         @if (User.IsInRole(BaseController.Employee) || User.IsInRole(BaseController.Administrator))
                         {
@@ -53,8 +56,11 @@
                         <li class="nav-header">Profile [@User.Identity.Name]</li>
                         <li class="@GetClass("Region", "User")"><a href="@Url.Action("Region", "User")">Region</a>
                         </li>
-                        <li class="@GetClass("PersonalCode", "User")"><a href="@Url.Action("PersonalCode", "User")">
-                                                                          Personal code </a></li>
+                        @if (User.IsInRole(BaseController.Client))
+                        {
+                            <li class="@GetClass("PersonalCode", "User")"><a href="@Url.Action("PersonalCode", "User")">
+                                Personal code </a></li>
+                        }
                         <li><a href="@Url.Action("LogOff", "User")">Logout</a></li>
                     </ul>
                 }

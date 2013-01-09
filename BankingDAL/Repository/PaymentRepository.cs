@@ -19,6 +19,11 @@ namespace BankingDAL.Repository
             return Database.Payments.Where(p => accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id) && !p.IsAutomatic).Where(p => (p.Date <= from) && (to <= p.Date)).OrderByDescending(p => p.Date).ToList();
         }
 
+        public IList<Payment> GetPayments(DateTime from, DateTime to, Page page)
+        {
+            return Database.Payments.Where(p => (p.Date <= from) && (to <= p.Date)).OrderByDescending(p => p.Date).ToList();
+        }
+
         public IList<Payment> GetPayments(bool isAutomatic)
         {
             return Database.Payments.Where(payment => payment.IsAutomatic == isAutomatic).ToList();

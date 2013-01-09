@@ -98,7 +98,7 @@ namespace BankingWeb.Controllers
 
             return View(new PaymentsModel
             {
-                Payments = _paymentRepository.GetPaymentsByUser(CurrentUser, fromDate, toDate, currentPage),
+                Payments = User.IsInRole(Administrator) ? _paymentRepository.GetPayments(fromDate, toDate, currentPage) : _paymentRepository.GetPaymentsByUser(CurrentUser, fromDate, toDate, currentPage),
                 From = fromDate.ToString(DateFormat),
                 To = toDate.ToString(DateFormat),
                 Page = currentPage

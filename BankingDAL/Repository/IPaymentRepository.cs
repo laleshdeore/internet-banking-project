@@ -10,6 +10,8 @@ namespace BankingDAL.Repository
     {
         IList<Payment> GetPaymentsByUser(User user, DateTime from, DateTime to, Page page);
 
+        IList<Payment> GetPayments(DateTime from, DateTime to, Page page);
+
         IList<Payment> GetPayments(bool isAutomatic); 
 
         void Pay(Payment payment, ICurrencyRepository currencyRepository);

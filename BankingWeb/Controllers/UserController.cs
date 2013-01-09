@@ -56,8 +56,18 @@ namespace BankingWeb.Controllers
             {
                 CurrentUser.PersonalCode = personalCodeModel.New;
                 _userRepository.AddOrUpdate(CurrentUser);
+
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index", "Home");
+            if (personalCodeModel.Confirm != personalCodeModel.New)
+            {
+                ModelState.AddModelError("confirm", "Wrong confirmation code");
+            }
+            if (personalCodeModel.Old != CurrentUser.PersonalCode)
+            {
+                ModelState.AddModelError("old", "Wrong old code");
+            }
+            return View(personalCodeModel);
         }
 
         [Authorize]
@@ -75,10 +85,10 @@ namespace BankingWeb.Controllers
             if (User.IsInRole(Administrator))
             {
                 roles.Add(_roleRepository.GetRoleByName(Administrator));
+                roles.Add(_roleRepository.GetRoleByName(Employee));
             }
             if (User.IsInRole(Employee) || User.IsInRole(Administrator))
             {
-                roles.Add(_roleRepository.GetRoleByName(Employee));
                 roles.Add(_roleRepository.GetRoleByName(Client));
             }
 
@@ -203,7 +213,7 @@ namespace BankingWeb.Controllers
         [Authorize(Roles = AdminOrEmployee)]
         public ActionResult Edit(long id)
         {
-            return View(new UserModel(_userRepository.GetUserById(id)));
+            return View(new UserModel(_userRepository.GetUserById(id)) { Regions = _regionRepository.GetRegions() });
         }
     }
 }
