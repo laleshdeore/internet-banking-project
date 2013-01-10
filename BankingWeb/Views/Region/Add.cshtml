@@ -9,7 +9,8 @@
 <fieldset>
     <legend>New region</legend>
     <label for="name">Region name</label>
-    <input type="text" placeholder="Name" id="name" name="name"  maxlength=15 required pattern="[A-Za-z]{2,}"/>
+    <input type="text" placeholder="Name" id="name" name="name"  maxlength=15 required pattern="[-A-Za-z\s]{2,}"/>
+    <span class="help-line">Enten name region, use only letters</span>
     <div>
         <button type="submit" class="btn">
             Create
