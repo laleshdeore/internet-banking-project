@@ -9,25 +9,6 @@ namespace BankingDAL.Entities
 
         public virtual Money Second { get; set; }
 
-        public IList<Currency> Currencies
-        {
-            get
-            {
-                var currencies = new List<Currency>();
-
-                if (First != null)
-                {
-                    currencies.Add(First.Currency);
-                }
-                if (Second != null)
-                {
-                    currencies.Add(Second.Currency);
-                }
-
-                return currencies;
-            }
-        }
-
         public CurrencyRateType Type
         {
             get { return (CurrencyRateType)TypeInt; }
@@ -49,6 +30,22 @@ namespace BankingDAL.Entities
                 rate = Second.Value / First.Value;
             }
             return rate;
+        }
+
+        public IList<Currency> GetCurrencies()
+        {
+            var currencies = new List<Currency>();
+
+            if (First != null)
+            {
+                currencies.Add(First.Currency);
+            }
+            if (Second != null)
+            {
+                currencies.Add(Second.Currency);
+            }
+
+            return currencies;
         }
 
         public override string ToString()

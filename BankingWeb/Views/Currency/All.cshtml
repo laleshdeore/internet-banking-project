@@ -37,7 +37,8 @@
     </tr>
     @foreach (var currency in Model.Currencies.Where(c => c.Id != Model.Currency.Id))
     {
-        var rates = Model.Rates.Where(rate => rate.First.Currency.Id == Model.Currency.Id || rate.Second.Currency.Id == Model.Currency.Id).ToList();
+        var ids = new List<long> {currency.Id, Model.Currency.Id};
+        var rates = Model.Rates.Where(rate => ids.Contains(rate.First.Currency.Id) && ids.Contains(rate.Second.Currency.Id)).ToList();
 
         <tr>
             <td>
