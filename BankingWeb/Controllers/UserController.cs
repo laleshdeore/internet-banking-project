@@ -119,7 +119,10 @@ namespace BankingWeb.Controllers
             }
             try
             {
-                _userRepository.AddOrUpdate(user);
+                if (ModelState.IsValid)
+                {
+                    _userRepository.AddOrUpdate(user);
+                }
             }
             catch (Exception e)
             {
