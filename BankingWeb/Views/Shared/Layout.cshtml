@@ -53,12 +53,16 @@
                             <li class="@GetClass("All", "User")"><a href="@Url.Action("All", "User")">Users</a></li>
                             <li class="@GetClass("All", "Region")"><a href="@Url.Action("All", "Region")">Regions</a></li>                               
                         }
+                        @if (User.IsInRole(BaseController.Administrator))
+                        {
+                            <li class="@GetClass("Index", "Bank")"><a href="@Url.Action("Index", "Bank")">Bank</a></li>     
+                        }
                         <li class="nav-header">Profile [@User.Identity.Name]</li>
                         @if (User.IsInRole(BaseController.Client))
                         {
                             <li class="@GetClass("Region", "User")"><a href="@Url.Action("Region", "User")">Region</a>
                             </li>
-                         }
+                        }
                         @if (User.IsInRole(BaseController.Client))
                         {
                             <li class="@GetClass("PersonalCode", "User")"><a href="@Url.Action("PersonalCode", "User")">

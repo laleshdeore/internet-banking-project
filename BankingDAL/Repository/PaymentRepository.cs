@@ -107,6 +107,19 @@ namespace BankingDAL.Repository
             }
         }
 
+        public void AddOrUpdate(Bank bank)
+        {
+            if (bank.Id == 0)
+            {
+                Database.Banks.Add(bank);
+                Database.SaveChanges();
+            }
+            else
+            {
+                Update(Database.Banks.SingleOrDefault(b => b.Id == bank.Id), bank);
+            }
+        }
+
         public Payment GetPaymentById(long id)
         {
             return Database.Payments.SingleOrDefault(payment => payment.Id == id);

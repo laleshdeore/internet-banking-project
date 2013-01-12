@@ -20,6 +20,8 @@ namespace BankingDAL.Repository
 
         void AddOrUpdate(Payment payment);
 
+        void AddOrUpdate(Bank bank);
+
         Payment GetPaymentById(long id);
 
         Service GetServiceById(long id);

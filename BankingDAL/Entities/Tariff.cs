@@ -7,6 +7,6 @@ namespace BankingDAL.Entities
 {
     public class Tariff: Entity
     {
-        public double Pay { get; set; }
+        public virtual Money MonthlyPay { get; set; }
     }
 }

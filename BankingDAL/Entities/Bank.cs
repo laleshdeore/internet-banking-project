@@ -16,7 +16,9 @@ namespace BankingDAL.Entities
 
         public virtual List<Account> Accounts { get; set; }
 
-        public virtual List<Money> Balance { get; set; } 
+        public virtual List<Money> Balance { get; set; }
+
+        public virtual Tariff Tariff { get; set; }
 
         public Bank()
         {

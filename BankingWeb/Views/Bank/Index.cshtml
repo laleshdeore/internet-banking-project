@@ -1,0 +1,29 @@
+﻿@using BankingWeb.Controllers
+@model BankingWeb.Models.BankModel
+
+@{
+    ViewBag.Title = "Bank setting";
+}
+
+<form action="@Url.Action("Index", "Bank")" method="POST">
+<fieldset>
+    <legend>Bank</legend>
+    <label for="monthly-pay-value">Monthly pay</label>
+    <input type="text" value="@Model.MonthlyPay.Value" id="monthly-pay-value" name="monthlyPay.Value" required>
+    <input type="hidden" id="monthly-pay-name" name="monthlyPay.Name" value="@Model.MonthlyPay.Name"/>
+    <label>Bank balance</label>
+    @for (var i = 0; i < Model.Balance.Count; ++i)
+    {
+        <div class="input-prepend input-append">
+            <span class="add-on">@Model.Balance[i].Symbol</span>
+            <input type="text" id="balance-@i-value" name="balance[@i].Value" placeholder="Amount" value="@Model.Balance[i].Value" required="" pattern="^[1-9]{1}[0-9]{0,}$">
+            <input type="hidden" id="balance-@i-name" name="balance[@i].Name" value="@Model.Balance[i].Name"/>
+        </div>
+    }
+    <div>
+        <button type="submit" class="btn">
+            Save
+        </button>
+    </div>
+</fieldset>
+</form>

@@ -21,10 +21,10 @@ namespace BankingWeb.Models
         public Money GetEntity(ICurrencyRepository currencyRepository)
         {
             return new Money
-                       {
-                           Currency = currencyRepository.GetCurrencyByName(Name),
-                           Value = Value.GetValueOrDefault(0)
-                       };
+            {
+                Currency = currencyRepository.GetCurrencyByName(Name),
+                Value = Value.GetValueOrDefault(0)
+            };
         }
 
         public void SetEntity(Money money)

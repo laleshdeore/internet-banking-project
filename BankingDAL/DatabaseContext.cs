@@ -26,9 +26,10 @@ namespace BankingDAL
             var adminRole = context.Roles.Add(new Role { Name = "Administrator" });
             var clientRole = context.Roles.Add(new Role { Name = "Client" });
             var dollarCurrency = context.Currencies.Add(new Currency { Name = "USA Dollar", ShortName = "USD", Symbol = "$" });
-            var bank = context.Banks.Add(new Bank());
+            var bank = context.Banks.Add(new Bank { Tariff = new Tariff() });
 
             context.SaveChanges();
+            bank.Tariff.MonthlyPay = new Money {Currency = dollarCurrency};
             var firstAccount = context.Accounts.Add(new Account
             {
                 Balance = new List<Money>(),
@@ -58,7 +59,7 @@ namespace BankingDAL
             });
             context.SaveChanges();
             context.Roles.Add(new Role { Name = "Employee" });
-            var region = new Region {Name = "All"};
+            var region = new Region { Name = "All" };
             var admin = context.Users.Add(new User { Username = "admin", Password = "admin", Role = adminRole, Region = context.Regions.Add(region), Birthday = DateTime.Now });
             var user = context.Users.Add(new User { Username = "user1", Password = "user1", Role = clientRole, Region = context.Regions.Add(region), Birthday = DateTime.Now, Accounts = new List<Account>() });
 
