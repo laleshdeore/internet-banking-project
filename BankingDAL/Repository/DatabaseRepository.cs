@@ -32,7 +32,10 @@ namespace BankingDAL.Repository
 
         protected void SaveAllChanges()
         {
-            Database.SaveChanges();
+            var id = 0;
+            var prevId = id;
+
+            while ((id = Database.SaveChanges()) != prevId && id != 0) {}
         }
     }
 }

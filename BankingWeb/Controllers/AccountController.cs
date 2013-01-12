@@ -111,8 +111,14 @@ namespace BankingWeb.Controllers
 
             if (account != null)
             {
+                var ownerId = account.Owner != null ? account.Owner.Id : 0;
+
                 _accountRepository.Delete(account);
-                return RedirectToAction("Index", "User", new { id = account.Owner.Id });
+
+                if (ownerId != 0)
+                {
+                    return RedirectToAction("Index", "User", new {id = ownerId});
+                }
             }
             return RedirectToAction("All", "User");
         }

@@ -49,6 +49,10 @@ namespace BankingDAL.Repository
 
         public void Delete(User user)
         {
+            foreach (var account in user.Accounts)
+            {
+                account.Owner = null;
+            }
             Database.Users.Remove(user);
             SaveAllChanges();
         }

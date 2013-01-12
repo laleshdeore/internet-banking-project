@@ -53,6 +53,10 @@ namespace BankingDAL.Repository
 
         public void Delete(Account account)
         {
+            foreach (var money in account.Balance)
+            {
+                money.Account = null;
+            }
             Database.Accounts.Remove(account);
             SaveAllChanges();
         }
