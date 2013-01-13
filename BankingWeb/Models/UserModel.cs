@@ -10,12 +10,15 @@ namespace BankingWeb.Models
     public class UserModel
     {
         public UserModel(User user)
+            : this()
         {
             SetUserEntity(user);
         }
 
         public UserModel()
         {
+            Regions = new List<Region>();
+            Accounts = new List<AccountModel>();
         }
 
         public string Username { get; set; }
@@ -40,7 +43,7 @@ namespace BankingWeb.Models
 
         public IList<AccountModel> Accounts { get; set; }
 
-        public IList<Region> Regions { get; set; } 
+        public IList<Region> Regions { get; set; }
 
         public User GetUserEntity(IRoleRepository roleRepository, IRegionRepository regionRepository)
         {

@@ -101,7 +101,7 @@ namespace BankingWeb.Controllers
             }
             if (to != null)
             {
-                toDate = ParseDate(to);
+                toDate = ParseDate(to).AddDays(1).AddMilliseconds(-1);
             }
 
             return View(new PaymentsModel

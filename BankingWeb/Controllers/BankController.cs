@@ -19,6 +19,12 @@ namespace BankingWeb.Controllers
             _paymentRepository = new PaymentRepository(Context);
         }
 
+        [Authorize]
+        public ActionResult Tariff(BankModel bankModel)
+        {
+            return View(new BankModel(Context.Bank));
+        }
+
         [Authorize(Roles = Administrator)]
         public ActionResult Index()
         {

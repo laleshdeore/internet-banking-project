@@ -54,69 +54,72 @@
             </tr>
         </table>
     </div>
-    <h2>
-        User accounts
-    </h2>
-    <div class="control-group">
-        <a href="@Url.Action("Add", "Account", new { username = Model.Username })">
-            <button class="btn" id="add-account">
-                Add account
-            </button>
-        </a>
-    </div>
-    <table class="table table-striped">
-        <tr>
-            <th>
-                №
-            </th>
-            <th>
-                Account number
-            </th>
-            <th>
-                Balance
-            </th>
-            <th>
-                Expiration Date
-            </th>
-            <th>
-                Active
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
-        @for (var i = 0; i < Model.Accounts.Count; ++i)
-        {
+    @if (Model.Role.Name.Equals(BaseController.Client))
+    {
+        <h2>
+            User accounts
+        </h2>
+        <div class="control-group">
+            <a href="@Url.Action("Add", "Account", new { username = Model.Username })">
+                <button class="btn" id="add-account">
+                    Add account
+                </button>
+            </a>
+        </div>
+        <table class="table table-striped">
             <tr>
-                <td>
-                    @(i + 1)
-                </td>
-                <td>
-                    @Model.Accounts[i].Number
-                </td>
-                <td>
-                    @foreach (var money in Model.Accounts[i].Balance)
-                    {
-                        @(money.Value + " " + money.Currency.Symbol)
-                        if (Model.Accounts[i].Balance.Last() != money)
-                        {
-                        @(" / ")
-                        }
-                    }
-                </td>
-                <td>
-                    @Model.Accounts[i].ExpirationDate.ToString(BaseController.ShortDateFormat)
-                </td>
-                <td>
-                    @Model.Accounts[i].IsActive
-                </td>
-                <td>
-                    <a href="@Url.Action("Edit", "Account", new { id = Model.Accounts[i].Id })">Edit
-                    </a><a href="@Url.Action("Block", "Account", new { id = Model.Accounts[i].Id })">
-                        @(Model.Accounts[i].IsActive ? "Block" : "Unblock")</a> <a href="@Url.Action("Delete", "Account", new { id = Model.Accounts[i].Id })">
-                            Delete </a>
-                </td>
+                <th>
+                    №
+                </th>
+                <th>
+                    Account number
+                </th>
+                <th>
+                    Balance
+                </th>
+                <th>
+                    Expiration Date
+                </th>
+                <th>
+                    Active
+                </th>
+                <th>
+                    Actions
+                </th>
             </tr>
-        }
-    </table>
+            @for (var i = 0; i < Model.Accounts.Count; ++i)
+            {
+                <tr>
+                    <td>
+                        @(i + 1)
+                    </td>
+                    <td>
+                        @Model.Accounts[i].Number
+                    </td>
+                    <td>
+                        @foreach (var money in Model.Accounts[i].Balance)
+                        {
+                            @(money.Value + " " + money.Currency.Symbol)
+                            if (Model.Accounts[i].Balance.Last() != money)
+                            {
+                            @(" / ")
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Model.Accounts[i].ExpirationDate.ToString(BaseController.ShortDateFormat)
+                    </td>
+                    <td>
+                        @Model.Accounts[i].IsActive
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Account", new { id = Model.Accounts[i].Id })">Edit </a>
+                        <a href="@Url.Action("Block", "Account", new { id = Model.Accounts[i].Id })">
+                            @(Model.Accounts[i].IsActive ? "Block" : "Unblock")</a> <a href="@Url.Action("Delete", "Account", new { id = Model.Accounts[i].Id })">
+                                Delete </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
 </div>

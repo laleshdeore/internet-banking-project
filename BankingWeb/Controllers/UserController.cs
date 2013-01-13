@@ -92,6 +92,7 @@ namespace BankingWeb.Controllers
                 roles.Add(_roleRepository.GetRoleByName(Client));
             }
 
+            LoadState();
             return View(new UsersModel
             {
                 Users = _userRepository.GetUsersByRoles(roles, currentPage),
@@ -161,10 +162,23 @@ namespace BankingWeb.Controllers
         [Authorize(Roles = AdminOrEmployee)]
         public ActionResult Delete(long id)
         {
-            _userRepository.Delete(_userRepository.GetUserById(id));
+            var user = _userRepository.GetUserById(id);
+            var isCurrent = user == CurrentUser;
 
-            if (Request.UrlReferrer != null) return Redirect(Request.UrlReferrer.ToString());
+            if (user.Role.Name.Equals(Administrator) && user.Role.Users.Count == 1)
+            {
+                ModelState.AddModelError("role", "There is only one administrator");
+            }
 
+            if (ModelState.IsValid)
+            {
+                _userRepository.Delete(user);
+                if (isCurrent)
+                {
+                    return RedirectToAction("LogOff", "User");
+                }
+            }
+            SaveState();
             return RedirectToAction("All", "User");
         }
 
@@ -207,6 +221,7 @@ namespace BankingWeb.Controllers
 
             if (!ModelState.IsValid)
             {
+                userModel.Regions = _regionRepository.GetRegions();
                 return View(userModel);
             }
 

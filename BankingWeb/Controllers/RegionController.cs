@@ -15,12 +15,29 @@ namespace BankingWeb.Controllers
 
         public ActionResult All()
         {
+            LoadState();
             return View(_regionRepository.GetRegions());
         }
 
         public ActionResult Delete(long id)
         {
-            _regionRepository.Delete(_regionRepository.GetRegionById(id));
+            var region = _regionRepository.GetRegionById(id);
+
+            if (region.Services.Count > 0)
+            {
+                ModelState.AddModelError("services", "Some services assigned to this region");
+            }
+
+            if (region.Users.Count > 0)
+            {
+                ModelState.AddModelError("users", "Some users assigned to this region");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _regionRepository.Delete(_regionRepository.GetRegionById(id));
+            }
+            SaveState();
             return RedirectToAction("All", "Region");
         }
 
