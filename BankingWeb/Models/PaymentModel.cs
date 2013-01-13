@@ -31,26 +31,25 @@ namespace BankingWeb.Models
 
         public string ServiceIdentifier { get; set; }
 
-        public string Owner { get; set; }
+        public string Description { get; set; }
 
         public string PersonalCode { get; set; }
 
         public string ExpirationDate { get; set; }
 
-        public bool IsAutomatic { get; set; }
+        public string IsAutomatic { get; set; }
 
-        public Payment GetEntity(ICurrencyRepository currencyRepository, IAccountRepository accountRepository, IUserRepository userRepository)
+        public Payment GetEntity(ICurrencyRepository currencyRepository, IAccountRepository accountRepository)
         {
-            var toAccount = (To != null && To.Number != null) ? accountRepository.GetAccountByNumber(To.Number) : userRepository.GetUserByUsername(Owner).Accounts.First();
-
             return new Payment
             {
                 Date = DateTime.Now,
                 From = accountRepository.GetAccountByNumber(From.Number),
-                To = toAccount,
+                To = accountRepository.GetAccountByNumber(To.Number),
                 ServiceIdentifier = ServiceIdentifier,
-                IsAutomatic = IsAutomatic,
+                IsAutomatic = IsAutomatic == "on" || (IsAutomatic != null && bool.Parse(IsAutomatic)),
                 State = PaymentState.Pending,
+                Description = Description,
                 Value = Value.GetEntity(currencyRepository)
             };
         }

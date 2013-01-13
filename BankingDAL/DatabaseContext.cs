@@ -35,14 +35,14 @@ namespace BankingDAL
                 Balance = new List<Money>(),
                 ExpirationDate = DateTime.Today,
                 IsActive = true,
-                Number = "1"
+                Number = 1
             });
             var secondAccount = context.Accounts.Add(new Account
             {
                 Balance = new List<Money>(),
                 ExpirationDate = DateTime.Today,
                 IsActive = true,
-                Number = "2"
+                Number = 2
             });
             bank.Balance.Add(new Money { Currency = dollarCurrency });
             context.SaveChanges();
@@ -59,7 +59,7 @@ namespace BankingDAL
             });
             context.SaveChanges();
             context.Roles.Add(new Role { Name = "Employee" });
-            var region = new Region { Name = "All" };
+            var region = new Region { Name = "Minsk" };
             var admin = context.Users.Add(new User { Username = "admin", Password = "admin", Role = adminRole, Region = context.Regions.Add(region), Birthday = DateTime.Now });
             var user = context.Users.Add(new User { Username = "user1", Password = "user1", Role = clientRole, Region = context.Regions.Add(region), Birthday = DateTime.Now, Accounts = new List<Account>() });
 

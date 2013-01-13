@@ -18,6 +18,8 @@ namespace BankingDAL.Entities
 
         public string ServiceIdentifier { get; set; }
 
+        public string Description { get; set; }
+
         public bool IsAutomatic { get; set; }
 
         public PaymentState State

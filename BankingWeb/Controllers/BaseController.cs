@@ -32,15 +32,15 @@ namespace BankingWeb.Controllers
         {
             Context = new DatabaseContext();
 
-            if (_checker == null)
+            if (_checker != null) return;
+
+            _checker = new DailyChecker
             {
-                _checker = new DailyChecker
-                {
-                    CurrencyRepository = new CurrencyRepository(Context),
-                    PaymentRepository = new PaymentRepository(Context)
-                };
-                new Thread(_checker.Check).Start();
-            }
+                CurrencyRepository = new CurrencyRepository(Context),
+                PaymentRepository = new PaymentRepository(Context),
+                AccountRepository = new AccountRepository(Context)
+            };
+            new Thread(_checker.Check).Start();
         }
 
         public User CurrentUser

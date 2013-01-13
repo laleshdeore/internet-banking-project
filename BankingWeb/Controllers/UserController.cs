@@ -136,7 +136,7 @@ namespace BankingWeb.Controllers
                 return View(userModel);
             }
 
-            return RedirectToAction("Add", "Account", new { username = user.Username });
+            return user.Role.Name == Client ? RedirectToAction("Add", "Account", new {username = user.Username}) : RedirectToAction("All", "User");
         }
 
         [HttpPost]

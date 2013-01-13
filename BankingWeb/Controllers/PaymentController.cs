@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Web.Mvc;
+using System.Web.Routing;
 using BankingDAL.Repository;
 using BankingWeb.Models;
 
@@ -21,11 +22,17 @@ namespace BankingWeb.Controllers
             _userRepository = new UserRepository(Context);
         }
 
+        [Authorize]
+        public ActionResult AutoPayment()
+        {
+            return View(_paymentRepository.GetAutoPaymentsByUser(CurrentUser));
+        }
+
         [HttpPost]
         [Authorize]
-        public ActionResult Pay(PaymentModel paymentModel)
+        public ActionResult Pay(int? serviceId, PaymentModel paymentModel)
         {
-            var payment = paymentModel.GetEntity(_currencyRepository, _accountRepository, _userRepository);
+            var payment = paymentModel.GetEntity(_currencyRepository, _accountRepository);
 
             if (payment.To == null)
             {
@@ -56,11 +63,12 @@ namespace BankingWeb.Controllers
             if (!ModelState.IsValid)
             {
                 SaveState();
-                return RedirectToAction("Pay", "Payment");
+                return RedirectToAction("Pay", "Payment", new { serviceId });
             }
 
             return RedirectToAction("History", "Payment");
         }
+
 
         [Authorize]
         public ActionResult Pay(int? serviceId)
@@ -111,6 +119,18 @@ namespace BankingWeb.Controllers
                 To = toDate.ToString(DateFormat),
                 Page = currentPage
             });
+        }
+
+        [Authorize]
+        public ActionResult Delete(long id)
+        {
+            var payment = _paymentRepository.GetPaymentById(id);
+
+            if (payment != null && payment.IsAutomatic)
+            {
+                _paymentRepository.Delete(payment);
+            }
+            return RedirectToAction("AutoPayment", "Payment");
         }
     }
 }

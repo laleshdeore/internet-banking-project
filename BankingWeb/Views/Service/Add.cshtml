@@ -11,23 +11,23 @@
     <label for="name">
         Name
     </label>
-    <input type="text" id="name" name="name" placeholder="Name" required pattern="[A-Za-z]{3,}" maxlength="10" />
+    <input type="text" id="name" name="name" placeholder="Name" value="@Model.Name" required pattern="[A-Za-z]{3,}" maxlength="10" />
     <span class="help-line">Enter name services,use only letters</span>
     <label for="description">
         Description
     </label>
-    <input type="text" id="description" name="description" placeholder="Description" required pattern="[A-Za-z0-9]{3,}" maxlength="30" />
+    <input type="text" id="description" name="description" placeholder="Description" value="@Model.Description" required pattern="[A-Za-z0-9]{3,}" maxlength="30" />
     <span class="help-line">Enter description services,use letters and digits</span>
     <label for="identifier-description">
         Identifier description
     </label>
-    <input type="text" id="identifier-description" name="identifierDescription" placeholder="Identifier description" required pattern="[-A-Za-z\s]{3,}" maxlength="10" />
+    <input type="text" id="identifier-description" name="identifierDescription" placeholder="Identifier description" value="@Model.IdentifierDescription" required pattern="[-A-Za-z\s]{3,}" maxlength="10" />
     <span class="help-line">Enter identifier description,use only letters</span>
     <label for="owner">
-        Owner username
+        Account
     </label>
-    <input type="text" id="owner" name="owner" placeholder="Owner" required />
-    <span class="help-line">Enter owner name</span>
+    <input type="text" id="account" name="account" placeholder="Account number" value="@Model.Account" required />
+    <span class="help-line">Enter existing account number</span>
     <label for="region">
         Regions
     </label>

@@ -8,6 +8,9 @@ namespace BankingDAL.Repository
 {
     public class AccountRepository : DatabaseRepository, IAccountRepository
     {
+        public const int PartCount = 4;
+        public const int MinPart = 1000;
+
         private readonly Random _random;
 
         public AccountRepository(DatabaseContext database)
@@ -16,19 +19,23 @@ namespace BankingDAL.Repository
             _random = new Random();
         }
 
-        public string GenerateNumber()
+        public long GenerateNumber()
         {
-            var number = "";
+            long number;
 
             do
             {
-                number = String.Format("{0:0000}-{1:0000}-{2:0000}-{3:0000}", _random.Next(9999), _random.Next(9999), _random.Next(9999), _random.Next(9999));
+                number = 0;
+                for (var i = 0; i < PartCount; i++)
+                {
+                    number += number * MinPart + _random.Next(MinPart, MinPart*10 - 1);
+                }
             } while (GetAccountByNumber(number) != null);
 
             return number;
         }
 
-        public Account GetAccountByNumber(string number)
+        public Account GetAccountByNumber(long number)
         {
             return Database.Accounts.SingleOrDefault(account => account.Number == number);
         }
@@ -38,8 +45,17 @@ namespace BankingDAL.Repository
             return Database.Accounts.SingleOrDefault(account => account.Id == id);
         }
 
+        public IList<Account> GetExpiredAccounts(bool isActive)
+        {
+            return Database.Accounts.Where(account => account.ExpirationDate <= DateTime.Now && isActive).ToList();
+        }
+
         public void AddOrUpdate(Account account)
         {
+            if (account.ExpirationDate <= DateTime.Now)
+            {
+                account.IsActive = false;
+            }
             if (account.Id == 0)
             {
                 Database.Accounts.Add(account);
@@ -53,12 +69,8 @@ namespace BankingDAL.Repository
 
         public void Delete(Account account)
         {
-            foreach (var money in account.Balance)
-            {
-                money.Account = null;
-            }
-            Database.Accounts.Remove(account);
-            SaveAllChanges();
+            account.Owner = null;
+            AddOrUpdate(account);
         }
     }
 }

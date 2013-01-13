@@ -23,8 +23,8 @@
     <label for="account-expiration">
         Account expiration date
     </label>
-    <input type="text" placeholder="Date" id="account-expiration" name="from.ExpirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()"/ required>
-    <span class="help-line">Enterexpiration date </span>
+    <input type="text" placeholder="Date" id="account-expiration" name="from.ExpirationDate" data-date-format="@BaseController.ShortDateFormat.ToLower()" required />
+    <span class="help-line">Enter expiration date </span>
     <label for="account-number">
         Account
     </label>
@@ -40,7 +40,7 @@
         <label for="recipient-account-number">
             Recipient's account
         </label>
-        <input type="text" placeholder="Recipient" name="to.Number" id="recipient-account-number" required pattern="[-0-9]" />
+        <input type="text" placeholder="Recipient" name="to.Number" id="recipient-account-number" required pattern="[0-9]+" />
         <span class="help-line">Enter recipient account number</span>
     }
     else
@@ -49,7 +49,8 @@
             @Model.Service.IdentifierDescription
         </label>
         <input type="text" placeholder="@Model.Service.IdentifierDescription" name="serviceIdentifier" id="service-identifier">
-        <input type="hidden" name="owner" value="@Model.Service.Owner.Username"/>
+        <input type="hidden" name="to.Number" value="@Model.Service.Account.Number"/>
+        <input type="hidden" name="description" value="@Model.Service.Name"/>
     }
     <label for="personal-code">
         Personal code
@@ -57,7 +58,8 @@
     <input type="password" name="personalCode" id="personal-code">
     <span class="help-line">Enter your Peronal Code</span>
     <label class="checkbox">
-        <input type="checkbox" name="isAutomatic">
+        <input type="checkbox" name="isAutomatic" value="@Model.IsAutomatic">
+        <input type="hidden" name="isAutomatic" value="false"/>
         Pay monthly
     </label>
     <div>

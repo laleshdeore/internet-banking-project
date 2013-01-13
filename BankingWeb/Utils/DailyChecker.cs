@@ -12,6 +12,7 @@ namespace BankingWeb.Utils
     {
         public IPaymentRepository PaymentRepository { get; set; }
         public ICurrencyRepository CurrencyRepository { get; set; }
+        public IAccountRepository AccountRepository { get; set; }
 
         public void Check()
         {
@@ -19,7 +20,7 @@ namespace BankingWeb.Utils
             {
                 if (DateTime.Now.Day == 1)
                 {
-                    foreach (var autoPayment in PaymentRepository.GetPayments(true))
+                    foreach (var autoPayment in PaymentRepository.GetAutoPayments())
                     {
                         PaymentRepository.Pay(new Payment
                         {
@@ -31,6 +32,12 @@ namespace BankingWeb.Utils
                         }, CurrencyRepository);
                     }
                 }
+                foreach (var account in AccountRepository.GetExpiredAccounts(true))
+                {
+                    account.IsActive = false;
+                    AccountRepository.AddOrUpdate(account);
+                }
+                //Thread.Sleep(TimeSpan.FromSeconds(1));
                 Thread.Sleep(TimeSpan.FromDays(1));
             }
         }

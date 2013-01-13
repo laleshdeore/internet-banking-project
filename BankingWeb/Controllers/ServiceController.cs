@@ -8,13 +8,13 @@ namespace BankingWeb.Controllers
     {
         private readonly IPaymentRepository _paymentRepository;
         private readonly IRegionRepository _regionRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly IAccountRepository _accountRepository;
 
         public ServiceController()
         {
             _paymentRepository = new PaymentRepository(Context);
             _regionRepository = new RegionRepository(Context);
-            _userRepository = new UserRepository(Context);
+            _accountRepository = new AccountRepository(Context);
         }
 
         [Authorize]
@@ -33,8 +33,23 @@ namespace BankingWeb.Controllers
         [HttpPost]
         public ActionResult Add(ServiceModel serviceModel)
         {
-            _paymentRepository.AddOrUpdate(serviceModel.GetEntity(_regionRepository, _userRepository));
-            
+            var service = serviceModel.GetEntity(_regionRepository, _accountRepository);
+
+            if (service.Account == null)
+            {
+                ModelState.AddModelError("account", "Account does not exist");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _paymentRepository.AddOrUpdate(service);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                serviceModel.Regions = _regionRepository.GetRegions();
+                return View(serviceModel);
+            }
             return RedirectToAction("All", "Service");
         }
 

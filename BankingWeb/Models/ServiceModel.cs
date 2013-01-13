@@ -15,7 +15,7 @@ namespace BankingWeb.Models
 
         public string IdentifierDescription { get; set; }
 
-        public string Owner { get; set; }
+        public long Account { get; set; }
 
         public string Region { get; set; }
 
@@ -26,14 +26,14 @@ namespace BankingWeb.Models
             Regions = new List<Region>();
         }
 
-        public Service GetEntity(IRegionRepository regionRepository, IUserRepository userRepository)
+        public Service GetEntity(IRegionRepository regionRepository, IAccountRepository accountRepository)
         {
             return new Service
             {
                 Name = Name,
                 Description = Description,
                 IdentifierDescription = IdentifierDescription,
-                Owner = userRepository.GetUserByUsername(Owner),
+                Account = accountRepository.GetAccountByNumber(Account),
                 Region = regionRepository.GetRegionByName(Region)
             };
         }

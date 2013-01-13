@@ -8,9 +8,10 @@ namespace BankingDAL.Repository
 {
     public interface IAccountRepository
     {
-        string GenerateNumber();
-        Account GetAccountByNumber(string number);
+        long GenerateNumber();
+        Account GetAccountByNumber(long number);
         Account GetAccountById(long id);
+        IList<Account> GetExpiredAccounts(bool isActive); 
         void AddOrUpdate(Account account);
         void Delete(Account account);
     }

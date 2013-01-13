@@ -40,13 +40,26 @@ namespace BankingWeb.Controllers
         [Authorize(Roles = AdminOrEmployee)]
         public ActionResult Add(AccountModel accountModel)
         {
+            var account = accountModel.GetEntity(_userRepository, _currencyRepository);
+
+            if (account.ExpirationDate <= DateTime.Now)
+            {
+                ModelState.AddModelError("expirationDate", "Expiration date must be future date");
+            }
             try
             {
-                _accountRepository.AddOrUpdate(accountModel.GetEntity(_userRepository, _currencyRepository));
+                if (ModelState.IsValid)
+                {
+                    _accountRepository.AddOrUpdate(account);
+                }
             }
             catch (Exception e)
             {
                 ModelState.AddModelError("account", e.Message);
+            }
+
+            if (!ModelState.IsValid)
+            {
                 return View(accountModel);
             }
 

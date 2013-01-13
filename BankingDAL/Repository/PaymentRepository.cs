@@ -8,7 +8,8 @@ namespace BankingDAL.Repository
 {
     public class PaymentRepository : DatabaseRepository, IPaymentRepository
     {
-        public PaymentRepository(DatabaseContext database) : base(database)
+        public PaymentRepository(DatabaseContext database)
+            : base(database)
         {
         }
 
@@ -16,7 +17,7 @@ namespace BankingDAL.Repository
         {
             var accountIds = user.Accounts.Select(account => account.Id).ToList();
 
-            return Database.Payments.Where(p => accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id) && !p.IsAutomatic).Where(p => (p.Date <= from) && (to <= p.Date)).OrderByDescending(p => p.Date).ToList();
+            return Database.Payments.Where(p => (accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id)) && !p.IsAutomatic).Where(p => (p.Date <= from) && (to <= p.Date)).OrderByDescending(p => p.Date).ToList();
         }
 
         public IList<Payment> GetPayments(DateTime from, DateTime to, Page page)
@@ -24,9 +25,16 @@ namespace BankingDAL.Repository
             return Database.Payments.Where(p => (p.Date <= from) && (to <= p.Date)).OrderByDescending(p => p.Date).ToList();
         }
 
-        public IList<Payment> GetPayments(bool isAutomatic)
+        public IList<Payment> GetAutoPaymentsByUser(User user)
         {
-            return Database.Payments.Where(payment => payment.IsAutomatic == isAutomatic).ToList();
+            var accountIds = user.Accounts.Select(account => account.Id).ToList();
+
+            return Database.Payments.Where(p => (accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id)) && p.IsAutomatic).ToList();
+        }
+
+        public IList<Payment> GetAutoPayments()
+        {
+            return Database.Payments.Where(payment => payment.IsAutomatic).ToList();
         }
 
         public void Pay(Payment payment, ICurrencyRepository currencyRepository)
@@ -34,6 +42,10 @@ namespace BankingDAL.Repository
             payment.State = PaymentState.Pending;
             AddOrUpdate(payment);
 
+            if (payment.IsAutomatic)
+            {
+                return;
+            }
             try
             {
                 if (!payment.From.IsActive || !payment.To.IsActive)
@@ -64,6 +76,18 @@ namespace BankingDAL.Repository
                     payment.State = PaymentState.Canceled;
                     AddOrUpdate(payment);
                     throw new Exception("Not enough money for pay");
+                }
+
+                if (payMoney.Currency != payment.Value.Currency)
+                {
+                    var bankFrom = Database.Bank.Balance.SingleOrDefault(m => m.Currency == payMoney.Currency);
+                    var bankTo = Database.Bank.Balance.SingleOrDefault(m => m.Currency == payment.Value.Currency);
+
+                    if (bankFrom != null && bankTo != null)
+                    {
+                        bankFrom.Value -= payMoney.Value;
+                        bankTo.Value += payment.Value.Value;
+                    }
                 }
 
                 fromMoney.Value -= payMoney.Value;
@@ -138,6 +162,12 @@ namespace BankingDAL.Repository
         public void Delete(Service service)
         {
             Database.Services.Remove(service);
+            SaveAllChanges();
+        }
+
+        public void Delete(Payment payment)
+        {
+            Database.Payments.Remove(payment);
             SaveAllChanges();
         }
     }

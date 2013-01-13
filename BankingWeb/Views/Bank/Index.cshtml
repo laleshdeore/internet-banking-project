@@ -7,11 +7,12 @@
 <fieldset>
     <legend>Bank</legend>
     <label for="monthly-pay-value">
-        Monthly pay</label>
+        Monthly pay
+    </label>
     <div class="input-prepend input-append">
         <span class="add-on">@Model.MonthlyPay.Symbol</span>
-        <input type="text" id="monthly-pay-value" name="@Model.MonthlyPay.Value" placeholder="Amount" value="@Model.MonthlyPay.Value" required="" pattern="^[1-9]{1}[0-9]{0,}$">
-        <input type="hidden" id="monthly-pay-name" name="@Model.MonthlyPay.Name" value="@Model.MonthlyPay.Name"/>
+        <input type="text" id="monthly-pay-value" name="monthlyPay.Value" placeholder="Amount" value="@Model.MonthlyPay.Value" pattern="^[1-9]{1}[0-9]{0,}$">
+        <input type="hidden" id="monthly-pay-name" name="monthlyPay.Name" value="@Model.MonthlyPay.Name"/>
     </div>
     <label>
         Bank balance
@@ -20,7 +21,7 @@
     {
         <div class="input-prepend input-append">
             <span class="add-on">@Model.Balance[i].Symbol</span>
-            <input type="text" id="balance-@i-value" name="balance[@i].Value" placeholder="Amount" value="@Model.Balance[i].Value" required="" pattern="^[1-9]{1}[0-9]{0,}$">
+            <input type="text" id="balance-@i-value" name="balance[@i].Value" placeholder="Amount" value="@Model.Balance[i].Value" pattern="[-0-9]{0,}$">
             <input type="hidden" id="balance-@i-name" name="balance[@i].Name" value="@Model.Balance[i].Name"/>
         </div>
     }

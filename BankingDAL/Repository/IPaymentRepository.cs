@@ -12,7 +12,9 @@ namespace BankingDAL.Repository
 
         IList<Payment> GetPayments(DateTime from, DateTime to, Page page);
 
-        IList<Payment> GetPayments(bool isAutomatic); 
+        IList<Payment> GetAutoPaymentsByUser(User user);
+
+        IList<Payment> GetAutoPayments(); 
 
         void Pay(Payment payment, ICurrencyRepository currencyRepository);
 
@@ -29,5 +31,7 @@ namespace BankingDAL.Repository
         IList<Service> GetServices();
 
         void Delete(Service service);
+
+        void Delete(Payment payment);
     }
 }

@@ -8,7 +8,7 @@
 
         public string IdentifierDescription { get; set; }
 
-        public virtual User Owner { get; set; }
+        public virtual Account Account { get; set; }
 
         public virtual Region Region { get; set; }
     }

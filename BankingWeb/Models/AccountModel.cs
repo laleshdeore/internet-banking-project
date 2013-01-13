@@ -10,7 +10,7 @@ namespace BankingWeb.Models
 {
     public class AccountModel
     {
-        public string Number { get; set; }
+        public long Number { get; set; }
 
         public string Owner { get; set; }
 

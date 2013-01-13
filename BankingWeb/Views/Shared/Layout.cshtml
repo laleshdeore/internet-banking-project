@@ -44,6 +44,7 @@
                         @if (User.IsInRole(BaseController.Client))
                         {
                             <li class="@GetClass("Pay", "Payment")"><a href="@Url.Action("Pay", "Payment")">Pay</a></li>
+                            <li class="@GetClass("AutoPayment", "Payment")"><a href="@Url.Action("AutoPayment", "Payment")">Automatic Payments</a></li>
                         }
                         <li class="@GetClass("History", "Payment")"><a href="@Url.Action("History", "Payment")">
                             History</a></li>

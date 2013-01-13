@@ -8,7 +8,7 @@ namespace BankingDAL.Entities
 {
     public class Account : Entity
     {
-        public string Number { get; set; }
+        public long Number { get; set; }
 
         public DateTime ExpirationDate { get; set; }
 
