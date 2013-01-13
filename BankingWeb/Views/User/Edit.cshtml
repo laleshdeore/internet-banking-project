@@ -10,26 +10,27 @@
         Password
     </label>
     <input type="password" id="password" name="password" value="@Model.Password" required maxlength="16" pattern="[A-Za-z0-9]{4,}">
-    <span><font size="1">Field Password consist of the 4-16 latterr or numbers </font>
-    </span>
+    <span class="help-line">Field Password consist of the 4-16 latterr or numbers</span>
     <label for="first-name">
         First Name
     </label>
     <input type="text" id="first-name" name="firstName" value="@Model.FirstName" required maxlength="10" pattern="[A-Za-z]{3,}">
-    <span><font size="1">Field FirstName consist of the 3-10 latters</font></span>
+   <span class="help-line">Field FirstName consist of the 3-10 latters</span>
     <label for="first-name">
         Last Name
     </label>
     <input type="text" id="last-name" name="lastName" value="@Model.LastName" required maxlength="15" pattern="[A-Za-z]{3,}">
-    <span><font size="1">Field LastName consist of the 3-15 latters</font></span>
+    <span class="help-line">Field LastName consist of the 3-15 latters</span>
     <label for="email">
         Email
     </label>
-    <input id="emailvalid" type="text"  name="email" value="@Model.Email" required pattern="[A-Za-z0-9]{2,10}@('@')[a-z]{2,6}.[a-z]{2,4}">
+    <input id="emailvalid" type="email"  name="email" value="@Model.Email" required />
+    <span class=" help-line">Enter valide email</span>
     <label for="phone">
         Phone
     </label>
     <input type="text" id="phone" name="phone" value="@Model.Phone" maxlength=12 pattern="^[1-9]{1}[0-9]{6}$">
+    <span class="help-line">Enter last 7 digits in telephon number</span>
     <label for="birthday">
         Birthday
     </label>

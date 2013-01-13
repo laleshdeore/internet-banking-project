@@ -13,8 +13,8 @@
     <span class="help-line">Enter your old PC, but if first time leave it empy</span>
     <label for="newcode">
         New personal code</label>
-    <input type="password" id="newcode" name="new" required pattern="[0-9]{4,16}" />
-    <span class="help-line">Enter your new PC, use only letters ond digits</span>
+    <input type="password" id="newcode" name="new"  pattern="[0-9]{4,16}" />
+    <span class="help-line">Enter your new PC, use only 4 to 16 digits </span>
     <label for="confirmcode">
         Confirm</label>
     <input type="password" id="confirmcode" name="confirm" />
@@ -42,17 +42,17 @@
          $("#pcform").validate(
  {
      rules: {
-         newcode: {
+         new: {
              required: true,
             digits: true,
             minlength: 4,
             maxlength: 16
          },
-         confirmcode: {
+         confirm: {
              required: true,
              equalTo: "#newcode"
          }
      }
  });
-     }).element("#confirmcode"); 
+     }); 
 </script>
