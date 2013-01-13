@@ -13,12 +13,12 @@
         <label for="first-value-@i">
             @Model[i].First.Currency.Name
         </label>
-        <input type="text" id="first-value-@i" name="[@i].First.Value" placeholder="Amount" value="@Model[i].First.Value" pattern="[1-9]{1}[0-9]" required />
+        <input type="text" id="first-value-@i" name="[@i].First.Value" placeholder="Amount" value="@Model[i].First.Value" pattern="[1-9]{1}[0-9]{0,}" required />
         <span class="help-line">Enter curense rate, only integer digits </span>
         <label for="second-value-@i">
             @Model[i].Second.Currency.Name
         </label>
-        <input type="text" id="second-value-@i" name="[@i].Second.Value" placeholder="Amount" value="@Model[i].Second.Value" pattern="[1-9]{1}[0-9]" required />
+        <input type="text" id="second-value-@i" name="[@i].Second.Value" placeholder="Amount" value="@Model[i].Second.Value" pattern="[1-9]{1}[0-9]{0,}" required />
         <span class="help-line">Enter curense rate, only integer digits</span>
         <input type="hidden" name="[@i].Id" value="@Model[i].Id"/>
     }
