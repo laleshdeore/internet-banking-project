@@ -61,14 +61,14 @@ namespace BankingDAL.Repository
 
         public Money Convert(Money money, Currency currency)
         {
-            var rates = GetCurrencyRates(money.Currency, currency);
-            var sellRate = rates.SingleOrDefault(rate => rate.Type == CurrencyRateType.Sell);
-            var result = new Money { Currency = currency };
-
             if (money.Currency.Id == currency.Id)
             {
                 return money;
             }
+
+            var rates = GetCurrencyRates(money.Currency, currency);
+            var sellRate = rates.SingleOrDefault(rate => rate.Type == CurrencyRateType.Sell);
+            var result = new Money { Currency = currency };
 
             if (sellRate != null)
             {
