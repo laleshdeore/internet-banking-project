@@ -16,14 +16,27 @@ namespace BankingDAL.Repository
         public IList<Payment> GetPaymentsByUser(User user, DateTime from, DateTime to, Page page)
         {
             var accountIds = user.Accounts.Select(account => account.Id).ToList();
+            var payments =
+                Database.Payments.Where(
+                    p => (accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id)) && !p.IsAutomatic)
+                        .Where(p => (p.Date <= from) && (to <= p.Date))
+                        .OrderByDescending(p => p.Date);
 
-            return Database.Payments.Where(p => (accountIds.Contains(p.From.Id) || accountIds.Contains(p.To.Id)) && !p.IsAutomatic).Where(p => (p.Date <= from) && (to <= p.Date)).OrderByDescending(p => p.Date).ToList();
+           
+            return GetPage(payments, page).ToList();
         }
 
         public IList<Payment> GetPayments(DateTime from, DateTime to, Page page)
         {
-            return Database.Payments.Where(p => (p.Date <= from) && (to <= p.Date)).OrderByDescending(p => p.Date).ToList();
+            return GetPage(Database.Payments.Where(p => (p.Date <= from) && (to <= p.Date)).OrderByDescending(p => p.Date), page).ToList();
         }
+
+        private static IEnumerable<Payment> GetPage(IQueryable<Payment> payments, Page page)
+        {
+            page.Count = payments.Count() / page.Capacity + (payments.Count() % page.Capacity != 0 ? 1 : 0);
+
+            return payments.Skip(page.Capacity*(page.Number - 1)).Take(page.Capacity);
+        } 
 
         public IList<Payment> GetAutoPaymentsByUser(User user)
         {
@@ -85,8 +98,8 @@ namespace BankingDAL.Repository
 
                     if (bankFrom != null && bankTo != null)
                     {
-                        bankFrom.Value -= payMoney.Value;
-                        bankTo.Value += payment.Value.Value;
+                        bankFrom.Value += payMoney.Value;
+                        bankTo.Value -= payment.Value.Value;
                     }
                 }
 

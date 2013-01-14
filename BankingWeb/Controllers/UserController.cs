@@ -113,11 +113,7 @@ namespace BankingWeb.Controllers
         {
             var user = userModel.GetUserEntity(_roleRepository, _regionRepository);
 
-
-            if (DateTime.Now < user.Birthday.AddYears(AgeBarrier))
-            {
-                ModelState.AddModelError("birthday", String.Format("User must be at least {0} years old", AgeBarrier));
-            }
+            ValidateBirthday(user.Birthday);
             try
             {
                 if (ModelState.IsValid)
@@ -197,10 +193,7 @@ namespace BankingWeb.Controllers
             var user = _userRepository.GetUserById(id);
 
 
-            if (DateTime.Now < userFromModel.Birthday.AddYears(AgeBarrier))
-            {
-                ModelState.AddModelError("birthday", String.Format("User must be at least {0} years old", AgeBarrier));
-            }
+            ValidateBirthday(userFromModel.Birthday);
             try
             {
                 if (ModelState.IsValid)

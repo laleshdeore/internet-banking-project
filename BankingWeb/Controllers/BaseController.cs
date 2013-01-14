@@ -23,7 +23,8 @@ namespace BankingWeb.Controllers
         public const string DateFormat = "dd.MM.yyyy";
         public const string ShortDateFormat = "MM.yyyy";
         public const int MoneyBarrier = 100;
-        public const int AgeBarrier = 18;
+        public const int MinAgeBarrier = 18;
+        public const int MaxAgeBarrier = 120;
         public const int PageCapacity = 10;
 
         protected DatabaseContext Context;
@@ -34,12 +35,7 @@ namespace BankingWeb.Controllers
 
             if (_checker != null) return;
 
-            _checker = new DailyChecker
-            {
-                CurrencyRepository = new CurrencyRepository(Context),
-                PaymentRepository = new PaymentRepository(Context),
-                AccountRepository = new AccountRepository(Context)
-            };
+            _checker = new DailyChecker(Context);
             new Thread(_checker.Check).Start();
         }
 
@@ -73,6 +69,18 @@ namespace BankingWeb.Controllers
                 ModelState.Add(pair);
             }
             TempData["ModelState"] = null;
+        }
+
+        protected void ValidateBirthday(DateTime birthday)
+        {
+            if (DateTime.Now < birthday.AddYears(MinAgeBarrier))
+            {
+                ModelState.AddModelError("birthday", String.Format("User must be at least {0} years old", MinAgeBarrier));
+            }
+            if (DateTime.Now > birthday.AddYears(MaxAgeBarrier))
+            {
+                ModelState.AddModelError("birthday", String.Format("User must be younger than {0} years old", MaxAgeBarrier));
+            }
         }
 
         protected DateTime ParseDate(string date)
