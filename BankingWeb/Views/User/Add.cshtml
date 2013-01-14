@@ -10,27 +10,27 @@
         Username
     </label>
     <input type="text" id="username" name="username" placeholder="Username" class="required" maxlength="20" pattern="[A-Za-z0-9]{4,}">
-    <span class="help-line">Field UserName consist of the 4-20 latters or numbers </span>
+    <span class="help-line">Field UserName consist of the 4-20 letters or numbers </span>
     <label for="password">
         Password
     </label>
     <input type="password" id="password" name="password" required maxlength="16" pattern="[A-Za-z0-9]{4,}"/>
-    <span class="help-line">Field Password consist of the 4-16 latterr or numbers</span>
+    <span class="help-line">Field Password consist of the 4-16 letters or numbers</span>
     <label for="first-name">
         First Name
     </label>
     <input type="text" id="first-name" name="firstName" placeholder="First Name" required maxlength="10" pattern="[A-Za-z]{3,}"/>
-    <span class="help-line">Field FirstName consist of the 3-10 latters</span>
+    <span class="help-line">Field FirstName consist of the 3-10 letters</span>
     <label for="first-name">
         Last Name
     </label>
     <input type="text" id="last-name" name="lastName" placeholder="Last Name" required  maxlength="15" pattern="[A-Za-z]{3,}"/>
-    <span class="help-line">Field LastName consist of the 3-15 latters</span>
+    <span class="help-line">Field LastName consist of the 3-15 letters</span>
     <label for="email">
         Email
     </label>
     <input id="emailvalid" type="email"  name="email" placeholder="Email" required />
-    <span class=" help-line">Enter valide email</span>
+    <span class=" help-line">Enter valid email</span>
     <!-- 
     pattern="[A-Za-z0-9]{2,10}@('@')[a-z]{2,6}.[a-z]{2,4}"
     pattern=""
@@ -44,7 +44,8 @@
         Birthday
     </label>
     <input type="text" placeholder="Birthday" id="birthday" name="birthday" data-date-format="@BaseController.DateFormat.ToLower()" 
-        required />
+        required  />
+        <span class="help-line">Select birthday in the range of 18 to 120</span>
     <input type="hidden" name="role" value="@Model.Role"/>
     <label for="region">Region</label>
     <select name="region" id="region">
@@ -53,6 +54,7 @@
             <option value="@region.Name">@region.Name</option>
         }
     </select>
+    <span class="help-line">Select region</span>
     <div>
         <button  type="submit" class="btn" >
             Create
