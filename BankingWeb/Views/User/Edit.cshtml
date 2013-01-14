@@ -10,32 +10,33 @@
         Password
     </label>
     <input type="password" id="password" name="password" value="@Model.Password" required maxlength="16" pattern="[A-Za-z0-9]{4,}">
-    <span class="help-line">Field Password consist of the 4-16 latterr or numbers</span>
+    <span class="help-line">Field Password consist of the 4-16 letters or numbers</span>
     <label for="first-name">
         First Name
     </label>
     <input type="text" id="first-name" name="firstName" value="@Model.FirstName" required maxlength="10" pattern="[A-Za-z]{3,}">
-   <span class="help-line">Field FirstName consist of the 3-10 latters</span>
+   <span class="help-line">Field FirstName consist of the 3-10 letters</span>
     <label for="first-name">
         Last Name
     </label>
     <input type="text" id="last-name" name="lastName" value="@Model.LastName" required maxlength="15" pattern="[A-Za-z]{3,}">
-    <span class="help-line">Field LastName consist of the 3-15 latters</span>
+    <span class="help-line">Field LastName consist of the 3-15 letters</span>
     <label for="email">
         Email
     </label>
     <input id="emailvalid" type="email"  name="email" value="@Model.Email" required />
-    <span class=" help-line">Enter valide email</span>
+    <span class=" help-line">Enter valid email</span>
     <label for="phone">
         Phone
     </label>
-    <input type="text" id="phone" name="phone" value="@Model.Phone" maxlength=12 pattern="^(\+[1-9]{1}[0-9]{2})?[1-9]{2}[1-9]{1}[0-9]{6}$">
+    <input type="text" id="phone" name="phone" value="@Model.Phone" maxlength="13" pattern="^(\+[1-9]{1}[0-9]{2})?[1-9]{2}[1-9]{1}[0-9]{6}$">
     <span class="help-line">Enter phone number in format +375xxxxxxxxx or xxxxxxxxx</span>
     <label for="birthday">
         Birthday
     </label>
     <input type="text" value="@Model.Birthday" id="birthday" name="birthday" data-date-format="@BaseController.DateFormat.ToLower()" 
                required >
+     <span class="help-line">Select birthday in the range of 18 to 120</span>
     <input type="hidden" name="role" value="@Model.Role"/>
     <label for="region">
         Region
@@ -46,6 +47,7 @@
             <option value="@region.Name" @(region.Name.Equals(Model.Region) ? "selected" : "")>@region.Name</option>
         }
     </select>
+    <span class="help-line">Select region</span>
     <div>
         <button type="submit" class="btn">
             Save

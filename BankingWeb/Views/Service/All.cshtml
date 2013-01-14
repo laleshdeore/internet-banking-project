@@ -50,7 +50,9 @@
                 {
                     <a href="@Url.Action("Delete", "Service", new {id = Model[i].Id})">Delete </a>
                 }
+                 @if (User.IsInRole(BaseController.Employee)){
                 <a href="@Url.Action("Pay", "Payment", new {serviceId = Model[i].Id})">Pay </a>
+                }
             </td>
         </tr>
     }

@@ -11,9 +11,10 @@
     </label>
     <div class="input-prepend input-append">
         <span class="add-on">@Model.MonthlyPay.Symbol</span>
-        <input type="text" id="monthly-pay-value" name="monthlyPay.Value" placeholder="Amount" value="@Model.MonthlyPay.Value" pattern="^[1-9]{1}[0-9]{0,}$">
+        <input type="text" id="monthly-pay-value" name="monthlyPay.Value" placeholder="Amount" value="@Model.MonthlyPay.Value" pattern="^[1-9]{1}[0-9]{0,}$" />
         <input type="hidden" id="monthly-pay-name" name="monthlyPay.Name" value="@Model.MonthlyPay.Name"/>
     </div>
+        <span class="help-line">Enter MonthlyPay. Use only integer digits.</span>
     <label>
         Bank balance
     </label>
@@ -21,9 +22,10 @@
     {
         <div class="input-prepend input-append">
             <span class="add-on">@Model.Balance[i].Symbol</span>
-            <input type="text" id="balance-@i-value" name="balance[@i].Value" placeholder="Amount" value="@Model.Balance[i].Value" pattern="[-0-9]{0,}$">
+            <input type="text" id="balance-@i-value" name="balance[@i].Value" placeholder="Amount" value="@Model.Balance[i].Value" pattern="^[1-9]{1}[0-9]{0,}$" />
             <input type="hidden" id="balance-@i-name" name="balance[@i].Name" value="@Model.Balance[i].Name"/>
         </div>
+            <span class="help-line">Enter the balance of the bank. Use only integer digits.</span>
     }
     <div>
         <button type="submit" class="btn">
