@@ -57,10 +57,10 @@
                 @Model[i].Number
             </td>
             <td>
-                @foreach (var money in Model[i].Balance)
+                @foreach (var money in Model[i].Balance.Where(m => m.Value != 0))
                 {
                     @(money.Value.GetValueOrDefault() + " " + money.Symbol)
-                    if (Model[i].Balance.Last() != money)
+                    if (Model[i].Balance.Last(m => m.Value != 0) != money)
                     {
                         @(" / ")
                     }

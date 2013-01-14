@@ -97,10 +97,10 @@
                         @Model.Accounts[i].Number
                     </td>
                     <td>
-                        @foreach (var money in Model.Accounts[i].Balance)
+                        @foreach (var money in Model.Accounts[i].Balance.Where(m => m.Value != 0))
                         {
                             @(money.Value + " " + money.Currency.Symbol)
-                            if (Model.Accounts[i].Balance.Last() != money)
+                            if (Model.Accounts[i].Balance.Last(m => m.Value != 0) != money)
                             {
                             @(" / ")
                             }
