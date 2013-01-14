@@ -51,7 +51,6 @@ namespace BankingWeb.Models
 
         public Account GetEntity(IUserRepository userRepository, ICurrencyRepository currencyRepository)
         {
-
             return new Account
             {
                 ExpirationDate = DateTime.ParseExact(ExpirationDate, BaseController.ShortDateFormat, CultureInfo.InvariantCulture),

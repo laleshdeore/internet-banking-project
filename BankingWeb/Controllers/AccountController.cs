@@ -42,6 +42,10 @@ namespace BankingWeb.Controllers
         {
             var account = accountModel.GetEntity(_userRepository, _currencyRepository);
 
+            if (account.Balance.Count == 0)
+            {
+                ModelState.AddModelError("balance", "Set at least one balance value to positive value");
+            }
             if (account.ExpirationDate <= DateTime.Now)
             {
                 ModelState.AddModelError("expirationDate", "Expiration date must be future date");
