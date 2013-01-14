@@ -18,7 +18,10 @@
     <label for="symbol">
         Symbol
     </label>
-    <input type="text" id="symbol" name="symbol" placeholder="Symbol"required maxlength="2" />
+    <input type="text" id="symbol" name="symbol" placeholder="Symbol"required maxlength="2" pattern="[A-Za-z\₳\฿\₵\¢\₡\₢\₠\₫\৳\₯\€\ƒ\₣\₲\₴\₭\ℳ\₥\₦\₧\₱\₰\£\₹\₨\₪\₸\₮\₩\¥]{1,2}" />
+    <!-- 
+    (₳ ฿ ₵ ¢ ₡ ₢ ₠ $ ₫ ৳ ₯ € ƒ ₣ ₲ ₴ ₭ ℳ ₥ ₦ ₧ ₱ ₰ £ ₹ ₨ ₪ ₸ ₮ ₩ ¥ ៛
+    -->
     <div>
         <button type="submit" class="btn">
             Create

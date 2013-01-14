@@ -11,7 +11,7 @@
     {
         <div class="input-prepend input-append">
             <span class="add-on">@Model.Balance[i].Symbol</span>
-            <input type="number" id="balance-@i-value" name="balance[@i].Value" value="@Model.Balance[i].Value" placeholder="Amount" min="1" maxlength="6" pattern="^[1-9]{1}[0-9]{0,}$">
+            <input type="number" id="balance-@i-value" name="balance[@i].Value" value="@Model.Balance[i].Value" placeholder="Amount" min="0" maxlength="6" pattern="^[1-9]{1}[0-9]{0,}$">
             <span class="help-line">amount must be more than 0</span>
             <input type="hidden" id="balance-@i-name" name="balance[@i].Name" value="@Model.Balance[i].Name"/>
             <input type="hidden" id="balance-@i-symbol" name="balance[@i].Symbol" value="@Model.Balance[i].Symbol"/>
