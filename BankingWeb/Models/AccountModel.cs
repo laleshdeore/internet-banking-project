@@ -57,7 +57,7 @@ namespace BankingWeb.Models
                 Number = Number,
                 IsActive = IsActive.GetValueOrDefault(true),
                 Owner = userRepository.GetUserByUsername(Owner),
-                Balance = Balance.Where(money => money.Value != null).Select(model => model.GetEntity(currencyRepository)).ToList()
+                Balance = Balance.Where(money => money.Value != null && money.Value != 0).Select(model => model.GetEntity(currencyRepository)).ToList()
             };
         }
 
