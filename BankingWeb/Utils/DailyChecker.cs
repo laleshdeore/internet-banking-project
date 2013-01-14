@@ -17,6 +17,7 @@ namespace BankingWeb.Utils
         private readonly IAccountRepository _accountRepository;
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly DatabaseContext _context;
 
         public DailyChecker(DatabaseContext context)
         {
@@ -25,6 +26,7 @@ namespace BankingWeb.Utils
             _accountRepository = new AccountRepository(context);
             _userRepository = new UserRepository(context);
             _roleRepository = new RoleRepository(context);
+            _context = context;
         }
 
         public void Check()
@@ -50,7 +52,7 @@ namespace BankingWeb.Utils
                         { }
                     }
                     var roles = new List<Role> { _roleRepository.GetRoleByName(BaseController.Client) };
-                    var page = new Page {Capacity = BaseController.PageCapacity, Number = 1};
+                    var page = new Page { Capacity = BaseController.PageCapacity, Number = 1 };
                     IList<User> users;
 
                     while ((users = _userRepository.GetUsersByRoles(roles, page)).Count > 0)
@@ -60,6 +62,23 @@ namespace BankingWeb.Utils
                         foreach (var user in users)
                         {
                             accounts.AddRange(user.Accounts.Where(account => account.IsActive));
+                        }
+                        foreach (var account in accounts.Where(a => a.Balance.Any(m => m.Currency == _context.Bank.Tariff.MonthlyPay.Currency)))
+                        {
+                            var fromMoney = account.Balance.SingleOrDefault(m => m.Currency == _context.Bank.Tariff.MonthlyPay.Currency);
+                            var toMoney = _context.Bank.Balance.SingleOrDefault(m => m.Currency == _context.Bank.Tariff.MonthlyPay.Currency);
+
+                            if (fromMoney == null || toMoney == null) continue;
+
+                            try
+                            {
+                                fromMoney.Value -= _context.Bank.Tariff.MonthlyPay.Value;
+                                toMoney.Value += _context.Bank.Tariff.MonthlyPay.Value;
+                                _context.SaveChanges();
+                            }
+                            catch
+                            {
+                            }
                         }
                     }
                 }
