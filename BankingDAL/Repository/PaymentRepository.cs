@@ -69,22 +69,29 @@ namespace BankingDAL.Repository
                 }
 
                 var toMoney = payment.To.Balance.SingleOrDefault(money => money.Currency.Id == payment.Value.Currency.Id);
-                var fromMoney =
+                var fromMoney = 
                     payment.From.Balance.SingleOrDefault(money => money.Currency.Id == payment.Value.Currency.Id);
+                Money payMoney = null;
 
                 if (toMoney == null)
                 {
                     toMoney = payment.To.Balance.First();
                 }
 
-                if (fromMoney == null)
+                foreach (var money in payment.From.Balance)
                 {
-                    fromMoney = payment.From.Balance.First();
+                    payMoney = currencyRepository.Convert(payment.Value, money.Currency);
+
+                    if (!(payMoney.Value <= money.Value)) continue;
+
+                    fromMoney = money;
+                    if (money.Currency == payment.Value.Currency)
+                    {
+                        break;
+                    }
                 }
 
-                var payMoney = currencyRepository.Convert(payment.Value, fromMoney.Currency);
-
-                if (payMoney.Value > fromMoney.Value)
+                if (fromMoney == null || payMoney == null)
                 {
                     payment.State = PaymentState.Canceled;
                     AddOrUpdate(payment);
